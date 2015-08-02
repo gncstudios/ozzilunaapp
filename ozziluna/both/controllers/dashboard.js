@@ -17,11 +17,11 @@ DashboardController.events({
     event.preventDefault();
     var dogToEdit = Dogs.findOne({username: Meteor.user().username});
     var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
-    if (dogToEdit.friends) {
-        Dogs.update(dogToEdit._id, {$addToSet: {friends: {friendUsername: Router.current().params.username, friendName: dogInProfile.name, relationship: "family"}}});
+    if (dogToEdit.friendRequests) {
+        Dogs.update(dogToEdit._id, {$addToSet: {friendRequests: {friendUsername: Router.current().params.username, friendName: dogInProfile.name, relationship: "family"}}});
     }
     else {
-      Dogs.update(dogToEdit._id, {$set: {friends: []}});
+      Dogs.update(dogToEdit._id, {$set: {friendRequests: []}});
     }
   },
 
@@ -111,9 +111,4 @@ DashboardController.events({
         });
      });
    }
-
-
-
-
-
 });
