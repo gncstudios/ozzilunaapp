@@ -3,7 +3,8 @@
 Template.dashboard.rendered = function() {
   Meteor.typeahead();
   Meteor.typeahead.inject();
-  Session.set('editMode', false);
+  Session.set('statsEditMode', false);
+  Session.set('philosophyEditMode', false);
 };
 
 Template.dashboard.helpers({
@@ -19,13 +20,16 @@ Template.dashboard.helpers({
   'statsEditMode': function() {
     return Session.get('statsEditMode');
   },
-  'statsEditMode': function() {
-    return Session.get('statsEditMode');
+  'philosophyEditMode': function() {
+    return Session.get('philosophyEditMode');
   }
+
 });
 
 
 // dependancies
+
+
 
 Template.statsDisplay.helpers({
   'thisDog': function() {
@@ -36,9 +40,6 @@ Template.statsDisplay.helpers({
     else {
       return false;
     }
-  },
-  'statsEditMode': function() {
-    return Session.get('statsEditMode');
   },
   'statsEditMode': function() {
     return Session.get('statsEditMode');
@@ -61,9 +62,6 @@ Template.statsEdit.helpers({
     else {
       return false;
     }
-  },
-  'statsEditMode': function() {
-    return Session.get('statsEditMode');
   },
   'statsEditMode': function() {
     return Session.get('statsEditMode');

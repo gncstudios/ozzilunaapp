@@ -13,6 +13,18 @@ DashboardController = AppController.extend({
 });
 
 DashboardController.events({
+  'click [data-action=addToFriends]': function (event, template) {
+    event.preventDefault();
+    var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+    var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
+    if (dogToEdit.friends) {
+        Dogs.update(dogToEdit._id, {$addToSet: {friends: {friendUsername: Router.current().params.username, friendName: dogInProfile.name, relationship: "family"}}});
+    }
+    else {
+      Dogs.update(dogToEdit._id, {$set: {friends: []}});
+    }
+  },
+
   'click [data-action=doSomething]': function (event, template) {
     event.preventDefault();
   },
@@ -59,6 +71,29 @@ DashboardController.events({
       Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, fixed: fixed,birthDay: birthDay, birthMonth: birthMonth, birthYear: birthYear}});
     }
     Session.set('statsEditMode', false);
+  },
+  'click [data-action=editPhilosophy]': function (event, template) {
+    event.preventDefault();
+    if (Meteor.user().username === Router.current().params.username) {
+      Session.set('philosophyEditMode', true);
+    }
+  },
+  'click [data-action=cancelPhilosophyEdit]': function (event, template) {
+    event.preventDefault();
+    if (Meteor.user().username === Router.current().params.username) {
+      Session.set('philosophyEditMode', false);
+    }
+  },
+  'click [data-action=savePhilosophy]': function (event, template) {
+    event.preventDefault();
+    var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+    if (dogToEdit) {
+      // save off the new stats
+      var philosophy = $('#philosophy').val();
+      $('#philosophy').val('');
+      Dogs.update(dogToEdit._id, {$set: {philosophy: philosophy}});
+    }
+    Session.set('philosophyEditMode', false);
   },
   'change .profilePicInput': function(event, template) {
       FS.Utility.eachFile(event, function(file) {
