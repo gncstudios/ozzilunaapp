@@ -4,9 +4,14 @@
   <div class="template-dashboard">
     <div class="panel panel-default translucent  no-border">
       <div class="panel-body translucent no-border">
-        <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}} <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a></h3>
+        <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
+          {{#if isDogInProfileFriend}}
+          <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
+          {{else}}
+          <i class="fa fa-user"></i>
+          {{/if}}
+          </h3>
         {{#if philosophyEditMode}}
-
           <div class="form-group">
             <div class="row">
               <div class="col-xs-1">
@@ -62,7 +67,7 @@
               <div class="list-group-header">My Best Friends</div>
               {{#each thisDog.friends}}
               <div class="list-group-item">
-                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendUsername}} </a><i class="fa fa-heart"></i> <span class="badge"> {{relationship}}</span>
+                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge"> {{relationship}}</span>
               </div>
 
                 {{/each}}
