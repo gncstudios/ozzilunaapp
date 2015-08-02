@@ -20,7 +20,6 @@
         <div class="panel panel-default  translucent no-border">
           <div class="panel-body translucent no-border">
             <div class="list-group">
-
               {{# if statsEditMode}}
               <a href="#" data-action="cancelStatsEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="saveStats"><i class="fa fa-save"></i></a>
               <div class="list-group-header">About</div>
@@ -140,7 +139,7 @@
       <strong>Gender: </strong>{{thisDog.gender}} <span class="label label-info">Fixed: {{thisDog.fixed}}</span>
     </div>
     <div class="list-group-item">
-      <strong>Age: </strong>{{thisDog.age}}
+      <strong>Age: </strong>{{dogAge}}
     </div>
   </div>
 </template>
@@ -155,7 +154,7 @@
             <label for="statsName">Name</label>
           </div>
           <div class="col-xs-10">
-            <input type="text" placeholder="{{thisDog.name}}" class="form-control" id="statsName">
+            <input type="text" value="{{thisDog.name}}" class="form-control" id="statsName">
           </div>
         </div>
       </div>
@@ -167,7 +166,7 @@
             <label for="statsName">Breed</label>
           </div>
           <div class="col-xs-10">
-            <input type="text" placeholder="{{thisDog.breed}}" class="form-control" id="statsBreed">
+            <input type="text" value="{{thisDog.breed}}" class="form-control" id="statsBreed">
           </div>
         </div>
       </div>
@@ -179,17 +178,17 @@
             <label for="statsName">Gender</label>
           </div>
           <div class="col-xs-10">
-            <input type="text" placeholder="{{thisDog.name}}" class="form-control" id="statsGender">
+            <input type="text" value="{{thisDog.gender}}" class="form-control" id="statsGender">
           </div>
         </div>
       </div>
     </div>
     <div class="list-group-item">
       <div class="row">
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <label for="statsBirthDay">Birth Day</label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <div class="form-group">
             <select class="form-control" id="statsBirthDay">
               <option>1</option>
@@ -227,10 +226,10 @@
           </div>
         </div>
 
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <label for="statsBirthMonth">Month</label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <div class="form-group">
             <select class="form-control" id="statsBirthMonth">
               <option>January</option>
@@ -248,10 +247,10 @@
             </select>
           </div>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <label for="statsBirthYear">Year</label>
         </div>
-        <div class="col-xs-2">
+        <div class="col-sm-2">
           <input type="text" placeholder="{{thisDog.birthYear}}" class="form-control" id="statsBirthYear">
         </div>
       </div>

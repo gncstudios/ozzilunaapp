@@ -42,13 +42,13 @@ DashboardController.events({
       var gender = $('#statsGender').val();
       $('#statsGender').val('');
 
-      var birthDay = $('statsBirthDay').val();
+      var birthDay = $('#statsBirthDay').val();
       $('#statsBirthDay').val('');
 
-      var birthMonth = $('statsBirthMonth').val();
+      var birthMonth = $('#statsBirthMonth').val();
       $('#statsBirthMonth').val('');
 
-      var birthYear = $('statsBirthYear').val();
+      var birthYear = $('#statsBirthYear').val();
       $('#statsBirthYear').val('');
 
       Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, birthDay: birthDay, birthMonth: birthMonth, birthYear: birthYear}});
