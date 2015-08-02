@@ -40,32 +40,33 @@
       </div>
 
     </div>
-    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-           <i class="fa fa-user-plus"></i>&nbsp;
-        </button>
-        <div class="dropdown-menu list-group">
-          <div class="list-group-item no-border">
-            <h4 class="thin dark-text">Friend Requests</h4>
-          </div>
-          {{#each myDog.friendRequests}}
-          <div class="list-group-item no-border">
 
-            <h3 style="display:'inline-block;'">
-            <a href="#" data-action="acceptFriendRequest"><i class="fa fa-check-circle-o"></i> </a>
-            <a href="#" data-action="acceptFriendRequest"><i class="fa fa-times-circle-o"></i> </a>
-          </h3>
-            <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}}</a>
-
-          </div>
-          {{/each}}
-        </div>
-      </div>
-    </div>
-    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
       <div class="input-group">
+        <span class="input-group-btn">
+          <div class="btn-group">
+            <button type="button" class="btn btn-default btn-add-on dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               <i class="fa fa-user-plus"></i>
+            </button>
+            <div class="dropdown-menu list-group">
+              <div class="list-group-item no-border">
+                <h4 class="thin dark-text">Friend Requests</h4>
+              </div>
+              {{#each myDog.friendRequests}}
+              <div class="list-group-item no-border">
+
+                <h3 style="display:'inline-block;'">
+                <a href="#" data-action="acceptFriendRequest"><i class="fa fa-check-circle-o"></i> </a>
+                <a href="#" data-action="acceptFriendRequest"><i class="fa fa-times-circle-o"></i> </a>
+              </h3>
+                <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}}</a>
+
+              </div>
+              {{/each}}
+            </div>
+          </div>
+        </span>
         <input class="form-control typeahead puppy-search" name="team" type="text"
         placeholder="Find puppy friends..."
         autocomplete="off" spellcheck="off"
