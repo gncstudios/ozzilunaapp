@@ -7,8 +7,12 @@
       <h2 class="dark-text thin" >
         Run with the pack
       </h2>
-      <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>
-      <a href="{{ pathFor 'atSignUp' }}" class="btn btn-brand navbar-btn">Register</a>
+      {{#if currentUser}}
+        <a href="dashboard/{{thisDog.username}}" class="btn btn-brand navbar-btn">Profile</a>
+      {{else}}
+        <a href="{{ pathFor 'atSignIn' }}" class="btn btn-default navbar-btn">Sign in</a>
+        <a href="{{ pathFor 'atSignUp' }}" class="btn btn-brand navbar-btn">Register</a>
+      {{/if}}
     </div>
 
   </div>
