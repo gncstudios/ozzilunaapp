@@ -20,19 +20,18 @@
         <div class="panel panel-default  translucent no-border">
           <div class="panel-body translucent no-border">
             <div class="list-group">
-              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
-              <div class="list-group-item">
-                {{thisDog.name}}
-              </div>
-              <div class="list-group-item">
-                {{thisDog.breed}}
-              </div>
-              <div class="list-group-item">
-                {{thisDog.gender}} <span class="label label-info">Fixed: {{thisDog.fixed}}</span>
-              </div>
-              <div class="list-group-item">
-                {{thisDog.age}}
-              </div>
+
+              {{# if statsEditMode}}
+              <a href="#" data-action="cancelStatsEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="saveStats"><i class="fa fa-save"></i></a>
+              <div class="list-group-header">About</div>
+
+              {{> statsEdit}}
+              {{else}}
+              <a href="#" data-action="editStats"><i class="fa fa-edit"></i></a>
+              <div class="list-group-header">About</div>
+
+              {{> statsDisplay}}
+              {{/if}}
             </div>
           </div>
         </div>
@@ -75,7 +74,7 @@
               <div class="list-group-header">My Favorite Activities</div>
               <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
               <div class="list-group-item">
-                  Hiking
+                Hiking
               </div>
               <div class="list-group-item">
                 Mountain Biking
@@ -124,5 +123,139 @@
   </div>
 
 
+</template>
+
+
+
+<template name="statsDisplay">
+  <div class="list-group">
+    <div class="list-group-item">
+      <strong>Name: </strong>{{thisDog.name}}
+
+    </div>
+    <div class="list-group-item">
+      <strong>Breed: </strong>{{thisDog.breed}}
+    </div>
+    <div class="list-group-item">
+      <strong>Gender: </strong>{{thisDog.gender}} <span class="label label-info">Fixed: {{thisDog.fixed}}</span>
+    </div>
+    <div class="list-group-item">
+      <strong>Age: </strong>{{thisDog.age}}
+    </div>
+  </div>
+</template>
+
+<template name="statsEdit">
+  <div class="list-group">
+
+    <div class="list-group-item">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-2">
+            <label for="statsName">Name</label>
+          </div>
+          <div class="col-xs-10">
+            <input type="text" placeholder="{{thisDog.name}}" class="form-control" id="statsName">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-2">
+            <label for="statsName">Breed</label>
+          </div>
+          <div class="col-xs-10">
+            <input type="text" placeholder="{{thisDog.breed}}" class="form-control" id="statsBreed">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-xs-2">
+            <label for="statsName">Gender</label>
+          </div>
+          <div class="col-xs-10">
+            <input type="text" placeholder="{{thisDog.name}}" class="form-control" id="statsGender">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-xs-2">
+          <label for="statsBirthDay">Birth Day</label>
+        </div>
+        <div class="col-xs-2">
+          <div class="form-group">
+            <select class="form-control" id="statsBirthDay">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="col-xs-2">
+          <label for="statsBirthMonth">Month</label>
+        </div>
+        <div class="col-xs-2">
+          <div class="form-group">
+            <select class="form-control" id="statsBirthMonth">
+              <option>January</option>
+              <option>February</option>
+              <option>March</option>
+              <option>April</option>
+              <option>May</option>
+              <option>June</option>
+              <option>July</option>
+              <option>August</option>
+              <option>September</option>
+              <option>October</option>
+              <option>November</option>
+              <option>December</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-xs-2">
+          <label for="statsBirthYear">Year</label>
+        </div>
+        <div class="col-xs-2">
+          <input type="text" placeholder="{{thisDog.birthYear}}" class="form-control" id="statsBirthYear">
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 <!-- (C) 2015 Samuel Jacobs All Rights Reserved -->

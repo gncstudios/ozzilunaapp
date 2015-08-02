@@ -3,6 +3,7 @@
 Template.dashboard.rendered = function() {
   Meteor.typeahead();
   Meteor.typeahead.inject();
+  Session.set('editMode', false);
 };
 
 Template.dashboard.helpers({
@@ -14,7 +15,14 @@ Template.dashboard.helpers({
     else {
       return false;
     }
+  },
+  'statsEditMode': function() {
+    return Session.get('statsEditMode');
+  },
+  'statsEditMode': function() {
+    return Session.get('statsEditMode');
   }
+
 
 
 
