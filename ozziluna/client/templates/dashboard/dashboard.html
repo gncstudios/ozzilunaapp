@@ -6,27 +6,27 @@
       <div class="panel-body translucent no-border">
         <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
           {{#if isDogInProfileFriend}}
-            <i class="fa fa-user"></i>
+          <i class="fa fa-user"></i>
           {{else}}
-            <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
+          <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
           {{/if}}
-          </h3>
+        </h3>
         {{#if philosophyEditMode}}
-          <div class="form-group">
-            <div class="row">
-              <div class="col-xs-1">
-                <a href="#" data-action="cancelPhilosophyEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="savePhilosophy"><i class="fa fa-save"></i></a>
-              </div>
-              <div class="col-xs-11">
-                <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
-              </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-xs-1">
+              <a href="#" data-action="cancelPhilosophyEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="savePhilosophy"><i class="fa fa-save"></i></a>
+            </div>
+            <div class="col-xs-11">
+              <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
             </div>
           </div>
+        </div>
         {{else}}
+        {{#if isMyProfile}}
         <a href="#" data-action="editPhilosophy"><i class="fa fa-edit"></i></a>
-
-
-          {{thisDog.philosophy}}
+        {{/if}}
+        {{thisDog.philosophy}}
         {{/if}}
       </div>
     </div>
@@ -35,7 +35,9 @@
         <div class="panel panel-default  translucent no-border">
           <div class="panel-body text-center translucent no-border">
             <img class="img img-circle profile-pic" src="{{thisDog.profilePic}}">
+            {{#if isMyProfile}}
             <input type="file" name="Choose Profile Pic..." class=profilePicInput>
+            {{/if}}
           </div>
         </div>
       </div>
@@ -49,7 +51,9 @@
 
               {{> statsEdit}}
               {{else}}
+              {{#if isMyProfile}}
               <a href="#" data-action="editStats"><i class="fa fa-edit"></i></a>
+              {{/if}}
               <div class="list-group-header">About</div>
 
               {{> statsDisplay}}
@@ -70,7 +74,7 @@
                 <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge"> {{relationship}}</span>
               </div>
 
-                {{/each}}
+              {{/each}}
             </div>
           </div>
         </div>

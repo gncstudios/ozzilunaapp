@@ -35,6 +35,10 @@ Template.dashboard.helpers({
       }
     }
     return isFriend;
+  },
+  'isMyProfile': function() {
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    return myDog.username === Router.current().params.username;
   }
 
 });
