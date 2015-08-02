@@ -31,3 +31,5 @@ accounts-meetup
 accounts-google
 accounts-github
 accounts-facebook
+cfs:standard-packages
+cfs:gridfs

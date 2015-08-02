@@ -12,7 +12,8 @@
       <div class="col-md-4">
         <div class="panel panel-default  translucent no-border">
           <div class="panel-body text-center translucent no-border">
-            <img class="img img-circle profile-pic" src="../images/ozzi-profile-example.png">
+            <img class="img img-circle profile-pic" src="{{thisDog.profilePic}}">
+            <input type="file" name="Choose Profile Pic..." class=profilePicInput>
           </div>
         </div>
       </div>
@@ -177,8 +178,19 @@
           <div class="col-xs-2">
             <label for="statsName">Gender</label>
           </div>
-          <div class="col-xs-10">
+          <div class="col-xs-4">
             <input type="text" value="{{thisDog.gender}}" class="form-control" id="statsGender">
+          </div>
+          <div class="col-sm-2">
+            <label for="statsFixed">Fixed</label>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group">
+              <select class="form-control" id="statsFixed">
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
           </div>
         </div>
       </div>

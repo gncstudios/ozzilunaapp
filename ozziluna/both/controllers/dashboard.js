@@ -1,7 +1,7 @@
 DashboardController = AppController.extend({
   waitOn: function() {
 
-    return this.subscribe('dogs');
+    return this.subscribe('dogs') && this.subscribe('images');
   },
   data: {
     dogs: Dogs.find({})
@@ -42,6 +42,9 @@ DashboardController.events({
       var gender = $('#statsGender').val();
       $('#statsGender').val('');
 
+      var fixed = $('#statsFixed').val();
+      $('#statsFixed').val('');
+
       var birthDay = $('#statsBirthDay').val();
       $('#statsBirthDay').val('');
 
@@ -51,11 +54,28 @@ DashboardController.events({
       var birthYear = $('#statsBirthYear').val();
       $('#statsBirthYear').val('');
 
-      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, birthDay: birthDay, birthMonth: birthMonth, birthYear: birthYear}});
+
+
+      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, fixed: fixed,birthDay: birthDay, birthMonth: birthMonth, birthYear: birthYear}});
     }
     Session.set('statsEditMode', false);
-  }
-
+  },
+  'change .profilePicInput': function(event, template) {
+      FS.Utility.eachFile(event, function(file) {
+        Images.insert(file, function (err, fileObj) {
+          if (err){
+             // handle error
+          } else {
+             // handle success depending what you need to do
+            var userId = Meteor.userId();
+              var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+            var imageUrl = "/cfs/files/images/" + fileObj._id;
+            var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+            Dogs.update(dogToEdit._id, {$set: {profilePic: imageUrl}});
+          }
+        });
+     });
+   }
 
 
 
