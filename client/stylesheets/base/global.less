@@ -1,0 +1,112 @@
+@components: '../components';
+// Bootstrap
+@import "./lib/bootstrap/bootstrap.import.less";
+
+// Font Awesome
+@import "./lib/font-awesome/font-awesome.import.less";
+
+@import './mixins.import.less';
+@import './variables.import.less';
+
+// Misc Global Styles
+@import './type.import.less';
+
+// Components
+@import '@{components}/loading.import.less';
+@import '@{components}/buttons.import.less';
+
+// Style
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.private-interest {
+  color:rgb(150, 150, 150);
+}
+.container {
+  width:100%;
+}
+.brand-img {
+  height:75%;
+}
+.public-interest {
+  color:rgb(70, 70, 70);
+}
+.grey-text{
+  color: rgb(80, 80, 80);
+}
+.thin {
+  font-weight: 100;
+  text-shadow: 1px 1px 4px #000000;
+}
+
+
+.imageAndText {
+  position: relative;
+}
+
+.imageAndText .col {
+  position: absolute; z-index: 1; top: 0; left: 0;
+  margin-top: 5%;
+}
+
+.transparent {
+  background-color:transparent;
+}
+.tt-suggestion {
+  color: whitesmoke;
+  margin-top: 2px;
+}
+.twitter-typeahead { width: 100%; }
+.tt-menu  {
+  background-color:rgba(80, 80, 80, 0.85);
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 10px;
+   width: 100%;
+}
+.translucent {
+  background-color:rgba(250, 250, 250, 0.65);
+}
+.no-border {
+  border:none;
+}
+.dark-text {
+  color: rgb(80, 80, 80);
+}
+.white-text {
+  color: whitesmoke;
+}
+.tiny-circle-pic {
+  height: 50px;
+  width: 50px;
+}
+.profile-pic {
+  margin-bottom: 5px;
+  margin-top:5px;
+
+  max-height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.navbar-themed {
+   background-color: rgb(90, 128, 255);
+   color: whitesmoke;
+}
+
+.btn-brand {
+  background-color: rgb(0, 128, 255);
+  color:whitesmoke;
+}
+.btn-brand:hover {
+  background-color: whitesmoke;
+  color:rgb(0, 128, 255);
+  border-color:rgb(0, 128, 255);
+}

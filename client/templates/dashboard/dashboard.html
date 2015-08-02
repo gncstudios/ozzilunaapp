@@ -1,0 +1,128 @@
+<!-- (C) 2015 Samuel Jacobs All Rights Reserved -->
+
+<template name="dashboard">
+  <div class="template-dashboard">
+    <div class="panel panel-default translucent  no-border">
+      <div class="panel-body translucent no-border">
+        <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}</h3>
+        <p>Hello my name is Ozzie and I love to chew on socks, chase the Frisbee, play in the water and go to the park. I was found in Fresno on Christmas day when I was just 1 month old and was rescued by my Mommy and Daddy who I love very much.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default  translucent no-border">
+          <div class="panel-body text-center translucent no-border">
+            <img class="img img-circle profile-pic" src="../images/ozzi-profile-example.png">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="panel panel-default  translucent no-border">
+          <div class="panel-body translucent no-border">
+            <div class="list-group">
+              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
+              <div class="list-group-item">
+                {{thisDog.name}}
+              </div>
+              <div class="list-group-item">
+                {{thisDog.breed}}
+              </div>
+              <div class="list-group-item">
+                {{thisDog.gender}} <span class="label label-info">Fixed: {{thisDog.fixed}}</span>
+              </div>
+              <div class="list-group-item">
+                {{thisDog.age}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-default  translucent no-border">
+          <div class="panel-body translucent no-border">
+            <div class="list-group">
+              <div class="list-group-header">My Best Friends</div>
+              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
+              <div class="list-group-item">
+                <a href="{{ pathFor 'dashboard' username='Luna'}}">Luna </a><i class="fa fa-heart"></i>
+              </div>
+              <div class="list-group-item">
+                <a href="{{ pathFor 'dashboard' username='Ziggy'}}">Ziggy</a>
+              </div>
+              <div class="list-group-item">
+                Pookie
+              </div>
+              <div class="list-group-item">
+                Zorro
+              </div>
+              <div class="list-group-item">
+                Chico
+              </div>
+              <div class="list-group-item">
+                Max
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-default  translucent no-border">
+          <div class="panel-body translucent no-border">
+            <div class="list-group">
+              <div class="list-group-header">My Favorite Activities</div>
+              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
+              <div class="list-group-item">
+                  Hiking
+              </div>
+              <div class="list-group-item">
+                Mountain Biking
+              </div>
+              <div class="list-group-item">
+                Frisbee
+              </div>
+              <div class="list-group-item">
+                Going to the park
+              </div>
+              <div class="list-group-item">
+                Running
+              </div>
+              <div class="list-group-item">
+                Playing with other dogs
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default  translucent no-border">
+          <div class="panel-body translucent no-border">
+            <div class="list-group">
+              <div class="list-group-header">About</div>
+              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
+              <div class="list-group-item">
+                Energy  <span class="label label-danger">High</span>
+              </div>
+              <div class="list-group-item">
+                Aggression  <span class="label label-success">Low</span>
+              </div>
+              <div class="list-group-item">
+                Socialness  <span class="label label-danger">High</span>
+              </div>
+              <div class="list-group-item">
+                Level of Training  <span class="label label-danger">High</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</template>
+<!-- (C) 2015 Samuel Jacobs All Rights Reserved -->

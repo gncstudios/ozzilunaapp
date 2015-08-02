@@ -1,0 +1,46 @@
+<!-- (C) 2015 Samuel Jacobs All Rights Reserved -->
+
+<template name="_header">
+
+  <nav class="navbar navbar-default navbar-static-top navbar-themed" role="navigation" id="navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-nav">
+          <span class="sr-only">Toggle navigation</span>
+            <i class="fa fa-bars"></i>
+        </button>
+        <a class="navbar-brand" href="{{pathFor 'home'}}"><span><img class="brand-img" src="../images/ozzi-luna-dogs.png"></span><span class="white-text"> ozziluna</span></a>
+
+      </div>
+
+      <div class="collapse navbar-collapse" id="main-nav">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-gear"></i> {{ currentUser.username }} <i class="fa fa-caret-down"></i>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#" data-action="logout"><i class="fa fa-lock"></i> Sign Out</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="navbar-right">
+
+            <ul class="nav navbar-nav navbar-right">
+
+            </ul>
+
+
+          </div>
+
+        <ul class="nav navbar-nav navbar-right white-text">
+          <li class="{{ isActiveRoute regex='home' }} white-text"><a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home</a></li>
+          <li class="{{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' username=currentUser.username}}"><i class="fa fa-paw"></i> Profile</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+</template>
+<!-- (C) 2015 Samuel Jacobs All Rights Reserved -->
