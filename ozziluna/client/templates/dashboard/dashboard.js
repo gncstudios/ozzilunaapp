@@ -29,8 +29,7 @@ Template.dashboard.helpers({
     var isFriend = false;
     if (myDog.friends) {
       for (var i = 0; i < myDog.friends.length; i++) {
-        console.log("My dog is friends with: " + myDog.friends[i].friendName);
-        if (myDog.friends[i].friendName === thisDog.username) {
+        if (myDog.friends[i].friendUsername == thisDog.username) {
           isFriend = true;
         }
       }

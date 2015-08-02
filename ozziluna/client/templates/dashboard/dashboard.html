@@ -6,9 +6,9 @@
       <div class="panel-body translucent no-border">
         <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
           {{#if isDogInProfileFriend}}
-          <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
+            <i class="fa fa-user"></i>
           {{else}}
-          <i class="fa fa-user"></i>
+            <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
           {{/if}}
           </h3>
         {{#if philosophyEditMode}}
