@@ -30,6 +30,9 @@ Template.dashboard.helpers({
   'philosophyEditMode': function() {
     return Session.get('philosophyEditMode');
   },
+  'Activities': function() {
+    return Activities.find().fetch().map(function(it){ return it.name; });
+  },
   'isDogInProfileFriend': function() {
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var thisDog = Dogs.findOne({username: Router.current().params.username});

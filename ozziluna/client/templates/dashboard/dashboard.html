@@ -2,8 +2,8 @@
 
 <template name="dashboard">
   <div class="template-dashboard">
-    <div class="panel panel-default translucent  no-border">
-      <div class="panel-body translucent no-border">
+    <div class="panel panel-default transparent  no-border">
+      <div class="panel-body transparent no-border">
         <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
           {{#if isMyProfile}}
           {{else}}
@@ -35,8 +35,8 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="panel panel-default  translucent no-border">
-          <div class="panel-body text-center translucent no-border">
+        <div class="panel panel-default  transparent no-border">
+          <div class="panel-body text-center transparent no-border">
             <img class="img img-circle profile-pic" src="{{thisDog.profilePic}}">
             {{#if isMyProfile}}
             <input type="file" name="Choose Profile Pic..." class=profilePicInput>
@@ -45,19 +45,19 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div class="panel panel-default  translucent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  transparent no-border">
+          <div class="panel-body transparent no-border">
             <div class="list-group">
               {{# if statsEditMode}}
               <a href="#" data-action="cancelStatsEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="saveStats"><i class="fa fa-save"></i></a>
-              <div class="list-group-header">About</div>
+              <div class="panel panel-heading">About me</div>
 
               {{> statsEdit}}
               {{else}}
               {{#if isMyProfile}}
               <a href="#" data-action="editStats"><i class="fa fa-edit"></i></a>
               {{/if}}
-              <div class="list-group-header">About</div>
+              <div class="panel panel-heading">About me</div>
 
               {{> statsDisplay}}
               {{/if}}
@@ -68,10 +68,11 @@
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="panel panel-default  translucent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  transparent no-border">
+          <div class="panel-body transparent no-border">
+            <div class="panel panel-heading">My Pack</div>
             <div class="list-group">
-              <div class="list-group-header">My Best Friends</div>
+
               {{#each thisDog.friends}}
               <div class="list-group-item">
                 <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge"> {{relationship}}</span>
@@ -83,27 +84,31 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="panel panel-default  translucent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  transparent no-border">
+          <div class="panel-body transparent no-border">
+            <div class="panel panel-heading">My favorite activities</div>
             <div class="list-group">
-
-              <div class="list-group-header">Activities</div>
 
 
               {{#if isMyProfile}}
-              <a href="#" data-action="addActivity"><i class="fa fa-plus"></i></a>
-              <div class="row">
-                <div class="col-xs-2">
-                  <label for="statsName">Name</label>
-                </div>
-                <div class="col-xs-10">
-                  <input type="text" placeholder="Add activitiy..." class="form-control" id="activityToAdd">
-                </div>
+
+              <div class="input-group">
+                <input class="form-control typeahead puppy-search" name="team" type="text"
+                placeholder="Add activitiy..."
+                autocomplete="off" spellcheck="off"
+                data-source="Activities" id="activityToAdd"/>
+                <span class="input-group-btn">
+                  <button class="btn btn-default btn-add-on"  data-action="addActivity" type="button">   <i class="fa fa-plus"></i></button>
+                </span>
+
               </div>
-              {{#each thisDogsActivities}}
-              {{name}}
-              {{/each}}
               {{/if}}
+              {{#each thisDogsActivities}}
+              <div class="list-group-item">
+                {{name}} <span class="badge">+5</span> <span class="badge">Chico</span> <span class="badge">Ozzie</span>
+              </div>
+              {{/each}}
+
 
             </div>
           </div>
@@ -112,10 +117,10 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-default  translucent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  transparent no-border">
+          <div class="panel-body transparent no-border">
+            <div class="panel panel-heading">How I am with others</div>
             <div class="list-group">
-              <div class="list-group-header">About</div>
               <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
               <div class="list-group-item">
                 Energy  <span class="label label-danger">High</span>
