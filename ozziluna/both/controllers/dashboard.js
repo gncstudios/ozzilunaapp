@@ -1,7 +1,7 @@
 DashboardController = AppController.extend({
   waitOn: function() {
 
-    return this.subscribe('dogs') && this.subscribe('images');
+    return this.subscribe('dogs') && this.subscribe('images') && this.subscribe('activities');
   },
   data: {
     dogs: Dogs.find({})
@@ -15,19 +15,40 @@ DashboardController = AppController.extend({
 DashboardController.events({
   'click [data-action=addToFriends]': function (event, template) {
     event.preventDefault();
-    var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+    var myDog = Dogs.findOne({username: Meteor.user().username});
     var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
     if (dogToEdit.friendRequests) {
-        Dogs.update(dogToEdit._id, {$addToSet: {friendRequests: {friendUsername: Router.current().params.username, friendName: dogInProfile.name, relationship: "family"}}});
+        Dogs.update(dogInProfile._id, {$addToSet: {friendRequests: {friendUsername: myDog.username, friendName: myDog.name, relationship: "friend"}}});
     }
     else {
-      Dogs.update(dogToEdit._id, {$set: {friendRequests: []}});
+      Dogs.update(dogInProfile._id, {$set: {friendRequests: []}});
     }
   },
 
   'click [data-action=doSomething]': function (event, template) {
     event.preventDefault();
   },
+  /*
+   * This is for adding activities
+   */
+   'click [data-action=addActivity]': function (event, template) {
+     event.preventDefault();
+     if (Meteor.user().username === Router.current().params.username) {
+       var activityToAdd = $('#activityToAdd').val();
+       $('#activityToAdd').val('');
+       var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
+       var existingActivity = Activities.findOne({name: activityToAdd});
+       if (existingActivity) {
+         Activities.update(existingActivity._id, {$addToSet:{dogsByUsernameWhoLikeThisActivity:  {username: dogInProfile.username}}});
+       }
+       else {
+         Activities.insert({name: activityToAdd, dogsByUsernameWhoLikeThisActivity: [{username: dogInProfile.username}]});
+       }
+     }
+   },
+  /*
+   * This is for editing stats
+   */
   'click [data-action=editStats]': function (event, template) {
     event.preventDefault();
     if (Meteor.user().username === Router.current().params.username) {
@@ -72,6 +93,9 @@ DashboardController.events({
     }
     Session.set('statsEditMode', false);
   },
+  /*
+   * This is for editing philosophy
+   */
   'click [data-action=editPhilosophy]': function (event, template) {
     event.preventDefault();
     if (Meteor.user().username === Router.current().params.username) {

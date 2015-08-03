@@ -86,26 +86,25 @@
         <div class="panel panel-default  translucent no-border">
           <div class="panel-body translucent no-border">
             <div class="list-group">
-              <div class="list-group-header">My Favorite Activities</div>
-              <a href="#" data-action="logout"><i class="fa fa-pencil"></i></a>
-              <div class="list-group-item">
-                Hiking
+
+              <div class="list-group-header">Activities</div>
+
+
+              {{#if isMyProfile}}
+              <a href="#" data-action="addActivity"><i class="fa fa-plus"></i></a>
+              <div class="row">
+                <div class="col-xs-2">
+                  <label for="statsName">Name</label>
+                </div>
+                <div class="col-xs-10">
+                  <input type="text" placeholder="Add activitiy..." class="form-control" id="activityToAdd">
+                </div>
               </div>
-              <div class="list-group-item">
-                Mountain Biking
-              </div>
-              <div class="list-group-item">
-                Frisbee
-              </div>
-              <div class="list-group-item">
-                Going to the park
-              </div>
-              <div class="list-group-item">
-                Running
-              </div>
-              <div class="list-group-item">
-                Playing with other dogs
-              </div>
+              {{#each thisDogsActivities}}
+              {{name}}
+              {{/each}}
+              {{/if}}
+
             </div>
           </div>
         </div>
@@ -141,6 +140,15 @@
 </template>
 
 
+
+
+<template name="activitiesDisplay">
+  <div class="list-group">
+    <div class="list-group-item">
+      <strong>Name: </strong>{{thisDog.name}}
+    </div>
+  </div>
+</template>
 
 
 <template name="statsDisplay">

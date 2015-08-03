@@ -17,6 +17,13 @@ Template.dashboard.helpers({
       return false;
     }
   },
+  // for getting this dogs activities
+  'thisDogsActivities': function(){
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var thisDogsUsername = thisDog.username;
+    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
+  },
+  // for editing stats
   'statsEditMode': function() {
     return Session.get('statsEditMode');
   },
@@ -36,6 +43,7 @@ Template.dashboard.helpers({
     }
     return isFriend;
   },
+  // For detecting who is on the profile
   'isMyProfile': function() {
     var myDog = Dogs.findOne({username: Meteor.user().username});
     return myDog.username === Router.current().params.username;
