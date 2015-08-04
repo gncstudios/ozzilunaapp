@@ -78,18 +78,9 @@ DashboardController.events({
       var fixed = $('#statsFixed').val();
       $('#statsFixed').val('');
 
-      var birthDay = $('#statsBirthDay').val();
-      $('#statsBirthDay').val('');
-
-      var birthMonth = $('#statsBirthMonth').val();
-      $('#statsBirthMonth').val('');
-
-      var birthYear = $('#statsBirthYear').val();
-      $('#statsBirthYear').val('');
-
-
-
-      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, fixed: fixed,birthDay: birthDay, birthMonth: birthMonth, birthYear: birthYear}});
+      var birthDate = $('#statsBirthDate').val();
+      $('#statsBirthDate').val('');
+      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, fixed: fixed,birthDate: birthDate}});
     }
     Session.set('statsEditMode', false);
   },

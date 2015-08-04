@@ -74,7 +74,7 @@ Template.statsDisplay.helpers({
   },
   'dogAge': function() {
     var thisDog = Dogs.findOne({username: Router.current().params.username});
-    var dogBirthDate = new Date(thisDog.birthMonth + " " + thisDog.birthDay + ", " + thisDog.birthYear);
+    var dogBirthDate = new Date(thisDog.birthDate);
     var now = Date.now();
     var age = new Date(Date.now() - dogBirthDate);
 
