@@ -18,7 +18,7 @@ DashboardController.events({
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
     if (dogToEdit.friendRequests) {
-        Dogs.update(dogInProfile._id, {$addToSet: {friendRequests: {friendUsername: myDog.username, friendName: myDog.name, relationship: "friend"}}});
+      Dogs.update(dogInProfile._id, {$addToSet: {friendRequests: {friendUsername: myDog.username, friendName: myDog.name, relationship: "friend"}}});
     }
     else {
       Dogs.update(dogInProfile._id, {$set: {friendRequests: []}});
@@ -29,59 +29,62 @@ DashboardController.events({
     event.preventDefault();
   },
   /*
-   * This is for adding activities
-   */
-   'click [data-action=addActivity]': function (event, template) {
-     event.preventDefault();
-     if (Meteor.user().username === Router.current().params.username) {
-       var activityToAdd = $('#activityToAdd').val();
-       $('#activityToAdd').val('');
-       var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
-       var existingActivity = Activities.findOne({name: activityToAdd});
-       if (existingActivity) {
-         Activities.update(existingActivity._id, {$addToSet:{dogsByUsernameWhoLikeThisActivity:  {username: dogInProfile.username}}});
-       }
-       else {
-         Activities.insert({name: activityToAdd, dogsByUsernameWhoLikeThisActivity: [{username: dogInProfile.username}]});
-       }
-     }
-   },
-   /*
-    * This is for editing interactions
-    */
-   'click [data-action=editInteractions]': function (event, template) {
-     event.preventDefault();
-     if (Meteor.user().username === Router.current().params.username) {
-       Session.set('interactionsEditMode', true);
-     }
-   },
-   'click [data-action=cancelInteractionsEdit]': function (event, template) {
-     event.preventDefault();
-     if (Meteor.user().username === Router.current().params.username) {
-       Session.set('interactionsEditMode', false);
-     }
-   },
-   'click [data-action=saveInteractions]': function (event, template) {
-     event.preventDefault();
-     var dogToEdit = Dogs.findOne({username: Meteor.user().username});
-     if (dogToEdit) {
-       // save off the new stats
-       var energy = $('#energyValue').val();
-       $('#energyValue').val('');
+  * This is for adding activities
+  */
+  'click [data-action=addActivity]': function (event, template) {
+    event.preventDefault();
 
-       var aggression = $('#aggressionValue').val();
-       $('#aggressionValue').val('');
-
-       var obedience = $('#obedienceValue').val();
-       $('#obedienceValue').val('');
-
-       Dogs.update(dogToEdit._id, {$set: {energy: energy, aggression: aggression, obedience: obedience}});
-     }
-     Session.set('interactionsEditMode', false);
-   },
+    if (Meteor.user().username === Router.current().params.username) {
+      var activityToAdd = $('#activityToAdd').val();
+      $('#activityToAdd').val('');
+      if (activityToAdd.length) {
+        var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
+        var existingActivity = Activities.findOne({name: activityToAdd});
+        if (existingActivity) {
+          Activities.update(existingActivity._id, {$addToSet:{dogsByUsernameWhoLikeThisActivity:  {username: dogInProfile.username}}});
+        }
+        else {
+          Activities.insert({name: activityToAdd, dogsByUsernameWhoLikeThisActivity: [{username: dogInProfile.username}]});
+        }
+      }
+    }
+  },
   /*
-   * This is for editing stats
-   */
+  * This is for editing interactions
+  */
+  'click [data-action=editInteractions]': function (event, template) {
+    event.preventDefault();
+    if (Meteor.user().username === Router.current().params.username) {
+      Session.set('interactionsEditMode', true);
+    }
+  },
+  'click [data-action=cancelInteractionsEdit]': function (event, template) {
+    event.preventDefault();
+    if (Meteor.user().username === Router.current().params.username) {
+      Session.set('interactionsEditMode', false);
+    }
+  },
+  'click [data-action=saveInteractions]': function (event, template) {
+    event.preventDefault();
+    var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+    if (dogToEdit) {
+      // save off the new stats
+      var energy = $('#energyValue').val();
+      $('#energyValue').val('');
+
+      var aggression = $('#aggressionValue').val();
+      $('#aggressionValue').val('');
+
+      var obedience = $('#obedienceValue').val();
+      $('#obedienceValue').val('');
+
+      Dogs.update(dogToEdit._id, {$set: {energy: energy, aggression: aggression, obedience: obedience}});
+    }
+    Session.set('interactionsEditMode', false);
+  },
+  /*
+  * This is for editing stats
+  */
   'click [data-action=editStats]': function (event, template) {
     event.preventDefault();
     if (Meteor.user().username === Router.current().params.username) {
@@ -118,8 +121,8 @@ DashboardController.events({
     Session.set('statsEditMode', false);
   },
   /*
-   * This is for editing philosophy
-   */
+  * This is for editing philosophy
+  */
   'click [data-action=editPhilosophy]': function (event, template) {
     event.preventDefault();
     if (Meteor.user().username === Router.current().params.username) {
@@ -144,19 +147,19 @@ DashboardController.events({
     Session.set('philosophyEditMode', false);
   },
   'change .profilePicInput': function(event, template) {
-      FS.Utility.eachFile(event, function(file) {
-        Images.insert(file, function (err, fileObj) {
-          if (err){
-             // handle error
-          } else {
-             // handle success depending what you need to do
-            var userId = Meteor.userId();
-              var dogToEdit = Dogs.findOne({username: Meteor.user().username});
-            var imageUrl = "/cfs/files/images/" + fileObj._id;
-            var dogToEdit = Dogs.findOne({username: Meteor.user().username});
-            Dogs.update(dogToEdit._id, {$set: {profilePic: imageUrl}});
-          }
-        });
-     });
-   }
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        if (err){
+          // handle error
+        } else {
+          // handle success depending what you need to do
+          var userId = Meteor.userId();
+          var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+          var imageUrl = "/cfs/files/images/" + fileObj._id;
+          var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+          Dogs.update(dogToEdit._id, {$set: {profilePic: imageUrl}});
+        }
+      });
+    });
+  }
 });

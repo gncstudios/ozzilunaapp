@@ -80,7 +80,7 @@
 
               {{#each thisDog.friends}}
               <div class="list-group-item">
-                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge badge-brand"> {{relationship}}</span>
+                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a> <span class="badge badge-brand"> {{relationship}}</span>
               </div>
 
               {{/each}}
@@ -110,7 +110,7 @@
               {{/if}}
               {{#each thisDogsActivities}}
               <div class="list-group-item">
-                {{name}} <span class="badge">+5</span>
+                {{name}}
               </div>
               {{/each}}
 
@@ -165,20 +165,51 @@
 
 
 <template name="statsDisplay">
+
+
   <div class="list-group">
     <div class="list-group-item">
-      <strong>Name: </strong>{{thisDog.name}}
-
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Name
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          {{thisDog.name}}
+        </div>
+      </div>
     </div>
     <div class="list-group-item">
-      <strong>Breed: </strong>{{thisDog.breed}}
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Breed
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          {{thisDog.breed}}
+        </div>
+      </div>
     </div>
     <div class="list-group-item">
-      <strong>Gender: </strong>{{thisDog.gender}} <span class="label label-brand">Fixed</span>
-
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Gender
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          {{thisDog.gender}}
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          <div class="label label-brand">Fixed: {{thisDog.fixed}}</div>
+        </div>
+      </div>
     </div>
     <div class="list-group-item">
-      <strong>Age: </strong>{{dogAge}}
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Age
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          {{thisDog.dogAge}}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -245,7 +276,7 @@
           Aggression
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <input id="aggressionValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.aggressionValue}}"/>
+          <input id="aggressionValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.aggression}}"/>
         </div>
       </div>
     </div>
@@ -256,7 +287,7 @@
           Obedience
         </div>
         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          <input id="obedienceValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.obedienceValue}}"/>
+          <input id="obedienceValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.obedience}}"/>
         </div>
       </div>
     </div>
@@ -267,15 +298,37 @@
 <template name="interactionsDisplay">
   <div class="list-group">
     <div class="list-group-item">
-    Energy {{thisDog.energy}}
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Energy
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="label label-brand">{{thisDog.energy}}</div>
+        </div>
+      </div>
+
     </div>
 
     <div class="list-group-item">
-    Aggression {{thisDog.aggressionValue}}
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Aggression
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="label label-brand">{{thisDog.aggression}}</div>
+        </div>
+      </div>
     </div>
 
     <div class="list-group-item">
-    Obedience {{thisDog.obedienceValue}}"/>
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Obedience
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <div class="label label-brand">{{thisDog.obedience}}</div>
+        </div>
+      </div>
     </div>
 
 
