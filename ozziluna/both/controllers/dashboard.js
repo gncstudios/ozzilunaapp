@@ -46,6 +46,39 @@ DashboardController.events({
        }
      }
    },
+   /*
+    * This is for editing interactions
+    */
+   'click [data-action=editInteractions]': function (event, template) {
+     event.preventDefault();
+     if (Meteor.user().username === Router.current().params.username) {
+       Session.set('interactionsEditMode', true);
+     }
+   },
+   'click [data-action=cancelInteractionsEdit]': function (event, template) {
+     event.preventDefault();
+     if (Meteor.user().username === Router.current().params.username) {
+       Session.set('interactionsEditMode', false);
+     }
+   },
+   'click [data-action=saveInteractions]': function (event, template) {
+     event.preventDefault();
+     var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+     if (dogToEdit) {
+       // save off the new stats
+       var energy = $('#energyValue').val();
+       $('#energyValue').val('');
+
+       var aggression = $('#aggressionValue').val();
+       $('#aggressionValue').val('');
+
+       var obedience = $('#obedienceValue').val();
+       $('#obedienceValue').val('');
+
+       Dogs.update(dogToEdit._id, {$set: {energy: energy, aggression: aggression, obedience: obedience}});
+     }
+     Session.set('interactionsEditMode', false);
+   },
   /*
    * This is for editing stats
    */

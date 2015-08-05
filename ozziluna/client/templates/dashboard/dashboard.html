@@ -53,13 +53,14 @@
               {{# if statsEditMode}}
               <div class="panel panel-heading">About me</div>
               {{> statsEdit}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-undo"></i></button>
+              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close"></i></button>
               <button class="btn btn-default btn-add-on btn-brand"  data-action="saveStats" type="button">   <i class="fa fa-save"></i></button>
               {{else}}
               {{#if isMyProfile}}
-              <div class="panel panel-heading">About me</div>
+              <div class="panel panel-heading">About me
+                <button class="btn btn-default btn-add-on btn-brand-inverse no-border"  data-action="editStats" type="button">   <i class="fa fa-edit"></i></button>
+              </div>
               {{> statsDisplay}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-edit"></i></button>
               {{else}}
               <div class="panel panel-heading">About me</div>
               {{> statsDisplay}}
@@ -79,7 +80,7 @@
 
               {{#each thisDog.friends}}
               <div class="list-group-item">
-                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge"> {{relationship}}</span>
+                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">{{friendName}} </a><i class="fa fa-heart"></i> <span class="badge badge-brand"> {{relationship}}</span>
               </div>
 
               {{/each}}
@@ -109,7 +110,7 @@
               {{/if}}
               {{#each thisDogsActivities}}
               <div class="list-group-item">
-                {{name}} <span class="badge">+5</span> <span class="badge badge-brand">Chico</span> <span class="badge badge-gold">Ozzie</span>
+                {{name}} <span class="badge">+5</span>
               </div>
               {{/each}}
 
@@ -123,21 +124,24 @@
       <div class="col-md-12">
         <div class="panel panel-default  transparent no-border">
           <div class="panel-body translucent no-border">
-            <div class="panel panel-heading">How I am with others</div>
             <div class="list-group">
-              <a href="#" data-action="editInteraction"><i class="fa fa-pencil"></i></a>
-              <div class="list-group-item">
-                Energy  <span class="label label-brand ">High</span>
+              {{#if interactionsEditMode}}
+              <div class="panel panel-heading">How I am with others</div>
+              {{> interactionsEdit}}
+              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close"></i></button>
+              <button class="btn btn-default btn-add-on btn-brand"  data-action="saveInteractions" type="button">   <i class="fa fa-save"></i></button>
+              {{else}}
+              {{#if isMyProfile}}
+              <div class="panel panel-heading">How I am with others
+                <button class="btn btn-default btn-add-on btn-brand-inverse no-border"  data-action="editInteractions" type="button">   <i class="fa fa-edit"></i></button>
               </div>
-              <div class="list-group-item">
-                Aggression  <span class="label label-gold">Low</span>
-              </div>
-              <div class="list-group-item">
-                Socialness  <span class="label label-brand">High</span>
-              </div>
-              <div class="list-group-item">
-                Level of Training  <span class="label label-brand">High</span>
-              </div>
+              {{> interactionsDisplay}}
+              {{else}}
+              <div class="panel panel-heading">How I am with others</div>
+              {{> interactionsDisplay}}
+              {{/if}}
+              {{/if}}
+
             </div>
           </div>
         </div>
@@ -216,6 +220,65 @@
         <input type="text" value="{{thisDog.birthDate}}" class="form-control" id="statsBirthDate">
       </div>
     </div>
+  </div>
+</template>
+
+
+
+
+<template name="interactionsEdit">
+  <div class="list-group">
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Energy
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input id="energyValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.energy}}"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Aggression
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input id="aggressionValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.aggressionValue}}"/>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-group-item">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+          Obedience
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+          <input id="obedienceValue" class="slider slider-horizontal" data-slider-min="1" data-slider-max="3" data-slider-step="1" data-slider-value="{{thisDog.obedienceValue}}"/>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</template>
+<template name="interactionsDisplay">
+  <div class="list-group">
+    <div class="list-group-item">
+    Energy {{thisDog.energy}}
+    </div>
+
+    <div class="list-group-item">
+    Aggression {{thisDog.aggressionValue}}
+    </div>
+
+    <div class="list-group-item">
+    Obedience {{thisDog.obedienceValue}}"/>
+    </div>
+
+
   </div>
 </template>
 <!-- (C) 2015 Samuel Jacobs All Rights Reserved -->

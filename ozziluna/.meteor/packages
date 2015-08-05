@@ -33,3 +33,4 @@ accounts-github
 accounts-facebook
 cfs:standard-packages
 cfs:gridfs
+maxharris9:meteor-bootstrap-slider

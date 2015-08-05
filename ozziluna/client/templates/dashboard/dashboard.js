@@ -5,6 +5,7 @@ Template.dashboard.rendered = function() {
   Meteor.typeahead.inject();
   Session.set('statsEditMode', false);
   Session.set('philosophyEditMode', false);
+  Session.set('interactionsEditMode', false);
 };
 
 Template.dashboard.helpers({
@@ -26,6 +27,9 @@ Template.dashboard.helpers({
   // for editing stats
   'statsEditMode': function() {
     return Session.get('statsEditMode');
+  },
+  'interactionsEditMode': function() {
+    return Session.get('interactionsEditMode');
   },
   'philosophyEditMode': function() {
     return Session.get('philosophyEditMode');
@@ -95,3 +99,7 @@ Template.statsEdit.helpers({
     return Session.get('statsEditMode');
   }
 });
+
+Template.interactionsEdit.rendered = function() {
+  $('.slider').slider();
+};
