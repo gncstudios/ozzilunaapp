@@ -6,6 +6,7 @@ Template.dashboard.rendered = function() {
   Session.set('statsEditMode', false);
   Session.set('philosophyEditMode', false);
   Session.set('interactionsEditMode', false);
+  Session.set('postingMode', false);
 };
 
 Template.dashboard.helpers({
@@ -18,11 +19,20 @@ Template.dashboard.helpers({
       return false;
     }
   },
+  'thisDogsPosts' : function(){
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var thisDogsUsername = thisDog.username;
+    return Posts.find({dogUsername: thisDogsUsername});
+  },
   // for getting this dogs activities
   'thisDogsActivities': function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
     return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
+  },
+  // this is for posting
+  'postingMode': function() {
+    return Session.get('postingMode');
   },
   // for editing stats
   'statsEditMode': function() {

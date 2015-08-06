@@ -13,6 +13,46 @@ DashboardController = AppController.extend({
 });
 
 DashboardController.events({
+  /**
+  *
+  * This is for adding posts
+  *
+  */
+  'click [data-action=newPost]': function (event, template) {
+    event.preventDefault();
+    Session.set('postingMode', true);
+
+  },
+  'click [data-action=savePost]': function (event, template) {
+    event.preventDefault();
+    /* push to the posts
+    *   dogUsername:    the username of the dog that this belongs to
+    *   typeOfPost:     post or comment
+    *   parentPostId:   the parentPostId.. if undefined, it is a parent post
+    *   [dogsTagged]:   dogs tagged in the post
+    *   date:           the current date time of the post
+    *   text:           the text of the post
+    *   [photos]        the photos to display along with the post
+    *   [comments]:     postId's relating to this.... same thing as posts, but parent post
+    *
+    *
+    */
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    var postText = $('#postText').val();
+    $('#postText').val('');
+    Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText});
+    Session.set('postingMode', false);
+  },
+  'click [data-action=cancelPost]': function (event, template) {
+    event.preventDefault();
+    Session.set('postingMode', false);
+
+  },
+  /**
+  *
+  * This is for adding friend
+  *
+  */
   'click [data-action=addToFriends]': function (event, template) {
     event.preventDefault();
     var myDog = Dogs.findOne({username: Meteor.user().username});
@@ -28,8 +68,10 @@ DashboardController.events({
   'click [data-action=doSomething]': function (event, template) {
     event.preventDefault();
   },
-  /*
+  /**
+  *
   * This is for adding activities
+  *
   */
   'click [data-action=addActivity]': function (event, template) {
     event.preventDefault();
@@ -50,7 +92,9 @@ DashboardController.events({
     }
   },
   /*
+  *
   * This is for editing interactions
+  *
   */
   'click [data-action=editInteractions]': function (event, template) {
     event.preventDefault();
