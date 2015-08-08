@@ -2,8 +2,8 @@
 
 <template name="dashboard">
   <div class="template-dashboard">
-    <div class="panel panel-default transparent  no-border">
-      <div class="panel-body translucent no-border">
+    <div class="panel panel-default shadow-box  no-border">
+      <div class="panel-body no-border">
         <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
           {{#if isMyProfile}}
           {{else}}
@@ -27,7 +27,7 @@
         </div>
         {{else}}
         {{#if isMyProfile}}
-        <a href="#" data-action="editPhilosophy"><i class="fa fa-edit"></i></a>
+        <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button">   <i class="fa fa-edit"></i></button>
         {{/if}}
         {{thisDog.philosophy}}
         {{/if}}
@@ -35,9 +35,9 @@
     </div>
     <div class="row">
       <div class="col-md-4">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body text-center translucent no-border">
-            <img class="img img-circle profile-pic" src="{{thisDog.profilePic}}">
+        <div class="panel panel-default   no-border">
+          <div class="panel-body text-center shadow-box  no-border">
+            <img class="img img-rounded profile-pic" src="{{thisDog.profilePic}}">
             {{#if isMyProfile}}
             <div class="input-group">
               <input type="file" name="Choose Profile Pic..." class="form-control" id=profilePicInput>
@@ -45,20 +45,18 @@
             {{/if}}
           </div>
         </div>
-      </div>
-      <div class="col-md-8">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default shadow-box   no-border">
+          <div class="panel-body  no-border">
             <div class="list-group">
               {{# if statsEditMode}}
               <div class="panel panel-heading">About me</div>
               {{> statsEdit}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-brand"  data-action="saveStats" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveStats" type="button">   <i class="fa fa-save"></i></button>
               {{else}}
               {{#if isMyProfile}}
               <div class="panel panel-heading">About me
-                <button class="btn btn-default btn-add-on btn-brand-inverse no-border"  data-action="editStats" type="button">   <i class="fa fa-edit"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-edit"></i></button>
               </div>
               {{> statsDisplay}}
               {{else}}
@@ -70,16 +68,14 @@
           </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body translucent no-border">
+      <div class="col-md-8">
+        <div class="panel panel-default shadow-box  no-border">
+          <div class="panel-body no-border">
             <div class="list-group">
 
               {{#if isMyProfile}}
               <div class="panel panel-heading">Posts
-                <button class="btn btn-default btn-add-on btn-brand no-border"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
               </div>
               {{else}}
               <div class="panel panel-heading">Posts
@@ -88,8 +84,8 @@
 
               {{#if postingMode}}
               {{> newPostTemplate}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-brand"  data-action="savePost" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePost" type="button">   <i class="fa fa-save"></i></button>
 
               {{/if}}
 
@@ -112,12 +108,18 @@
             </div>
           </div>
         </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  shadow-box  no-border">
+          <div class="panel-body  no-border">
             <div class="panel panel-heading">My Pack</div>
             <div class="list-group">
 
@@ -132,8 +134,8 @@
         </div>
       </div>
       <div class="col-md-6">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  shadow-box  no-border">
+          <div class="panel-body  no-border">
             <div class="panel panel-heading">My favorite activities</div>
             <div class="list-group">
 
@@ -165,18 +167,18 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="panel panel-default  transparent no-border">
-          <div class="panel-body translucent no-border">
+        <div class="panel panel-default  shadow-box  no-border">
+          <div class="panel-body  no-border">
             <div class="list-group">
               {{#if interactionsEditMode}}
               <div class="panel panel-heading">How I am with others</div>
               {{> interactionsEdit}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-brand"  data-action="saveInteractions" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-invrse"  data-action="saveInteractions" type="button">   <i class="fa fa-save"></i></button>
               {{else}}
               {{#if isMyProfile}}
               <div class="panel panel-heading">How I am with others
-                <button class="btn btn-default btn-add-on btn-brand-inverse no-border"  data-action="editInteractions" type="button">   <i class="fa fa-edit"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editInteractions" type="button">   <i class="fa fa-edit"></i></button>
               </div>
               {{> interactionsDisplay}}
               {{else}}
@@ -199,7 +201,7 @@
   <div class="list-group">
     <div class="list-group-item">
       <div class="input-group">
-          <textarea class="form-control" placeholder="Let's hear it..."  rows="5" id="postText"></textarea>
+        <textarea class="form-control" placeholder="Let's hear it..."  rows="5" id="postText"></textarea>
       </div>
     </div>
   </div>
