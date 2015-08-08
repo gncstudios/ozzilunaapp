@@ -17,17 +17,19 @@
         {{#if philosophyEditMode}}
         <div class="form-group">
           <div class="row">
-            <div class="col-xs-1">
-              <a href="#" data-action="cancelPhilosophyEdit"><i class="fa fa-undo"></i></a> <a href="#" data-action="savePhilosophy"><i class="fa fa-save"></i></a>
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4">
+              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePhilosophy" type="button">   <i class="fa fa-check"></i></button>
+
             </div>
-            <div class="col-xs-11">
+            <div class="col-lg-10 col-md-10 col-sm-8 col-xs-8">
               <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
             </div>
           </div>
         </div>
         {{else}}
         {{#if isMyProfile}}
-        <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button">   <i class="fa fa-edit"></i></button>
+        <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"></i></button>
         {{/if}}
         {{thisDog.philosophy}}
         {{/if}}
@@ -50,11 +52,11 @@
               <div class="panel panel-heading">About me</div>
               {{> statsEdit}}
               <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveStats" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveStats" type="button">   <i class="fa fa-check"></i></button>
               {{else}}
               {{#if isMyProfile}}
               <div class="panel panel-heading">About me
-                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-edit"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-pencil"></i></button>
               </div>
               {{> statsDisplay}}
               {{else}}
@@ -74,7 +76,7 @@
 
               {{#if isMyProfile}}
               <div class="panel panel-heading">Posts
-                <button class="btn btn-default btn-add-on btn-brand"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
               </div>
               {{else}}
               <div class="panel panel-heading">Posts
@@ -84,7 +86,7 @@
               {{#if postingMode}}
               {{> newPostTemplate}}
               <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePost" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePost" type="button">   <i class="fa fa-check"></i></button>
 
               {{/if}}
 
@@ -185,11 +187,11 @@
               <div class="panel panel-heading">How I am with others</div>
               {{> interactionsEdit}}
               <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-green-invrse"  data-action="saveInteractions" type="button">   <i class="fa fa-save"></i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveInteractions" type="button">   <i class="fa fa-check"></i></button>
               {{else}}
               {{#if isMyProfile}}
               <div class="panel panel-heading">How I am with others
-                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editInteractions" type="button">   <i class="fa fa-edit"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editInteractions" type="button">   <i class="fa fa-pencil"></i></button>
               </div>
               {{> interactionsDisplay}}
               {{else}}
