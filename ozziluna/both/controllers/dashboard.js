@@ -38,9 +38,15 @@ DashboardController.events({
     *
     */
     var myDog = Dogs.findOne({username: Meteor.user().username});
+    var postImgUrl = $('#postImagePreview').attr("src");
     var postText = $('#postText').val();
     $('#postText').val('');
-    Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText});
+    if (postImgUrl) {
+      Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText, postImgUrl: postImgUrl});
+    }
+    else {
+      Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText});
+    }
     Session.set('postingMode', false);
   },
   'click [data-action=cancelPost]': function (event, template) {
@@ -190,7 +196,7 @@ DashboardController.events({
     }
     Session.set('philosophyEditMode', false);
   },
-  'change .profilePicInput': function(event, template) {
+  'change #profilePicInput': function(event, template) {
     FS.Utility.eachFile(event, function(file) {
       Images.insert(file, function (err, fileObj) {
         if (err){
@@ -202,6 +208,21 @@ DashboardController.events({
           var imageUrl = "/cfs/files/images/" + fileObj._id;
           var dogToEdit = Dogs.findOne({username: Meteor.user().username});
           Dogs.update(dogToEdit._id, {$set: {profilePic: imageUrl}});
+        }
+      });
+    });
+  },
+  'change #postPicInput': function(event, template) {
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        if (err){
+          // handle error
+        } else {
+          // handle success depending what you need to do
+          var userId = Meteor.userId();
+          var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+          var imageUrl = "/cfs/files/images/" + fileObj._id;
+          $('#postImagePreview').attr("src", imageUrl);
         }
       });
     });

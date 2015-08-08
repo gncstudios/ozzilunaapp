@@ -19,6 +19,10 @@ Template.dashboard.helpers({
       return false;
     }
   },
+  'friendProfilePic':function (friendUsername) {
+      var thisDog = Dogs.findOne({username: friendUsername});
+      return thisDog.profilePic;
+  },
   'thisDogsPosts' : function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
