@@ -35,3 +35,4 @@ cfs:standard-packages
 cfs:gridfs
 maxharris9:meteor-bootstrap-slider
 fortawesome:fontawesome
+mrt:moment

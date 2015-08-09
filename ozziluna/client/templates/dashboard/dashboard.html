@@ -74,29 +74,31 @@
           <div class="panel-body no-border">
             <div class="list-group">
 
+
+              {{#if postingMode}}
+              <div class="panel panel-heading shadow">Posts
+                <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
+                <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePost" type="button">   <i class="fa fa-check"></i></button>
+              </div>
+              {{> newPostTemplate}}
+              {{else}}
               <div class="panel panel-heading shadow">Posts
                 <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
               </div>
-
-              {{#if postingMode}}
-              {{> newPostTemplate}}
-              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePost" type="button">   <i class="fa fa-check"></i></button>
-
               {{/if}}
 
               {{#each thisDogsPosts}}
 
               <div class="list-group-item">
-                  <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                      <img class="img img-square profile-pic" src="{{friendProfilePic dogWhoPosted}}">
-                    </div>
-                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                      <p><strong>{{dogWhoPosted}}</strong></p>
-                      <p class="text-thin"> {{postDate}}</p>
-                    </div>
+                <div class="row">
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                    <img class="img img-square profile-pic" src="{{friendProfilePic dogWhoPosted}}">
                   </div>
+                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                    <p><strong>{{dogWhoPosted}}</strong></p>
+                    <p class="text-thin"> {{postDate}}</p>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <img class="img img-square profile-pic" src="{{postImgUrl}}">
@@ -208,8 +210,8 @@
 <template name="newPostTemplate">
   <div class="list-group">
     <div class="list-group-item">
-      <div class="input-group">
-        <textarea class="form-control" placeholder="Let's hear it..."  rows="5" id="postText"></textarea>
+      <div class="input-group container-fluid">
+        <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
       </div>
       <input type="file" name="Choose Profile Pic..." class="form-control" id=postPicInput>
       <img src="" class="img img-square profile-pic" id="postImagePreview">

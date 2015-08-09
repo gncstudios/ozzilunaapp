@@ -41,12 +41,15 @@ DashboardController.events({
     var dogUsernameOfProfilePostedTo = Router.current().params.username;
     var postImgUrl = $('#postImagePreview').attr("src");
     var postText = $('#postText').val();
+
+
+
     $('#postText').val('');
     if (postImgUrl) {
-      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: Date(), text: postText, postImgUrl: postImgUrl});
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText, postImgUrl: postImgUrl});
     }
     else {
-      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: Date(), text: postText});
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText});
     }
     Session.set('postingMode', false);
   },
