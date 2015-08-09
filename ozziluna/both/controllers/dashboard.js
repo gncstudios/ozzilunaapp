@@ -87,11 +87,12 @@ DashboardController.events({
     event.preventDefault();
 
     var myDog = Dogs.findOne({username: Meteor.user().username});
-    Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: event.target.name}}});
+    var dogToAdd = Dogs.findOne({username: event.target.name});
+    Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: dogToAdd.username}}});
     // add the friend who requsted to my dogs friends, and add my dog to that dog's friends
-    Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: event.target.name, relationship: "friend"}}});
-    var dogThatRequested  = Dogs.findOne({username: event.target.name});
-    Dogs.update(dogThatRequested._id, {$addToSet: {friends: {friendUsername: myDog.username, relationship: "friend"}}});
+    Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: dogToAdd.username, friendName: dogToAdd.name, relationship: "friend"}}});
+    var dogThatRequested  = Dogs.findOne({username: dogToAdd});
+    Dogs.update(dogThatRequested._id, {$addToSet: {friends: {friendUsername: myDog.username, friendName: dogToAdd.name, relationship: "friend"}}});
 
 
   },
