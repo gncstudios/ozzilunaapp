@@ -47,19 +47,24 @@
         <span class="input-group-btn">
           <div class="btn-group">
             <button type="button" class="btn btn-default btn-add-on dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-               <i class="fa fa-user-plus"></i>
+               <i class="fa fa-user-plus">
+                 {{#if hasFriendRequests}}
+                   <span class="badge bdg-red">{{numberOfFriendRequests}}</span>
+                 {{/if}}
+               </i>
+
             </button>
             <div class="dropdown-menu list-group">
               <div class="list-group-item no-border">
                 <h4 class="thin dark-text">Friend Requests</h4>
               </div>
               {{#each myDog.friendRequests}}
-              <div class="list-group-item no-border">
-                    <img class="img img-square profile-pic" src="{{friendProfilePic usernameOfRequestedFriend}}">
+              <div class="list-group-item no-border shadow">
+                    <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
 
-                    <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i></button>
-                    <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i></button>
-                    <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}}{{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a>
+                    <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
+                    <button class="btn btn-default btn-add-on btn-green-inverse" name="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
+                    <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a>
 
 
               </div>

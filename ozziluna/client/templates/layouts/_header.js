@@ -31,6 +31,26 @@ Template._header.helpers({
     else {
       return false;
     }
+  },
+  'hasFriendRequests': function() {
+    var thisUser = Meteor.user();
+    if (thisUser){
+      var myDog = Dogs.findOne({username: thisUser.username});
+      return myDog.friendRequests.length > 0;
+    }
+    else {
+      return false;
+    }
+  },
+  'numberOfFriendRequests': function() {
+    var thisUser = Meteor.user();
+    if (thisUser){
+      var myDog = Dogs.findOne({username: thisUser.username});
+      return myDog.friendRequests.length;
+    }
+    else {
+      return 0;
+    }
   }
 });
 Template._header.events({

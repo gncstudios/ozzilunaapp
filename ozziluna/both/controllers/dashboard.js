@@ -75,7 +75,26 @@ DashboardController.events({
       Dogs.update(dogInProfile._id, {$set: {friendRequests: []}});
     }
   },
+  'click [data-action=denyFriendRequest]': function (event, template) {
+    event.preventDefault();
+    var usernameOfRequestedFriendLinkText =  $('#usernameOfRequestedFriendLink').text();
+    var myDog = Dogs.findOne({username: Meteor.user().username});
 
+    Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: usernameOfRequestedFriendLinkText}}});
+
+  },
+  'click [data-action=acceptFriendRequest]': function (event, template) {
+    event.preventDefault();
+
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: event.target.name}}});
+    // add the friend who requsted to my dogs friends, and add my dog to that dog's friends
+    Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: event.target.name, relationship: "friend"}}});
+    var dogThatRequested  = Dogs.findOne({username: event.target.name});
+    Dogs.update(dogThatRequested._id, {$addToSet: {friends: {friendUsername: myDog.username, relationship: "friend"}}});
+
+
+  },
   'click [data-action=doSomething]': function (event, template) {
     event.preventDefault();
   },
