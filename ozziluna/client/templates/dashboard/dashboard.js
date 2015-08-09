@@ -20,17 +20,18 @@ Template.dashboard.helpers({
     }
   },
   'friendProfilePic':function (friendUsername) {
-      var thisDog = Dogs.findOne({username: friendUsername});
+    var thisDog = Dogs.findOne({username: friendUsername});
+    if (thisDog.profilePic){
       return thisDog.profilePic;
+    }
+    else {
+      return "#";
+    }
   },
   'thisDogsPosts' : function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
     return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
-  },
-  'postPictureByUsername' : function(postingDogUsername){
-      var postOfPicture = Posts.find({dogWhoPosted: postingDogUsername});
-      return postOfPicture.postImgUrl;
   },
   // for getting this dogs activities
   'thisDogsActivities': function(){
@@ -67,6 +68,19 @@ Template.dashboard.helpers({
       }
     }
     return isFriend;
+  },
+  'hasFriendRequestBeenSent': function() {
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var friendRequestSent = false;
+    if (thisDog.friendRequests) {
+      for (var i = 0; i < thisDog.friendRequests.length; i++) {
+        if (thisDog.friendRequests[i].usernameOfRequestedFriend == myDog.username) {
+          friendRequestSent = true;
+        }
+      }
+    }
+    return friendRequestSent;
   },
   // For detecting who is on the profile
   'isMyProfile': function() {

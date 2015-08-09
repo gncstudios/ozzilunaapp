@@ -63,12 +63,13 @@ DashboardController.events({
   * This is for adding friend
   *
   */
-  'click [data-action=addToFriends]': function (event, template) {
+  'click [data-action=sendFriendRequest]': function (event, template) {
     event.preventDefault();
+    console.log("Sending friend request");
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var dogInProfile =  Dogs.findOne({username: Router.current().params.username});
-    if (dogToEdit.friendRequests) {
-      Dogs.update(dogInProfile._id, {$addToSet: {friendRequests: {friendUsername: myDog.username, friendName: myDog.name, relationship: "friend"}}});
+    if (dogInProfile.friendRequests) {
+      Dogs.update(dogInProfile._id, {$addToSet: {friendRequests: {usernameOfRequestedFriend: myDog.username}}});
     }
     else {
       Dogs.update(dogInProfile._id, {$set: {friendRequests: []}});

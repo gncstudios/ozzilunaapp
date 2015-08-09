@@ -6,12 +6,16 @@
       <div class="panel-body no-border">
         <h3 class="dark-text thin shadow" id="profileDisplayName">{{thisDog.name}}
           {{#if isMyProfile}}
-          {{else}}
-          {{#if isDogInProfileFriend}}
-          <i class="fa fa-user"></i>
-          {{else}}
-          <a href="#" data-action="addToFriends"><i class="fa fa-user-plus"></i></a>
-          {{/if}}
+            {{else}}
+            {{#if isDogInProfileFriend}}
+            <i class="fa fa-user"></i>
+            {{else}}
+              {{#if hasFriendRequestBeenSent}}
+              <div class="label label-brand">Friend Request Sent</div>
+              {{else}}
+              <a href="#" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a>
+              {{/if}}
+            {{/if}}
           {{/if}}
         </h3>
         {{#if philosophyEditMode}}
