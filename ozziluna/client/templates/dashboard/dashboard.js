@@ -26,13 +26,17 @@ Template.dashboard.helpers({
   'thisDogsPosts' : function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
-    return Posts.find({dogUsername: thisDogsUsername});
+    return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
+  },
+  'postPictureByUsername' : function(postingDogUsername){
+      var postOfPicture = Posts.find({dogWhoPosted: postingDogUsername});
+      return postOfPicture.postImgUrl;
   },
   // for getting this dogs activities
   'thisDogsActivities': function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
-    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
+    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {dogUsernameOfProfilePostedTo: thisDogsUsername}}});
   },
   // this is for posting
   'postingMode': function() {

@@ -4,7 +4,7 @@
   <div class="template-dashboard">
     <div class="panel panel-default shadow-box  no-border">
       <div class="panel-body no-border">
-        <h3 class="dark-text thin" id="profileDisplayName">{{thisDog.name}}
+        <h3 class="dark-text thin shadow" id="profileDisplayName">{{thisDog.name}}
           {{#if isMyProfile}}
           {{else}}
           {{#if isDogInProfileFriend}}
@@ -49,18 +49,18 @@
           <div class="panel-body  no-border">
             <div class="list-group">
               {{# if statsEditMode}}
-              <div class="panel panel-heading">About me</div>
+              <div class="panel panel-heading shadow">About me</div>
               {{> statsEdit}}
               <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close"></i></button>
               <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveStats" type="button">   <i class="fa fa-check"></i></button>
               {{else}}
               {{#if isMyProfile}}
-              <div class="panel panel-heading">About me
+              <div class="panel panel-heading shadow">About me
                 <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-pencil"></i></button>
               </div>
               {{> statsDisplay}}
               {{else}}
-              <div class="panel panel-heading">About me</div>
+              <div class="panel panel-heading shadow">About me</div>
               {{> statsDisplay}}
               {{/if}}
               {{/if}}
@@ -74,14 +74,9 @@
           <div class="panel-body no-border">
             <div class="list-group">
 
-              {{#if isMyProfile}}
-              <div class="panel panel-heading">Posts
+              <div class="panel panel-heading shadow">Posts
                 <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
               </div>
-              {{else}}
-              <div class="panel panel-heading">Posts
-              </div>
-              {{/if}}
 
               {{#if postingMode}}
               {{> newPostTemplate}}
@@ -95,10 +90,10 @@
               <div class="list-group-item">
                   <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                      <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
+                      <img class="img img-square profile-pic" src="{{friendProfilePic dogWhoPosted}}">
                     </div>
                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                      <p><strong>{{thisDog.name}}</strong></p>
+                      <p><strong>{{dogWhoPosted}}</strong></p>
                       <p class="text-thin"> {{postDate}}</p>
                     </div>
                   </div>
@@ -127,7 +122,7 @@
       <div class="col-md-6">
         <div class="panel panel-default  shadow-box  no-border">
           <div class="panel-body  no-border">
-            <div class="panel panel-heading">My Pack</div>
+            <div class="panel panel-heading shadow">My Pack</div>
             <div class="list-group">
 
               {{#each thisDog.friends}}
@@ -149,7 +144,7 @@
       <div class="col-md-6">
         <div class="panel panel-default  shadow-box  no-border">
           <div class="panel-body  no-border">
-            <div class="panel panel-heading">My favorite activities</div>
+            <div class="panel panel-heading shadow">My favorite activities</div>
             <div class="list-group">
 
 
@@ -184,18 +179,18 @@
           <div class="panel-body  no-border">
             <div class="list-group">
               {{#if interactionsEditMode}}
-              <div class="panel panel-heading">How I am with others</div>
+              <div class="panel panel-heading shadow">How I am with others</div>
               {{> interactionsEdit}}
               <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close"></i></button>
               <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveInteractions" type="button">   <i class="fa fa-check"></i></button>
               {{else}}
               {{#if isMyProfile}}
-              <div class="panel panel-heading">How I am with others
+              <div class="panel panel-heading shadow">How I am with others
                 <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editInteractions" type="button">   <i class="fa fa-pencil"></i></button>
               </div>
               {{> interactionsDisplay}}
               {{else}}
-              <div class="panel panel-heading">How I am with others</div>
+              <div class="panel panel-heading shadow">How I am with others</div>
               {{> interactionsDisplay}}
               {{/if}}
               {{/if}}

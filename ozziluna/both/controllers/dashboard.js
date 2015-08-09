@@ -38,14 +38,15 @@ DashboardController.events({
     *
     */
     var myDog = Dogs.findOne({username: Meteor.user().username});
+    var dogUsernameOfProfilePostedTo = Router.current().params.username;
     var postImgUrl = $('#postImagePreview').attr("src");
     var postText = $('#postText').val();
     $('#postText').val('');
     if (postImgUrl) {
-      Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText, postImgUrl: postImgUrl});
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: Date(), text: postText, postImgUrl: postImgUrl});
     }
     else {
-      Posts.insert({dogUsername: myDog.username, typeOfPost: "Post", postDate: Date(), text: postText});
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: Date(), text: postText});
     }
     Session.set('postingMode', false);
   },
