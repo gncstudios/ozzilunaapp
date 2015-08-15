@@ -45,22 +45,33 @@
           <div class="panel-body text-center shadow-box  no-border">
             <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
             {{#if isMyProfile}}
-             {{> upload_bootstrap callbacks=profilePicUpload}}
+            {{> upload_bootstrap callbacks=profilePicUpload}}
             {{/if}}
 
             {{#if philosophyEditMode}}
 
 
-            <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
-            <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePhilosophy" type="button">   <i class="fa fa-check">SAVE</i></button>
-
-            <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
-
+            <div class="list-group-item">
+              <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
+            </div>
+            <div class="list-group-item">
+              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
+              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePhilosophy" type="button">   <i class="fa fa-check">SAVE</i></button>
+            </div>
             {{else}}
             {{#if isMyProfile}}
-            <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"> MOTTO</i></button>
+            <div class="list-group-item">
+              {{thisDog.philosophy}}
+            </div>
+            <div class="list-group-item">
+              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"> EDIT</i></button>
+            </div>
+            {{else}}
+            <div class="list-group-item">
+
+              {{thisDog.philosophy}}
+            </div>
             {{/if}}
-            {{thisDog.philosophy}}
             {{/if}}
           </div>
         </div>
@@ -91,9 +102,9 @@
               <div class="panel panel-heading">
                 POSTS
 
-                <button class="btn btn-default btn-add-on btn-red-inverse right"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i></button>
+                <button class="btn btn-default btn-add-on btn-red-inverse right"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
 
-                <button class="btn btn-default btn-add-on btn-green-inverse right"  data-action="savePost" type="button">   <i class="fa fa-check"></i></button>
+                <button class="btn btn-default btn-add-on btn-green-inverse right"  data-action="savePost" type="button">   <i class="fa fa-check"></i> SAVE</button>
               </div>
 
               {{> newPostTemplate}}
@@ -101,7 +112,7 @@
               <div class="panel panel-heading">
 
                 POSTS
-                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"></i></button>
+                <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"> NEW POST</i></button>
               </div>
 
               {{/if}}
@@ -145,19 +156,19 @@
         <div class="panel panel-default  shadow-box  no-border">
           <div class="panel-body  no-border">
             <div class="panel panel-heading">My Pack</div>
-                <div class="row">
-            {{#each thisDog.friends}}
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <div class="thumbnail  thumbnail-friend">
-                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
-              <div class="caption">
-                  <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> <h6>{{friendName}}</h6></a>
-                 {{relationship}}
-              </div>
-            </div>
+            <div class="row">
+              {{#each thisDog.friends}}
+              <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <div class="thumbnail  thumbnail-friend">
+                  <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
+                  <div class="caption">
+                    <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> <h6>{{friendName}}</h6></a>
+                    {{relationship}}
+                  </div>
                 </div>
-            {{/each}}
-          </div>
+              </div>
+              {{/each}}
+            </div>
 
           </div>
         </div>
