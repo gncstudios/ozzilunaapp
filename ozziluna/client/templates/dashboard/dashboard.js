@@ -8,8 +8,36 @@ Template.dashboard.rendered = function() {
   Session.set('interactionsEditMode', false);
   Session.set('postingMode', false);
 };
+Template.newPostTemplate.helpers({
+  'postPicUpload': function() {
+    return {
+        finished: function(index, fileInfo, context) {
+          console.log("File Uploaded!");
+        console.log(fileInfo);
 
+        var userId = Meteor.userId();
+        var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+        $('#postImagePreview').attr("src", fileInfo.url);
+       },
+
+    }
+  }
+});
 Template.dashboard.helpers({
+  'profilePicUpload': function() {
+    return {
+        finished: function(index, fileInfo, context) {
+          console.log("File Uploaded!");
+        console.log(fileInfo);
+        var userId = Meteor.userId();
+        var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+
+        var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+        Dogs.update(dogToEdit._id, {$set: {profilePic: fileInfo.url}});
+       },
+
+    }
+  },
   'thisDog': function() {
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     if (thisDog) {

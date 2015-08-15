@@ -45,7 +45,7 @@
           <div class="panel-body text-center shadow-box  no-border">
             <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
             {{#if isMyProfile}}
-            <input type="file" name="Choose Profile Pic..." class="form-control" id=profilePicInput>
+             {{> upload_bootstrap callbacks=profilePicUpload}}
             {{/if}}
 
             {{#if philosophyEditMode}}
@@ -234,7 +234,7 @@
       <div class="input-group container-fluid">
         <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
       </div>
-      <input type="file" name="Choose Profile Pic..." class="form-control" id=postPicInput>
+      {{> upload_bootstrap callbacks=postPicUpload}}
       <img src="" class="img img-square profile-pic" id="postImagePreview">
     </div>
   </div>
