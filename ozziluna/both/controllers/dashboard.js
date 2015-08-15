@@ -185,7 +185,12 @@ DashboardController.events({
 
       var gender = $('#statsGender').val();
       $('#statsGender').val('');
-
+      if (gender === "on") {
+        gender = "Male";
+      }
+      else {
+        gender = "Female";
+      }
       var fixed = $('#statsFixed').val();
       $('#statsFixed').val('');
 

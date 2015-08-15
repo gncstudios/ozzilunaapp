@@ -19,6 +19,19 @@ Template.dashboard.helpers({
       return false;
     }
   },
+  'ageOfThisDog': function() {
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var dogBirthDate = new Date(thisDog.birthDate);
+    var now = Date.now();
+    var age = new Date(Date.now() - dogBirthDate);
+    if (age) {
+      return Math.abs(age.getYear() - 70) + " Years " + age.getMonth() + " Months old ";
+
+    }
+    else {
+      return "";
+    }
+  },
   'friendProfilePic':function (friendUsername) {
     var thisDog = Dogs.findOne({username: friendUsername});
     if (thisDog.profilePic){
