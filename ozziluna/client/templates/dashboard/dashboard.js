@@ -7,18 +7,20 @@ Template.dashboard.rendered = function() {
   Session.set('philosophyEditMode', false);
   Session.set('interactionsEditMode', false);
   Session.set('postingMode', false);
+  Session.set('commentingMode', false);
+
 };
 Template.newPostTemplate.helpers({
   'postPicUpload': function() {
     return {
-        finished: function(index, fileInfo, context) {
-          console.log("File Uploaded!");
+      finished: function(index, fileInfo, context) {
+        console.log("File Uploaded!");
         console.log(fileInfo);
 
         var userId = Meteor.userId();
         var dogToEdit = Dogs.findOne({username: Meteor.user().username});
         $('#postImagePreview').attr("src", fileInfo.url);
-       },
+      },
 
     }
   }
@@ -26,15 +28,15 @@ Template.newPostTemplate.helpers({
 Template.dashboard.helpers({
   'profilePicUpload': function() {
     return {
-        finished: function(index, fileInfo, context) {
-          console.log("File Uploaded!");
+      finished: function(index, fileInfo, context) {
+        console.log("File Uploaded!");
         console.log(fileInfo);
         var userId = Meteor.userId();
         var dogToEdit = Dogs.findOne({username: Meteor.user().username});
 
         var dogToEdit = Dogs.findOne({username: Meteor.user().username});
         Dogs.update(dogToEdit._id, {$set: {profilePic: fileInfo.url}});
-       },
+      },
 
     }
   },
@@ -78,7 +80,7 @@ Template.dashboard.helpers({
   'thisDogsActivities': function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
-    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {dogUsernameOfProfilePostedTo: thisDogsUsername}}});
+    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
   },
   // this is for posting
   'postingMode': function() {

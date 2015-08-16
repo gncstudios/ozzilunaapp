@@ -13,6 +13,48 @@ DashboardController = AppController.extend({
 });
 
 DashboardController.events({
+  'click [data-action=newComment]': function (event, template) {
+    event.preventDefault();
+    console.log("posting new comment");
+    Session.set('commentingMode', true);
+
+  },
+  'click [data-action=saveComment]': function (event, template) {
+    event.preventDefault();
+    /* push to the posts
+    *   dogUsername:    the username of the dog that this belongs to
+    *   typeOfPost:     post or comment
+    *   parentPostId:   the parentPostId.. if undefined, it is a parent post
+    *   [dogsTagged]:   dogs tagged in the post
+    *   date:           the current date time of the post
+    *   text:           the text of the post
+    *   [photos]        the photos to display along with the post
+    *   [comments]:     postId's relating to this.... same thing as posts, but parent post
+    *
+    *
+    */
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    var dogUsernameOfProfilePostedTo = Router.current().params.username;
+    var postImgUrl = $('#postImagePreview').attr("src");
+    var postText = $('#postText').val();
+
+
+
+    $('#postText').val('');
+    if (postImgUrl) {
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText, postImgUrl: postImgUrl});
+    }
+    else {
+      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText});
+    }
+    Session.set('commentingMode', false);
+  },
+  'click [data-action=cancelComment]': function (event, template) {
+    event.preventDefault();
+    Session.set('commentingMode', false);
+
+  },
+
   /**
   *
   * This is for adding posts
