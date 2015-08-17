@@ -145,9 +145,8 @@
 
                     <div class="post-text">{{text}}</div>
                     <div class="list-group-item">
-                      {{_id}}
                       <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
-                      <button name="{{_id}}"  class="btn btn-default btn-add-on btn-brand-inverse" data-action="upVotePost" type="button"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+                      <button class="btn btn-default btn-add-on btn-brand-inverse" data-action="upVotePost" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
                     </div>
                     <div class="list-group-item">
                       {{#if commentingMode}}

@@ -17,14 +17,16 @@ DashboardController.events({
     event.preventDefault();
 
     var myDog = Dogs.findOne({username: Meteor.user().username});
-    var postId = event.target.name;
-    console.log("upvoting post: " + postId);
+    var postId = $(event.target).attr('data-id');
     var postToLike = Posts.findOne({_id: postId});
-    if (postToLike && postToLike.dogsWhoLikeThisPost && postToLike.dogsWhoLikeThisPost.lenth){
-      Posts.update(postId, {$addToSet: {dogsWhoLikeThisPost: {usernameOfDogWhoLikesThisPost: myDog.username}}});
+    console.log(postToLike);
+    if (postToLike && postToLike.dogsWhoLikeThisPost && postToLike.dogsWhoLikeThisPost.length){
+      console.log("adding to exting set of comments")
+      Posts.update(postToLike._id, {$addToSet: {dogsWhoLikeThisPost: {usernameOfDogWhoLikesThisPost: myDog.username}}});
     }
     else if(postToLike) {
-      Posts.update(postToLike._id, {$set: {dogsWhoLikeThisPost: [{usernameOfDogWhoLikesThisPost: myDog.username}]}});
+      Posts.update(postToLike._id, {$set: {dogsWhoLikeThisPost: []}});
+      Posts.update(postToLike._id, {$addToSet: {dogsWhoLikeThisPost: {usernameOfDogWhoLikesThisPost: myDog.username}}});
     }
   else {
     console.log("Cannot upvote post, it isnt defined. shit!");
@@ -145,9 +147,9 @@ DashboardController.events({
   },
   'click [data-action=acceptFriendRequest]': function (event, template) {
     event.preventDefault();
-
+    var dogInFriendRequest =  $(event.target).attr('data-id');
     var myDog = Dogs.findOne({username: Meteor.user().username});
-    var dogToAdd = Dogs.findOne({username: event.target.name});
+    var dogToAdd = Dogs.findOne({username: dogInFriendRequest});
     Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: dogToAdd.username}}});
     // add the friend who requsted to my dogs friends, and add my dog to that dog's friends
     Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: dogToAdd.username, friendName: dogToAdd.name, relationship: "friend"}}});
