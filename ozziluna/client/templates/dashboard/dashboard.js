@@ -19,7 +19,9 @@ Template.newPostTemplate.helpers({
 
         var userId = Meteor.userId();
         var dogToEdit = Dogs.findOne({username: Meteor.user().username});
-        $('#postImagePreview').attr("src", fileInfo.url);
+        var picUrl = fileInfo.url;
+        $('#postImagePreview').attr("src", picUrl);
+        Pics.insert({usernameOfDogWhoOwnsThisPicture: Meteor.user().username, source: picUrl});
       },
 
     }
@@ -34,8 +36,11 @@ Template.dashboard.helpers({
         var userId = Meteor.userId();
         var dogToEdit = Dogs.findOne({username: Meteor.user().username});
 
-        var dogToEdit = Dogs.findOne({username: Meteor.user().username});
-        Dogs.update(dogToEdit._id, {$set: {profilePic: fileInfo.url}});
+        var picUrl = fileInfo.url;
+
+        Dogs.update(dogToEdit._id, {$set: {profilePic: picUrl}});
+        Pics.insert({usernameOfDogWhoOwnsThisPicture: Meteor.user().username, source: picUrl});
+
       },
 
     }
@@ -129,7 +134,16 @@ Template.dashboard.helpers({
   'isMyProfile': function() {
     var myDog = Dogs.findOne({username: Meteor.user().username});
     return myDog.username === Router.current().params.username;
-  }
+  },
+  'numberOfLikesForPostByPostId': function(postId) {
+    var thisPost = Posts.findOne({_id: postId});
+    if (thisPost && thisPost.dogsWhoLikeThisPost) {
+      return " + " + thisPost.dogsWhoLikeThisPost.length;
+    }
+    else {
+      return "";
+    }
+  },
 
 });
 

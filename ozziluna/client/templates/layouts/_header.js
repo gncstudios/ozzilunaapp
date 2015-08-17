@@ -36,12 +36,13 @@ Template._header.helpers({
     var thisUser = Meteor.user();
     if (thisUser){
       var myDog = Dogs.findOne({username: thisUser.username});
-      if (myDog) {
-        return myDog.friendRequests.length > 0;
+      if (myDog && myDog.friendRequests) {
+        return (myDog.friendRequests.length > 0);
       }
       else {
         return false;
       }
+
     }
     else {
       return false;

@@ -1,7 +1,7 @@
 DashboardController = AppController.extend({
   waitOn: function() {
 
-    return this.subscribe('dogs') && this.subscribe('images') && this.subscribe('activities');
+    return this.subscribe('dogs') && this.subscribe('images') && this.subscribe('activities') && this.subscribe('posts')  && this.subscribe('pics');
   },
   data: {
     dogs: Dogs.find({})
@@ -13,6 +13,24 @@ DashboardController = AppController.extend({
 });
 
 DashboardController.events({
+  'click [data-action=upVotePost]': function (event, template) {
+    event.preventDefault();
+
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    var postId = event.target.name;
+    console.log("upvoting post: " + postId);
+    var postToLike = Posts.findOne({_id: postId});
+    if (postToLike && postToLike.dogsWhoLikeThisPost && postToLike.dogsWhoLikeThisPost.lenth){
+      Posts.update(postId, {$addToSet: {dogsWhoLikeThisPost: {usernameOfDogWhoLikesThisPost: myDog.username}}});
+    }
+    else if(postToLike) {
+      Posts.update(postToLike._id, {$set: {dogsWhoLikeThisPost: [{usernameOfDogWhoLikesThisPost: myDog.username}]}});
+    }
+  else {
+    console.log("Cannot upvote post, it isnt defined. shit!");
+  }
+
+  },
   'click [data-action=newComment]': function (event, template) {
     event.preventDefault();
     console.log("posting new comment");
