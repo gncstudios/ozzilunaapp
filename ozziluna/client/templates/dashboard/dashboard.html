@@ -2,253 +2,246 @@
 
 <template name="dashboard">
   <div class="template-dashboard">
+
+
+
+    <!--**********************************-->
+    <!--  Profile Pic, display name, etc  -->
+    <!--**********************************-->
     <div class="panel panel-default shadow-box  no-border">
       <div class="panel-body no-border">
+        {{# if statsEditMode}}
         <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <h1><i class="material-icons">face</i></h1>
-          </div>
-
-          <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-            <h1 class="dark-text" id="profileDisplayName">{{thisDog.name}} </h1>
-          </div>
+          {{> statsEdit}}
         </div>
-        <div class="row">
-          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <h4>  <i class="fa fa-venus">  </i></h4>
-          </div>
-          <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-
-            <h4 class="dark-text thin shadow">{{thisDog.breed}}</h4>
-          </div>
+        <div class="row text-center">
+          <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
+          <button class="btn btn-default btn-add-on btn-custom btn-green"  data-action="saveStats" type="button">   <i class="fa fa-check">SAVE</i></button>
         </div>
-
+        {{else}}
+        <!-- no stats edit mode, just display the fields -->
+        <div class="row text-center">
+          <h1 class="dark-text" id="profileDisplayName">{{thisDog.name}} </h1>
+          <h4 class="dark-text thin shadow">{{thisDog.breed}}</h4>
+        </div>
+        <div class="row text-center">
+          {{#if isDogInProfileFriend}}
+          <i class="fa fa-paw"> friend :)</i>
+          {{else}}
+          {{#if hasFriendRequestBeenSent}}
+          <i class="fa fa-paw">Friend Request Sent</i>
+          {{else}}
+          <a href="#" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a>
+          {{/if}}
+          {{/if}}
+        </div>
+        <!-- if it is not in stats edit mode and it is our profile, put a button to edit shit -->
         {{#if isMyProfile}}
-
-        <div class="list-group-item">
-          <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editStats" type="button">   <i class="fa fa-edit"> NAME</i></button>
+        <div class="row text-center">
+          <button class="btn btn-default btn-add-on btn-custom"  data-action="editStats" type="button">   <i class="fa fa-edit"> NAME</i></button>
         </div>
-        {{else}}
-        {{#if isDogInProfileFriend}}
-        <i class="fa fa-user"></i>
-        {{else}}
-        {{#if hasFriendRequestBeenSent}}
-        <span class="badge badge-brand">Friend Request Sent</span>
-        {{else}}
-        <a href="#" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a>
-        {{/if}}
         {{/if}}
         {{/if}}
 
+
+
+
+
+
+        <!--****************-->
+        <!--  Photo upload  -->
+        <!--****************-->
+        <div class="row">
+
+          <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
+          {{#if isMyProfile}}
+          {{> upload_bootstrap callbacks=profilePicUpload}}
+          {{/if}}
+          {{#if philosophyEditMode}}
+          <div class="list-group-item">
+            <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
+          </div>
+          <div class="list-group-item">
+            <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
+            <button class="btn btn-default btn-add-on btn-custom btn-green"  data-action="savePhilosophy" type="button">   <i class="fa fa-check">SAVE</i></button>
+          </div>
+          {{else}}
+          {{#if isMyProfile}}
+          <div class="list-group-item">
+            {{thisDog.philosophy}}
+          </div>
+          <div class="list-group-item">
+            <button class="btn btn-default btn-add-on btn-custom"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"> EDIT</i></button>
+          </div>
+          {{else}}
+          <div class="list-group-item">
+
+            {{thisDog.philosophy}}
+          </div>
+          {{/if}}
+          {{/if}}
+        </div>
 
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="panel panel-default   no-border">
-          <div class="panel-body text-center shadow-box  no-border">
-            <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
-            {{#if isMyProfile}}
-            {{> upload_bootstrap callbacks=profilePicUpload}}
-            {{/if}}
-            {{#if philosophyEditMode}}
+
+    <!--  End of stats edit, profile pic etc  -->
 
 
-            <div class="list-group-item">
-              <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
+
+    <div class="col-md-8">
+      <div class="panel panel-default shadow-box  no-border">
+        <div class="panel-body no-border">
+          <div class="list-group">
+
+
+            {{#if postingMode}}
+            <div class="panel panel-heading">
+              <div class="text-center">
+                MY TAIL
+              </div>
             </div>
             <div class="list-group-item">
-              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="savePhilosophy" type="button">   <i class="fa fa-check">SAVE</i></button>
+              <div class="text-center">
+
+                <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+
+                <button class="btn btn-default btn-add-on btn-custom btn-green"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
+              </div>
             </div>
+            {{> newPostTemplate}}
             {{else}}
+            <div class="panel panel-heading">
+              <div class="text-center">
+                MY TAIL
+              </div>
+            </div>
+            <div class="list-group-item">
+              <div class="text-center">
+                <button class="btn btn-default btn-add-on btn-custom"  data-action="newPost" type="button">   <i class="fa fa-plus"> NEW POST</i></button>
+              </div>
+            </div>
+            {{/if}}
+            {{#each thisDogsPosts}}
+            <div class="list-group-item list-group-item-post">
+              <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                  <img class="img img-square profile-pic" src="{{friendProfilePic dogWhoPosted}}">
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                  <h4 class="text-brand-color">{{dogWhoPosted}}</h4>
+                  <div class="post-date"> {{postDate}}</div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <img class="img img-square profile-pic" src="{{postImgUrl}}">
+
+                  <div class="post-text">{{text}}</div>
+                  <div class="list-group-item">
+                    <button class="btn btn-default btn-add-on btn-custom"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
+                    <button class="btn btn-default btn-add-on btn-custom" data-action="upVotePost" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+                  </div>
+                  <div class="list-group-item">
+                    {{#if commentingMode}}
+                    <p>Better be good...</p>
+                    {{> commentTemplate}}
+                    {{/if}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default  shadow-box  no-border">
+        <div class="panel-body shadow-box  no-border">
+          <div class="panel panel-heading text-center">MY PACK</div>
+          <div class="list-group shadow-box">
+            {{#each thisDog.friends}}
+            <div class="list-group-item">
+              <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-thumbnail" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
+              <div class="caption">
+                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> <h6>{{friendName}}</h6></a>
+                {{relationship}}
+              </div>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="panel panel-default  shadow-box  no-border">
+        <div class="panel-body  no-border">
+          <div class="panel panel-heading text-center">I LOVE</div>
+          <div class="list-group-item">
+            <button class="btn btn-default btn-add-on btn-custom"  data-action="addActivity" type="button">   <i class="fa fa-plus">ACTIVITY</i></button>
+          </div>
+          <div class="list-group-item text-center">
+
             {{#if isMyProfile}}
-            <div class="list-group-item">
-              {{thisDog.philosophy}}
-            </div>
-            <div class="list-group-item">
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"> EDIT</i></button>
-            </div>
-            {{else}}
-            <div class="list-group-item">
-
-              {{thisDog.philosophy}}
-            </div>
-            {{/if}}
-            {{/if}}
-          </div>
-        </div>
-        <div class="panel panel-default shadow-box   no-border">
-          <div class="panel-body no-border `panel-branded`">
-            <div class="list-group">
-              {{# if statsEditMode}}
-              <div class="panel panel-heading">ABOUT</div>
-              {{> statsEdit}}
-              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelStatsEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveStats" type="button">   <i class="fa fa-check">SAVE</i></button>
-              {{else}}
-
-
-              {{/if}}
-            </div>
-          </div>
-
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="panel panel-default shadow-box  no-border">
-          <div class="panel-body no-border">
-            <div class="list-group">
-
-
-              {{#if postingMode}}
-              <div class="panel panel-heading">
-                <div class="text-center">
-                  MY TAIL
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="text-center">
-
-                  <button class="btn btn-default btn-add-on btn-red-inverse right"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
-
-                  <button class="btn btn-default btn-add-on btn-green-inverse right"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
-                </div>
-              </div>
-              {{> newPostTemplate}}
-              {{else}}
-              <div class="panel panel-heading">
-                <div class="text-center">
-                  MY TAIL
-                </div>
-              </div>
-              <div class="list-group-item">
-                <div class="text-center">
-                  <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newPost" type="button">   <i class="fa fa-plus"> NEW POST</i></button>
-                </div>
-              </div>
-              {{/if}}
-              {{#each thisDogsPosts}}
-              <div class="list-group-item list-group-item-post">
-                <div class="row">
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                    <img class="img img-square profile-pic" src="{{friendProfilePic dogWhoPosted}}">
-                  </div>
-                  <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-                    <h4 class="text-brand-color">{{dogWhoPosted}}</h4>
-                    <div class="post-date"> {{postDate}}</div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <img class="img img-square profile-pic" src="{{postImgUrl}}">
-
-                    <div class="post-text">{{text}}</div>
-                    <div class="list-group-item">
-                      <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
-                      <button class="btn btn-default btn-add-on btn-brand-inverse" data-action="upVotePost" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
-                    </div>
-                    <div class="list-group-item">
-                      {{#if commentingMode}}
-                      <p>Better be good...</p>
-                      {{> commentTemplate}}
-                      {{/if}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default  shadow-box  no-border">
-          <div class="panel-body shadow-box  no-border">
-            <div class="panel panel-heading text-center">MY PACK</div>
-            <div class="list-group shadow-box">
-              {{#each thisDog.friends}}
-              <div class="list-group-item">
-                    <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-thumbnail" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
-                    <div class="caption">
-                      <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> <h6>{{friendName}}</h6></a>
-                      {{relationship}}
-                    </div>
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-
-      <div class="col-md-6">
-        <div class="panel panel-default  shadow-box  no-border">
-          <div class="panel-body  no-border">
-            <div class="panel panel-heading text-center">I LOVE</div>
-            <div class="list-group-item">
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="addActivity" type="button">   <i class="fa fa-plus">ACTIVITY</i></button>
-            </div>
             <div class="list-group-item text-center">
 
-              {{#if isMyProfile}}
-              <div class="list-group-item text-center">
-
-                <div class="input-group">
-                  <input class="form-control typeahead puppy-search" name="team" type="text"
-                  placeholder="Add activitiy..."
-                  autocomplete="off" spellcheck="off"
-                  data-source="Activities" id="activityToAdd"/>
-                </div>
+              <div class="input-group">
+                <input class="form-control typeahead puppy-search" name="team" type="text"
+                placeholder="Add activitiy..."
+                autocomplete="off" spellcheck="off"
+                data-source="Activities" id="activityToAdd"/>
               </div>
-
-              {{/if}}
-
-
-              {{#each thisDogsActivities}}
-              <div class="list-group-item">
-                {{name}}
-              </div>
-              {{/each}}
-
-
-
             </div>
+
+            {{/if}}
+
+
+            {{#each thisDogsActivities}}
+            <div class="list-group-item">
+              {{name}}
+            </div>
+            {{/each}}
+
+
+
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="panel panel-default  shadow-box  no-border">
-          <div class="panel-body  no-border">
-            <div class="list-group">
-              {{#if interactionsEditMode}}
-              {{> interactionsEdit}}
-              <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
-              <button class="btn btn-default btn-add-on btn-green-inverse"  data-action="saveInteractions" type="button">   <i class="fa fa-check">SAVE</i></button>
-              {{else}}
-              {{#if isMyProfile}}
-              <button class="btn btn-default btn-add-on btn-brand-inverse"  data-action="editInteractions" type="button">   <i class="fa fa-pencil">BEHAVIOUR</i></button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default  shadow-box  no-border">
+        <div class="panel-body  no-border">
+          <div class="list-group">
+            {{#if interactionsEditMode}}
+            {{> interactionsEdit}}
+            <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
+            <button class="btn btn-default btn-add-on btn-custom btn-green"  data-action="saveInteractions" type="button">   <i class="fa fa-check">SAVE</i></button>
+            {{else}}
+            {{#if isMyProfile}}
+            <button class="btn btn-default btn-add-on btn-custom"  data-action="editInteractions" type="button">   <i class="fa fa-pencil">BEHAVIOUR</i></button>
 
-              {{> interactionsDisplay}}
-              {{else}}
+            {{> interactionsDisplay}}
+            {{else}}
 
-              {{> interactionsDisplay}}
-              {{/if}}
-              {{/if}}
+            {{> interactionsDisplay}}
+            {{/if}}
+            {{/if}}
 
-            </div>
           </div>
         </div>
       </div>
@@ -257,6 +250,31 @@
 
 
 </template>
+<!--  End of dashboard template  -->
+
+<!--********************-->
+<!--  for editing stats -->
+<!--********************-->
+<template name="statsEdit">
+  <div class="row">
+    <input type="text" value="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
+  </div>
+  <div class="row">
+
+    <input type="text" value="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
+  </div>
+  <div class="row">
+    <div class="list-group-item">
+      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
+      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <input type="text" value="{{thisDog.birthDate}}" class="form-control input-object-brand-inverse" id="statsBirthDate">
+  </div>
+</template>
+<!--  End of stats edit template  -->
 
 <template name="newPostTemplate">
   <div class="list-group">
@@ -289,94 +307,6 @@
   </div>
 </template>
 
-
-<template name="statsDisplay">
-  <div class="list-group">
-    <div class="list-group-item">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          Name
-        </div>
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          {{thisDog.name}}
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          Breed
-        </div>
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          {{thisDog.breed}}
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          Gender
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          {{thisDog.gender}}
-        </div>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          <div class="label label-brand">Fixed: {{thisDog.fixed}}</div>
-        </div>
-      </div>
-    </div>
-    <div class="list-group-item">
-      <div class="row">
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-          Age
-        </div>
-        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-          {{thisDog.dogAge}}
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
-<template name="statsEdit">
-  <div class="list-group">
-
-    <div class="list-group-item">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default input-object-brand"  type="button">Name</button>
-        </span>
-        <input type="text" value="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
-      </div>
-    </div>
-    <div class="list-group-item">
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default input-object-brand"  type="button">Breed</button>
-        </span>
-        <input type="text" value="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
-      </div>
-    </div>
-    <div class="list-group-item">
-      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
-      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
-    </div>
-    <div class="list-group-item">
-
-
-    </div>
-
-    <div class="list-group-item">
-
-      <div class="input-group">
-        <span class="input-group-btn">
-          <button class="btn btn-default input-object-brand"  type="button"> Born on</button>
-        </span>
-        <input type="text" value="{{thisDog.birthDate}}" class="form-control input-object-brand-inverse" id="statsBirthDate">
-      </div>
-    </div>
-  </div>
-</template>
 
 
 
