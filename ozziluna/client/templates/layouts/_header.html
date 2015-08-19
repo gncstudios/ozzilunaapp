@@ -60,12 +60,15 @@
               </div>
               {{#each myDog.friendRequests}}
               <div class="list-group-item no-border shadow">
+                <div class="panel panel-default  shadow-box  no-border">
+                  <div class="panel-body  no-border">
                     <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
 
                     <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
                     <button class="btn btn-default btn-add-on btn-green-inverse" data-id="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
                     <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a>
-
+            </div>
+                        </div>
 
               </div>
               {{/each}}

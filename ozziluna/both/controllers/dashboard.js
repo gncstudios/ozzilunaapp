@@ -146,17 +146,21 @@ DashboardController.events({
 
   },
   'click [data-action=acceptFriendRequest]': function (event, template) {
-    event.preventDefault();
     var dogInFriendRequest =  $(event.target).attr('data-id');
+    event.preventDefault();
+
     var myDog = Dogs.findOne({username: Meteor.user().username});
-    var dogToAdd = Dogs.findOne({username: dogInFriendRequest});
-    Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: dogToAdd.username}}});
-    // add the friend who requsted to my dogs friends, and add my dog to that dog's friends
-    Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: dogToAdd.username, friendName: dogToAdd.name, relationship: "friend"}}});
-    var dogThatRequested  = Dogs.findOne({username: dogToAdd});
-    Dogs.update(dogThatRequested._id, {$addToSet: {friends: {friendUsername: myDog.username, friendName: dogToAdd.name, relationship: "friend"}}});
-
-
+    if (dogToAdd) {
+      var dogToAdd = Dogs.findOne({username: dogInFriendRequest});
+      Dogs.update(myDog._id, {$pull: {friendRequests: {usernameOfRequestedFriend: dogToAdd.username}}});
+      // add the friend who requsted to my dogs friends, and add my dog to that dog's friends
+      Dogs.update(myDog._id, {$addToSet: {friends: {friendUsername: dogToAdd.username, friendName: dogToAdd.name, relationship: "friend"}}});
+      var dogThatRequested  = Dogs.findOne({username: dogToAdd.username});
+      Dogs.update(dogThatRequested._id, {$addToSet: {friends: {friendUsername: myDog.username, friendName: dogToAdd.name, relationship: "friend"}}});
+    }
+    else {
+      console.log("No dog to add");
+    }
   },
   'click [data-action=doSomething]': function (event, template) {
     event.preventDefault();

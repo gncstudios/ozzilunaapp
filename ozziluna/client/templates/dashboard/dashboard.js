@@ -76,6 +76,17 @@ Template.dashboard.helpers({
       return "#";
     }
   },
+  'statsEditMode': function() {
+    return Session.get('statsEditMode');
+  },
+  'dogAge': function() {
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var dogBirthDate = new Date(thisDog.birthDate);
+    var now = Date.now();
+    var age = new Date(Date.now() - dogBirthDate);
+
+    return Math.abs(age.getYear() - 70) + " Years " + age.getMonth() + " Months";
+  },
   'thisDogsPosts' : function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var thisDogsUsername = thisDog.username;
@@ -148,11 +159,8 @@ Template.dashboard.helpers({
 });
 
 
-// dependancies
 
-
-
-Template.statsDisplay.helpers({
+Template.friendGridDisplay.helpers({
   'thisDog': function() {
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     if (thisDog) {
@@ -162,16 +170,14 @@ Template.statsDisplay.helpers({
       return false;
     }
   },
-  'statsEditMode': function() {
-    return Session.get('statsEditMode');
-  },
-  'dogAge': function() {
-    var thisDog = Dogs.findOne({username: Router.current().params.username});
-    var dogBirthDate = new Date(thisDog.birthDate);
-    var now = Date.now();
-    var age = new Date(Date.now() - dogBirthDate);
-
-    return Math.abs(age.getYear() - 70) + " Years " + age.getMonth() + " Months";
+  'friendProfilePic':function (friendUsername) {
+    var thisDog = Dogs.findOne({username: friendUsername});
+    if (thisDog.profilePic){
+      return thisDog.profilePic;
+    }
+    else {
+      return "#";
+    }
   }
 });
 Template.statsEdit.helpers({

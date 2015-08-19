@@ -12,11 +12,10 @@ Template._header.helpers({
     if (thisUser){
       return Dogs.findOne({username: thisUser.username});
     }
-
   },
   'friendProfilePic':function (friendUsername) {
     var thisDog = Dogs.findOne({username: friendUsername});
-    if (thisDog.profilePic){
+    if (thisDog){
       return thisDog.profilePic;
     }
     else {
