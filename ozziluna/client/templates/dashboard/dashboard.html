@@ -53,17 +53,20 @@
         <!--****************-->
         <div class="row">
 
-          <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
+          <img class="img img-square profile-pic box-shadow" src="{{thisDog.profilePic}}">
           {{#if isMyProfile}}
-          <div class="row">
-            {{> upload_bootstrap callbacks=profilePicUpload}}
+
+          <div class="panel panel-default shadow-box  no-border">
+            <div class="panel-body no-border">
+              {{> upload_bootstrap callbacks=profilePicUpload}}
+            </div>
           </div>
           {{/if}}
           {{#if philosophyEditMode}}
           <div class="list-group-item">
             <input type="text" value="{{thisDog.philosophy}}" class="form-control" id="philosophy">
           </div>
-          <div class="list-group-item">
+          <div class="list-group-item text-center">
             <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelPhilosophyEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
             <button class="btn btn-default btn-add-on btn-custom btn-green"  data-action="savePhilosophy" type="button">   <i class="fa fa-check">SAVE</i></button>
           </div>
@@ -72,7 +75,7 @@
           <div class="list-group-item">
             {{thisDog.philosophy}}
           </div>
-          <div class="list-group-item">
+          <div class="list-group-item text-center">
             <button class="btn btn-default btn-add-on btn-custom"  data-action="editPhilosophy" type="button"><i class="fa fa-pencil"> EDIT</i></button>
           </div>
           {{else}}
@@ -88,7 +91,18 @@
     </div>
     <!--  End of stats edit, profile pic etc  -->
     <div class="row">
-      {{> friendGridDisplay}}
+      <div class="panel panel-default translucent shadow-box  no-border">
+        <div class="panel-body no-border">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            {{> friendGridDisplay}}
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            {{> favoriteActivitiesDisplay}}
+          </div>
+        </div>
+
+
+      </div>
 
     </div>
 
@@ -123,7 +137,7 @@
               </div>
               <div class="list-group-item">
                 <div class="text-center">
-                  <button class="btn btn-default btn-add-on btn-custom"  data-action="newPost" type="button">   <i class="fa fa-plus"> NEW POST</i></button>
+                  <button class="btn btn-default btn-add-on btn-custom btn-brand"  data-action="newPost" type="button">   <i class="fa fa-plus"> NEW POST</i></button>
                 </div>
               </div>
               {{/if}}
@@ -169,69 +183,18 @@
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <div class="panel panel-default  shadow-box  no-border">
-          <div class="panel-body shadow-box  no-border">
-            <div class="panel panel-heading text-center">MY PACK</div>
-            <div class="list-group shadow-box">
-              {{#each thisDog.friends}}
-              <div class="list-group-item">
-                <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-thumbnail" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
-                <div class="caption">
-                  <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> <h6>{{friendName}}</h6></a>
-                  {{relationship}}
-                </div>
-              </div>
-              {{/each}}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
 
-      <div class="col-md-6">
-        <div class="panel panel-default  shadow-box  no-border">
-          <div class="panel-body  no-border">
-            <div class="panel panel-heading text-center">I LOVE</div>
-            <div class="list-group-item">
-              <button class="btn btn-default btn-add-on btn-custom"  data-action="addActivity" type="button">   <i class="fa fa-plus">ACTIVITY</i></button>
-            </div>
-            <div class="list-group-item text-center">
-
-              {{#if isMyProfile}}
-              <div class="list-group-item text-center">
-
-                <div class="input-group">
-                  <input class="form-control typeahead puppy-search" name="team" type="text"
-                  placeholder="Add activitiy..."
-                  autocomplete="off" spellcheck="off"
-                  data-source="Activities" id="activityToAdd"/>
-                </div>
-              </div>
-
-              {{/if}}
-
-
-              {{#each thisDogsActivities}}
-              <div class="list-group-item">
-                {{name}}
-              </div>
-              {{/each}}
-
-
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row">
       <div class="col-md-12">
         <div class="panel panel-default  shadow-box  no-border">
           <div class="panel-body  no-border">
+            <div class="panel panel-heading">
+              <div class="text-center">
+                HOW I AM WITH OTHERS
+              </div>
+            </div>
             <div class="list-group">
+
               {{#if interactionsEditMode}}
               {{> interactionsEdit}}
               <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="cancelInteractionsEdit" type="button">   <i class="fa fa-close">CANCEL</i></button>
@@ -261,23 +224,26 @@
 <!--  for editing stats -->
 <!--********************-->
 <template name="statsEdit">
-  <div class="row">
-    <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
-  </div>
-  <div class="row">
-
-    <input type="text" value="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
-  </div>
-  <div class="row">
+  <div class="list-group">
     <div class="list-group-item">
-      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
-      <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
+      <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
+    </div>
+    <div class="list-group-item">
+
+      <input type="text" value="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
+    </div>
+    <div class="list-group-item">
+      <div class="list-group-item">
+        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
+        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
+      </div>
+    </div>
+
+    <div class="list-group-item">
+      <input type="text" value="{{thisDog.birthDate}}" class="form-control input-object-brand-inverse" id="statsBirthDate">
     </div>
   </div>
 
-  <div class="row">
-    <input type="text" value="{{thisDog.birthDate}}" class="form-control input-object-brand-inverse" id="statsBirthDate">
-  </div>
 </template>
 <!--  End of stats edit template  -->
 
@@ -287,13 +253,15 @@
 <!--***********************************-->
 <template name="friendGridDisplay">
   <div class="row">
-    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default  shadow-box  no-border">
         <div class="panel-body  no-border">
+          <div class="panel panel-heading text-center">MY FRIENDS</div>
           {{#each thisDog.friends}}
-          <div class="friend-pic-grid-container">
-          <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-grid-img" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
-        </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 friend-pic-grid-col text-center">
+            <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
+            <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> {{friendName}}</a>
+          </div>
 
           {{/each}}
         </div>
@@ -302,6 +270,38 @@
   </div>
 </template>
 <!--  End of stats friend grid display template  -->
+<!--************************************-->
+<!--  for displaying favorite activites -->
+<!--************************************-->
+<template name="favoriteActivitiesDisplay">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="panel panel-default  shadow-box  no-border">
+        <div class="panel-body  no-border">
+          <div class="panel panel-heading text-center">I LOVE</div>
+          {{#if isMyProfile}}
+          <div class="list-group-item text-center">
+            <input class="form-control typeahead puppy-search" name="team" type="text"
+            placeholder="Add activitiy..."
+            autocomplete="off" spellcheck="off"
+            data-source="Activities" id="activityToAdd"/>
+          </div>
+          <div class="list-group-item text-center">
+            <button class="btn btn-default btn-add-on btn-custom"  data-action="addActivity" type="button">   <i class="fa fa-plus">ACTIVITY</i></button>
+          </div>
+          {{/if}}
+
+          {{#each thisDogsActivities}}
+          <div class="list-group-item">
+            {{name}}
+          </div>
+          {{/each}}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
 
 <template name="newPostTemplate">
   <div class="list-group">
@@ -309,6 +309,9 @@
       <div class="input-group container-fluid">
         <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
       </div>
+
+    </div>
+    <div class="list-group-item">
       {{> upload_bootstrap callbacks=postPicUpload}}
       <img src="" class="img img-square profile-pic" id="postImagePreview">
     </div>

@@ -115,14 +115,19 @@ body {
   padding-right: 10px;
 }
 .btn-custom {
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  margin-top:4px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
-  margin-left: 0px;
+  border: none;
+  border-radius: 10px;
+
+}
+.btn-brand:hover {
+  background-color: rgb(67, 122, 248);
+  border-color: rgb(67, 122, 248);
+  color:white;
+}
+.btn-brand {
+  background-color: white;
+  border-color: rgb(67, 122, 248);
+  color:rgb(67, 122, 248);
 }
 .btn-red:hover {
   background-color: rgb(255, 102, 102);
@@ -139,17 +144,15 @@ body {
   border-color: rgb(0, 255, 128);
   color:white;
 }
-.friend-pic-grid-container {
-  width:75px;
-  height:75px;;
-  float:left;
+.friend-pic-grid {
+  width:100%;
+  box-shadow: 1px 1px 5px rgba(80, 80, 80, 0.3);
+  height:auto;
+  overflow: hidden;
   position: relative;
 }
-.friend-pic-grid-img {
-  position: absolute;
-  height: auto;
-  width: 100%;
-  overflow: hidden;
+.friend-pic-grid-col {
+  padding: 4px 4px 4px 4px;
 }
 .btn-green{
   background-color: white;
@@ -236,7 +239,11 @@ body {
 .text-brand-color {
   color:rgb(67, 122, 248);
 }
+input.form-control {
 
+
+
+}
 .panel-heading {
   margin-left: -15px;
   margin-right:-15px;
@@ -251,7 +258,8 @@ body {
   background-color: transparent;
 }
 .panel-body{
-    padding-top:0px;
+    padding-top:5px;
+    padding-bottom:5px;
 }
 .list-group-item-post {
   margin-top: 15px;
@@ -268,7 +276,7 @@ div.form-control.upload-control {
   width:auto;
   margin-right:15px;
   margin-left:15px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: transparent;
 
 
@@ -277,86 +285,53 @@ div.form-control.upload-control {
 div.progressInner {
   background-color: transparent;
   border-width: 1px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 div.progress-bar.progress-bar-success.progress-bar-striped{
   width:auto;
 
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: rgb(67, 122, 248);
 }
 div.btn.btn-info.upload-control.start{
   background-color: transparent;
+  border: none;
+  border-radius: 10px;
   color:rgb(67, 122, 248);
-  border-color:rgb(67, 122, 248);
-  font-weight: 100;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
 }
 div.btn.btn-info.upload-control.start:hover{
+  color: white;
   background-color:rgb(67, 122, 248);
-  color:whitesmoke;
-  border-color:rgb(67, 122, 248);
-  font-weight: 200;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
 }
 div.btn.btn-danger.upload-control.cancel{
   background-color: transparent;
-  color:rgb(67, 122, 248);
-  border-color:rgb(67, 122, 248);
-  font-weight: 200;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
+  border: none;
+  border-radius: 10px;
+  color:rgb(255, 102, 102);
+}
+div.btn.btn-danger.upload-control.cancel:hover{
+  color: white;
+  background-color:rgb(255, 102, 102);
 }
 div.btn.btn-default.upload-control.done{
   background-color: transparent;
-  display: none;
+  border: none;
+  border-radius: 10px;
   color:rgb(67, 122, 248);
-  border-color:rgb(67, 122, 248);
-  font-weight: 200;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
+}
+div.btn.btn-default.upload-control.done:hover{
+  color: white;
+  background-color:rgb(67, 122, 248);
 }
 div.btn.btn-primary.btn-file.upload-control{
-  background-color:transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 10px;
   color:rgb(67, 122, 248);
-  border-color:rgb(67, 122, 248);
-  font-weight: 200;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
 }
 div.btn.btn-primary.btn-file.upload-control:hover{
+  color: white;
   background-color:rgb(67, 122, 248);
-  color:whitesmoke;
-  border-color:rgb(67, 122, 248);
-  font-weight: 200;
-  font-size: 14px;
-  border-width: 1px;
-  border-radius: 20px;
-  margin-left: 15px;
-  padding: 0px 8px 0px 8px;
-  height:30px;
 }
 .post-text{
   border-top: 2px solid rgba(180, 180, 180, 0.3);

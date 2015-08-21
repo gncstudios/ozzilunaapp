@@ -92,12 +92,7 @@ Template.dashboard.helpers({
     var thisDogsUsername = thisDog.username;
     return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
   },
-  // for getting this dogs activities
-  'thisDogsActivities': function(){
-    var thisDog = Dogs.findOne({username: Router.current().params.username});
-    var thisDogsUsername = thisDog.username;
-    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
-  },
+
   // this is for posting
   'postingMode': function() {
     return Session.get('postingMode');
@@ -158,7 +153,18 @@ Template.dashboard.helpers({
 
 });
 
-
+Template.favoriteActivitiesDisplay.helpers({
+  // for getting this dogs activities
+  'thisDogsActivities': function(){
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    var thisDogsUsername = thisDog.username;
+    return Activities.find({dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisDogsUsername}}});
+  },
+  'isMyProfile': function() {
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    return myDog.username === Router.current().params.username;
+  }
+});
 
 Template.friendGridDisplay.helpers({
   'thisDog': function() {
