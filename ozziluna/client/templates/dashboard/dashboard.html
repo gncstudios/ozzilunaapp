@@ -190,7 +190,7 @@
           <div class="panel-body  no-border">
             <div class="panel panel-heading">
               <div class="text-center">
-                HOW I AM WITH OTHERS
+                <i class="fa fa-heart"></i>ABOUT ME
               </div>
             </div>
             <div class="list-group">
@@ -256,7 +256,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default  shadow-box  no-border">
         <div class="panel-body  no-border">
-          <div class="panel panel-heading text-center">MY FRIENDS</div>
+          <div class="panel panel-heading text-center">
+            <i class="fa fa-paw"></i>MY FRIENDS
+          </div>
           {{#each thisDog.friends}}
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 friend-pic-grid-col text-center">
             <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
@@ -278,7 +280,9 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="panel panel-default  shadow-box  no-border">
         <div class="panel-body  no-border">
-          <div class="panel panel-heading text-center">I LOVE</div>
+          <div class="panel panel-heading text-center">
+            <i class="fa fa-heart"></i>I LOVE
+          </div>
           {{#if isMyProfile}}
           <div class="list-group-item text-center">
             <input class="form-control typeahead puppy-search" name="team" type="text"
