@@ -52,24 +52,30 @@
                 <span class="badge bdg-red">{{numberOfFriendRequests}}</span>
                 {{/if}}
               </i>
-
             </button>
+
             <div class="dropdown-menu list-group">
-              <div class="list-group-item no-border">
-                <h4 class="thin dark-text">Friend Requests</h4>
+              <div class="panel panel-heading">
+                <div class="text-center">
+                  Friend Requests
+                </div>
               </div>
               {{#each myDog.friendRequests}}
-              <div class="list-group-item no-border shadow">
-                <div class="panel panel-default  shadow-box  no-border">
-                  <div class="panel-body  no-border">
-                    <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
-
-                    <button class="btn btn-default btn-add-on btn-red-inverse"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
-                    <button class="btn btn-default btn-add-on btn-green-inverse" data-id="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
-                    <a style="display:'inline-block;'" href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a>
+              <div class="panel panel-default transparent   no-border">
+                <div class="panel-body no-border shadow-box">
+                  <div class="list-group">
+                    <div class="list-group-item text-center">
+                      <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
+                    </div>
+                    <div class="list-group-item text-center">
+                      <h3><a href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a></h3>
+                    </div>
+                    <div class="list-group-item text-center">
+                      <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
+                      <button class="btn btn-default btn-add-on btn-custom btn-green" data-id="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
+                    </div>
                   </div>
                 </div>
-
               </div>
               {{/each}}
             </div>

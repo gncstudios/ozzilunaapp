@@ -39,3 +39,5 @@ mrt:moment
 tomi:upload-server
 tomi:upload-jquery
 bootstrap3:glyphicons
+imagemagick
+jonblum:jquery-cropper

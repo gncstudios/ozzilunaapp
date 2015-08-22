@@ -15,7 +15,6 @@ DashboardController = AppController.extend({
 DashboardController.events({
   'click [data-action=upVotePost]': function (event, template) {
     event.preventDefault();
-
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var postId = $(event.target).attr('data-id');
     var postToLike = Posts.findOne({_id: postId});
