@@ -5,7 +5,7 @@
           Run with the pack<span class="trademark dark-text shadow thin">TM</span>
         </h1>
         {{#if currentUser}}
-        <a href="dashboard/{{thisDog.username}}" class="btn btn-brand navbar-btn">Profile</a>
+        <a href="dashboard/{{thisDog.username}}" class="btn btn-brand navbar-btn btn-lg btn-custom">Profile</a>
         {{else}}
 
         <a href="{{ pathFor 'atSignIn' }}" class="btn btn-custom">Sign in</a>
@@ -18,19 +18,4 @@
 
 
   </div>
-
-  <div class="row text-center no-top-padding">
-    <h1 class="dark-text shadow thin text-overlay" >
-      Live vicariously through your pet... that means you, dog people
-    </h1>
-    <img class="img-responsive profile-pic background-pic" src="/images/puppy-love.png">
-    <a href="https://unsplash.com/andrespieker" class="thin">"Puppy Love" by André Spieker. Source: unsplash</a>
-</div>
-<div class="row text-center no-top-padding">
-  <h1 class="dark-text shadow thin text-overlay" >
-    Meet new friends for the ones you love
-  </h1>
-  <img class="img-responsive profile-pic background-pic" src="/images/find-friends.png">
-  <a href="https://unsplash.com/noellopez" class="thin">"Pups" by Noel Lopez. Source: unsplash</a>
-</div>
 </template>
