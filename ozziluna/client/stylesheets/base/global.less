@@ -14,8 +14,12 @@
 // Components
 @import '@{components}/loading.import.less';
 @import '@{components}/buttons.import.less';
+@media (min-width:1500px){
+	#masonry-grid .gutter-sizer{width:4%;}
+	#masonry-grid .grid-item{width:22%;margin-bottom:4%;}
+}
 
-// Style
+/* 2 columns */
 .panel-heading{
   border-radius: 0px;
   border:none;
@@ -23,6 +27,7 @@
 }
 list-group-item-no-padding{
   padding: 0px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 .profile-pic {
   width:100%;
@@ -30,9 +35,11 @@ list-group-item-no-padding{
 .brand-img {
   height: 90%;
 }
+.grid {
+  background-color: red;
+}
 .friend-pic-grid {
-  width: 100%;
-  margin:none;
+  width:30%;
 }
 .twitter-typeahead { width: 100%; }
 .btn-add-on {

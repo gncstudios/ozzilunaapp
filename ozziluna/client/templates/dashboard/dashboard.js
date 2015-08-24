@@ -9,13 +9,14 @@ Template.dashboard.rendered = function() {
   Session.set('postingMode', false);
   Session.set('commentingMode', false);
   formatPhotoUploadControls();
+
+  
 };
 function formatPhotoUploadControls(){
   // This fixes the uggly browse shit
   $('div.btn.btn-primary.btn-file.upload-control').append('<i class="fa fa-camera font-size-md"></i>');
   $('div.btn.btn-info.upload-control.start').append('<i class="fa fa-arrow-circle-right font-size-md"></i>');
 }
-
 
 
 
