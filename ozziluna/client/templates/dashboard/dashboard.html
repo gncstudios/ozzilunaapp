@@ -22,20 +22,20 @@
         <!-- no stats edit mode, just display the fields -->
         <div class="row">
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-          <h1>{{thisDog.name}}</h1>
-          <h3>{{thisDog.breed}}</h3>
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+            <h1>{{thisDog.name}}</h1>
+            <h3>{{thisDog.breed}}</h3>
+          </div>
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 
-          <!-- if it is not in stats edit mode and it is our profile, put a button to edit shit -->
-          {{#if isMyProfile}}
+            <!-- if it is not in stats edit mode and it is our profile, put a button to edit shit -->
+            {{#if isMyProfile}}
             <h1><a href="#" class="btn btn-custom btn-lg btn-white" data-action="editStats"><i class="fa fa-edit"></i></a></h1>
-          {{else}}
-          <div class="row text-center">
-            {{#if isDogInProfileFriend}}
+            {{else}}
+            <div class="row text-center">
+              {{#if isDogInProfileFriend}}
               <h1><i class="fa fa-paw"></i></h1>
               <small>friend</small>
-            {{else}}
+              {{else}}
               {{#if hasFriendRequestBeenSent}}
 
               <h1><i class="fa fa-user"></i></h1>
@@ -44,12 +44,12 @@
               <h1><a href="#" class="btn btn-custom btn-lg btn-brand" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a></h1>
               <small>add friend</small>
               {{/if}}
+              {{/if}}
+            </div>
             {{/if}}
-          </div>
-          {{/if}}
 
+          </div>
         </div>
-      </div>
         {{/if}}
 
 
@@ -246,8 +246,12 @@
           </div>
           {{#each thisDog.friends}}
           <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 friend-pic-grid-col text-center">
+            <div class="list-group-item text-center list-group-item-no-padding">
+
             <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">  <img class="friend-pic-grid img-circle" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}"></a>
             <a href="{{ pathFor 'dashboard'}}{{friendUsername}}"> {{friendName}}</a>
+          </div>
+
           </div>
 
           {{/each}}
@@ -283,15 +287,36 @@
           {{#each thisDogsActivities}}
           <div class="list-group-item">
             <div class="row">
+
+              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                <div class="dropdown">
+                  <button class="dropdown-toggle btn btn-default btn-add-on  btn-custom btn-white" data-toggle="dropdown" type="button"><i class="fa fa-ellipsis-h"></i></button>
+                  <ul class="dropdown-menu">
+                    <div class="row">
+                      <div class="list-group">
+                      </div>
+                    </div>
+                    <div class="list-group-item">{{> friendGridDisplay}}
+                    </div>
+                    <div class="list-group-item text-center">
+                      <button class="btn btn-default btn-add-on  btn-custom btn-red"  data-action="deleteActivity" type="button">   <i class="fa fa-close">REMOVE</i></button>
+                    </div>
+                    <div class="list-group-item text-center">
+                      <button class="btn btn-default btn-add-on  btn-custom btn-brand"  data-action="findMoreFriendsWhoLikeThisActivity" type="button">   <i class="fa fa-search">MATCH</i></button>
+                    </div>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <strong>{{name}}</strong>
+              </div>
+
               <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
                 <span class="badge">{{numberOfFreindsWithSameInterest name}}</span>
               </div>
-              <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-              <strong>{{name}}</strong>
-              </div>
-              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-                <button class="btn btn-default btn-add-on  btn-custom btn-white"  data-action="deleteActivity" type="button">   <i class="fa fa-ellipsis-h"></i></button>
-              </div>
+
+
             </div>
 
           </div>
@@ -308,7 +333,7 @@
   <div class="row">
     <div class="list-group">
       <div class="list-group-item">
-          <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
+        <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
       </div>
       <div class="list-group-item">
         <div class="text-center">

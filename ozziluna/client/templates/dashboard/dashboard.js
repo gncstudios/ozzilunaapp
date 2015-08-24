@@ -184,8 +184,7 @@ Template.favoriteActivitiesDisplay.helpers({
     for (var i = 0; i < myDog.friends.length; i++) {
       var thisFriend = myDog.friends[i];
       console.log("Checking if " + thisFriend.friendName + " likes " + interest);
-      var activitiesInCommon = Activities.find({name: interest, dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisFriend.friendUsername}}});
-      if (activitiesInCommon.length) {
+      if (Activities.findOne({name: interest, dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisFriend.friendUsername}}})) {
         console.log(" ...Yes!");
         likeCount++;
       }
