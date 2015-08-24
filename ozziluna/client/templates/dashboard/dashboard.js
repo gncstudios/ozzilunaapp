@@ -8,8 +8,17 @@ Template.dashboard.rendered = function() {
   Session.set('interactionsEditMode', false);
   Session.set('postingMode', false);
   Session.set('commentingMode', false);
-
+  formatPhotoUploadControls();
 };
+function formatPhotoUploadControls(){
+  // This fixes the uggly browse shit
+  $('div.btn.btn-primary.btn-file.upload-control').append('<i class="fa fa-camera font-size-md"></i>');
+  $('div.btn.btn-info.upload-control.start').append('<i class="fa fa-arrow-circle-right font-size-md"></i>');
+}
+
+
+
+
 Template.newPostTemplate.helpers({
   'postPicUpload': function() {
     return {
@@ -27,7 +36,12 @@ Template.newPostTemplate.helpers({
     }
   }
 });
+
+
+
+
 Template.dashboard.helpers({
+
   'profilePicUpload': function() {
     return {
       finished: function(index, fileInfo, context) {
@@ -40,7 +54,6 @@ Template.dashboard.helpers({
 
         Dogs.update(dogToEdit._id, {$set: {profilePic: picUrl}});
         Pics.insert({usernameOfDogWhoOwnsThisPicture: Meteor.user().username, source: picUrl});
-
       },
 
     }
@@ -163,7 +176,25 @@ Template.favoriteActivitiesDisplay.helpers({
   'isMyProfile': function() {
     var myDog = Dogs.findOne({username: Meteor.user().username});
     return myDog.username === Router.current().params.username;
-  }
+  },
+  'numberOfFreindsWithSameInterest': function(interest){
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    var likeCount = 0;
+    // iterate through all friends of my dog and see if hey have the same interest as our dog
+    for (var i = 0; i < myDog.friends.length; i++) {
+      var thisFriend = myDog.friends[i];
+      console.log("Checking if " + thisFriend.friendName + " likes " + interest);
+      var activitiesInCommon = Activities.find({name: interest, dogsByUsernameWhoLikeThisActivity: {$elemMatch: {username: thisFriend.friendUsername}}});
+      if (activitiesInCommon.length) {
+        console.log(" ...Yes!");
+        likeCount++;
+      }
+      else {
+        console.log("... nope.")
+      }
+    }
+    return likeCount;
+  },
 });
 
 Template.friendGridDisplay.helpers({
