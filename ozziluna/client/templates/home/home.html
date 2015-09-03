@@ -5,7 +5,7 @@
           Run with the pack<span class="trademark dark-text shadow thin">TM</span>
         </h1>
         {{#if currentUser}}
-        <a href="dashboard/{{thisDog.username}}" class="btn btn-brand navbar-btn btn-lg btn-custom">Profile</a>
+        <a href="dashboard/{{currentUser.username}}" class="btn btn-brand navbar-btn btn-lg btn-custom">Profile</a>
         {{else}}
 
         <a href="{{ pathFor 'atSignIn' }}" class="btn btn-custom btn-white">Sign in</a>

@@ -212,6 +212,8 @@ DashboardController.events({
       var energy = $('#energyValue').val();
       $('#energyValue').val('');
 
+
+
       var aggression = $('#aggressionValue').val();
       $('#aggressionValue').val('');
 

@@ -8,6 +8,13 @@ Router.route('/dashboard/:username', {
   controller: 'DashboardController'
 });
 
+Router.route('/bioEdit', {
+  name: 'bioEdit',
+
+  controller: 'BioEditController'
+});
+
+
 Router.plugin('ensureSignedIn', {
   only: ['dashboard']
 });

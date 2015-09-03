@@ -1,6 +1,24 @@
 <!-- (C) 2015 Samuel Jacobs All Rights Reserved -->
-
 <template name="dashboard">
+  <!-- Profile Picture -->
+  <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
+  <!-- Bio -->
+  <h3>{{thisDog.name}}</h3>
+  <p>{{thisDog.breed}}</p>
+  <p>{{thisDog.birthDate}} {{thisDog.gender}}</p>
+  <a href="{{ pathFor 'bioEdit'}}"><i class="fa fa-edit"></i>Edit Bio</a>
+  <!-- 3 Panels -->
+  <!-- 3 Buttons -->
+  <!-- Posts -->
+
+</template>
+
+
+
+
+
+
+<template name="dashboard2">
   <div class="template-dashboard">
 
     <div class="panel panel-default shadow-box no-border">
@@ -205,32 +223,7 @@
 </template>
 <!--  End of dashboard template  -->
 
-<!--********************-->
-<!--  for editing stats -->
-<!--********************-->
-<template name="statsEdit">
-  <div class="list-group">
-    <div class="list-group-item">
-      <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
-    </div>
-    <div class="list-group-item">
 
-      <input type="text" value="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
-    </div>
-    <div class="list-group-item">
-      <div class="list-group-item">
-        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
-        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
-      </div>
-    </div>
-
-    <div class="list-group-item">
-      <input type="text" value="{{thisDog.birthDate}}" class="form-control input-object-brand-inverse" id="statsBirthDate">
-    </div>
-  </div>
-
-</template>
-<!--  End of stats edit template  -->
 
 
 <!--***********************************-->

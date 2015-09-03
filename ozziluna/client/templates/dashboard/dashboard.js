@@ -10,7 +10,7 @@ Template.dashboard.rendered = function() {
   Session.set('commentingMode', false);
   formatPhotoUploadControls();
 
-  
+
 };
 function formatPhotoUploadControls(){
   // This fixes the uggly browse shit
@@ -55,8 +55,7 @@ Template.dashboard.helpers({
 
         Dogs.update(dogToEdit._id, {$set: {profilePic: picUrl}});
         Pics.insert({usernameOfDogWhoOwnsThisPicture: Meteor.user().username, source: picUrl});
-      },
-
+      }
     }
   },
   'thisDog': function() {
@@ -217,20 +216,7 @@ Template.friendGridDisplay.helpers({
     }
   }
 });
-Template.statsEdit.helpers({
-  'thisDog': function() {
-    var thisDog = Dogs.findOne({username: Router.current().params.username});
-    if (thisDog) {
-      return thisDog;
-    }
-    else {
-      return false;
-    }
-  },
-  'statsEditMode': function() {
-    return Session.get('statsEditMode');
-  }
-});
+
 Template.interactionsDisplay.helpers({
   'thisDog': function() {
     var thisDog = Dogs.findOne({username: Router.current().params.username});

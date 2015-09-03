@@ -1,0 +1,61 @@
+<template name="bioEdit">
+  <!--********************-->
+  <!--  for editing bio -->
+  <!--********************-->
+  <form class="form-horizontal">
+    <!-- Go Back -->
+    <div class="form-group">
+      <a href="dashboard/{{currentUser.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to Profile</i></a>
+    </div>
+
+    <!-- Profile Pic-->
+    <div class="form-group">
+      <label for="statsName" class="col-sm-2 control-label">Profile Picture</label>
+      <div class="col-sm-10">
+        <img class="img img-rounded profile-pic box-shadow" src="{{thisDog.profilePic}}">
+        <img src="" class="img img-square profile-pic" id="profilePicPreview">
+        {{> upload_bootstrap callbacks=profilePicUpload}}
+      </div>
+    </div>
+
+    <!-- Dog name -->
+    <div class="form-group">
+      <label for="statsName" class="col-sm-2 control-label">Name</label>
+      <div class="col-sm-10">
+        <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
+      </div>
+    </div>
+
+    <!-- Dog breed -->
+    <div class="form-group">
+      <label for="statsBreed" class="col-sm-2 control-label">Breed</label>
+      <div class="col-sm-10">
+        <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
+      </div>
+    </div>
+
+    <!-- Dog gender -->
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-venus"></i> female</label>
+        <label class="radio-inline"><input id="statsGender" type="radio" name="optradio"> <i class="fa fa-mars"></i> male</label>
+        <label class="checkbox-inline pull-right"><input id="statsAltered" type="checkbox" name="optradio"> <i class="fa fa-neuter"></i> fixed</label>
+
+      </div>
+    </div>
+
+    <!-- Dog Brithday -->
+    <div class="form-group">
+      <label for="statsBirthDate" class="col-sm-2 control-label">Birthday</label>
+      <div class="col-sm-10">
+        Born: {{thisDog.birthDate}}
+        <input type="text" class="form-control" id="statsBirthDate">
+      </div>
+    </div>
+
+    <!-- Save -->
+    <div class="form-group text-center">
+      <a data-action="saveStats" class="btn btn-large btn-custom btn-green"><i class="fa fa-save">Save</i></a>
+    </div>
+  </form>
+</template>
