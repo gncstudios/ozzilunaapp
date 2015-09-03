@@ -8,9 +8,65 @@
   <p>{{thisDog.birthDate}} {{thisDog.gender}}</p>
   <a href="{{ pathFor 'bioEdit'}}"><i class="fa fa-edit"></i>Edit Bio</a>
   <!-- 3 Panels -->
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      Friends
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      Activities
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+      My Rating
+    </div>
+  </div>
   <!-- 3 Buttons -->
+  <div class="btn-group btn-group-lg container-fluid text-center" role="group" aria-label="">
+    <button class="btn btn-lg btn-default" type="button">POST</button>
+    <button class="btn btn-lg btn-default" type="button">PLAY</button>
+    <button class="btn btn-lg btn-default" type="button">FRIEND</button>
+  </div>
   <!-- Posts -->
+  <div class="list-group">
+    <div class="panel panel-heading">
+      <div class="text-center">
+        {{thisDog.name}}'s Tail
+      </div>
+    </div>
 
+
+    {{> newPostTemplate}}
+
+    {{#each thisDogsPosts}}
+    <div class="list-group-item list-group-item-post">
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+          <img class="img img-circle profile-pic" src="{{friendProfilePic dogWhoPosted}}">
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+          <h4 class="text-brand-color">{{dogWhoPosted}}</h4>
+          <div class="post-date"> {{postDate}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <img class="img img-square profile-pic" src="{{postImgUrl}}">
+
+          <div class="post-text">{{text}}</div>
+          <div class="list-group-item">
+            <button class="btn btn-default btn-add-on  btn-custom btn-white"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
+            <button class="btn btn-default btn-add-on  btn-custom btn-brand" data-action="upVotePost({{_id}})" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+          </div>
+          <div class="list-group-item">
+            {{#if commentingMode}}
+            <p>Better be good...</p>
+            {{> commentTemplate}}
+            {{/if}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
 </template>
 
 
@@ -236,14 +292,14 @@
 
 
 
-        {{#each thisDog.friends}}
-          <!-- width of .grid-sizer used for columnWidth -->
-            <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">
-              <img class="img img-square friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}">
-            </a>
+      {{#each thisDog.friends}}
+      <!-- width of .grid-sizer used for columnWidth -->
+      <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">
+        <img class="img img-square friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}">
+      </a>
 
 
-        {{/each}}
+      {{/each}}
 
     </div>
   </div>
