@@ -20,7 +20,14 @@ AccountsTemplates.addFields([
       errStr: 'Invalid email',
   }
 ]);
-
+AccountsTemplates.configure({
+    reCaptcha: {
+        siteKey: '6LcgFAwTAAAAAKKECPlVQKz5jScJ3zoYQK7hwWPW',
+        theme: "light",
+        data_type: "image"
+    },
+    showReCaptcha: true
+});
 // This worked. look here: https://github.com/nate-strauser/accounts-templates-core#configuration-api
 AccountsTemplates.removeField('password');
 AccountsTemplates.addField({
