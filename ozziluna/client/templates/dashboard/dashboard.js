@@ -3,21 +3,11 @@
 Template.dashboard.rendered = function() {
   Meteor.typeahead();
   Meteor.typeahead.inject();
-  Session.set('statsEditMode', false);
-  Session.set('philosophyEditMode', false);
-  Session.set('interactionsEditMode', false);
-  Session.set('postingMode', false);
-  Session.set('commentingMode', false);
-  formatPhotoUploadControls();
+  $('body').css('background-image', 'none');
+
 
 
 };
-function formatPhotoUploadControls(){
-  // This fixes the uggly browse shit
-  $('div.btn.btn-primary.btn-file.upload-control').append('<i class="fa fa-camera font-size-md"></i>');
-  $('div.btn.btn-info.upload-control.start').append('<i class="fa fa-arrow-circle-right font-size-md"></i>');
-}
-
 
 
 Template.newPostTemplate.helpers({

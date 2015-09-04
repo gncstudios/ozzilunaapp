@@ -1,4 +1,6 @@
 Template.home.rendered = function() {
+$('body').css('background-image', "url('/images/cover-image.png')")
+
 };
 Template.home.helpers({
   'thisDog': function() {

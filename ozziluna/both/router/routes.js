@@ -13,8 +13,15 @@ Router.route('/bioEdit', {
 
   controller: 'BioEditController'
 });
-
-
+Router.route('/friends', {
+  name: 'friends',
+});
+Router.route('/photos', {
+  name: 'photos',
+});
+Router.route('/about', {
+  name: 'about',
+});
 Router.plugin('ensureSignedIn', {
   only: ['dashboard']
 });

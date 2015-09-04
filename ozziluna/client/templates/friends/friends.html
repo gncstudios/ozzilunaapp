@@ -1,0 +1,13 @@
+<template name="friends">
+  <a href="dashboard/{{currentUser.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to Profile</i></a>
+  <!-- display the friends here -->
+  {{#each thisDog.friends}}
+  <!-- width of .grid-sizer used for columnWidth -->
+  <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">
+    <img class="img img-square friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}">
+  </a>
+
+
+  {{/each}}
+
+</template>
