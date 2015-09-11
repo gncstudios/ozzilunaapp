@@ -1,6 +1,7 @@
 <!-- (C) 2015 Samuel Jacobs All Rights Reserved -->
 <template name="dashboard">
   <div class="container-fluid">
+    {{> stickyFooter}}
     <!-- Profile Picture -->
     <div class="row">
       <img class="img img-square profile-pic" src="{{thisDog.profilePic}}">
@@ -9,49 +10,35 @@
     <div class="row">
       <div class="panel panel-default">
         <div class="panel-body side-padding">
-          <h3>{{thisDog.name}}  <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border color2-background white-text pull-right rounded shadow" type="button"><i class="fa fa-user-plus fa-2x"></i></button></h3>
+          <div class="row">
+            {{> dogInfo}}
+          </div>
+          <h3>{{thisDog.name}}  <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border brand-color-background white-text pull-right rounded shadow" type="button"><i class="fa fa-user-plus fa-2x"></i></button></h3>
           <p>{{thisDog.breed}}</p>
           <p>{{thisDog.birthDate}} {{thisDog.gender}}</p>
-          <a href="{{ pathFor 'bioEdit'}}"><i class="fa fa-edit"></i>Edit Bio</a>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="panel panel-default no-padding color3-background square-edges">
-        <div class="panel-body text-center color3-background no-padding square-edges">
-          <!-- 3 Panels -->
-          <div class="btn-group btn-group-justified " role="group" aria-label="">
-            <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
-              <i class="fa fa-paw fa-2x"></i>
-            </a>
-            <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-              <i class="fa fa-photo fa-2x"></i>
-            </a>
-            <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-              <i class="fa fa-info-circle fa-2x"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
+
 
     <!-- 3 Buttons -->
 
     <div class="row">
-      <div class="well">
-        <div class="btn-group btn-group-justified" role="group" aria-label="">
-          <a class="btn btn-lg btn-default color1-background white-text" data-toggle="collapse" data-target="#newPostCollapse" type="button">POST</a>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+
+          <div class="btn-group btn-group-justified" role="group" aria-label="">
+            <a class="btn btn-lg btn-default brand-color-background white-text" data-toggle="collapse" data-target="#newPostCollapse" type="button">POST</a>
+          </div>
+        </div>
+        <div class="panel-body">
+        </div>
+        <div class="collapse" id="newPostCollapse">
+          {{> newPostTemplate}}
         </div>
       </div>
     </div>
 
-
-    <div class="collapse" id="newPostCollapse">
-      <div class="well">
-        {{> newPostTemplate}}
-
-      </div>
-    </div>
     <!-- Posts -->
     <div class="list-group">
       <div class="panel-heading">
@@ -97,7 +84,19 @@
 </template>
 
 
-
+<template name="dogInfo">
+  <div class="btn-group btn-group-justified " role="group" aria-label="">
+    <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default no-border transparent dark-text square-edges" type="button">
+      <i class="fa fa-paw"> Friends</i>
+    </a>
+    <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default  no-border transparent dark-text square-edges" type="button">
+      <i class="fa fa-photo"> Pics</i>
+    </a>
+    <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent dark-text square-edges" type="button">
+      <i class="fa fa-info-circle"> Story</i>
+    </a>
+  </div>
+</template>
 
 
 
@@ -401,26 +400,26 @@
 </template>
 
 <template name="newPostTemplate">
-  <div class="row">
-    <div class="list-group">
-      <div class="list-group-item">
-        <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
+  <div class="list-group">
+    <div class="list-group-item">
+      <div class="well">
+      <textarea class="form-control " placeholder="Let's hear it..." cols="100"  rows="5" id="postText"></textarea>
+    </div>
+  </div>
+    <div class="list-group-item">
+      <div class="text-center">
+        <button class="btn btn-default btn-add-on  btn-custom btn-red"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+        <button class="btn btn-default btn-add-on  btn-custom btn-green"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
       </div>
-      <div class="list-group-item">
-        <div class="text-center">
-          <button class="btn btn-default btn-add-on  btn-custom btn-red"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
-          <button class="btn btn-default btn-add-on  btn-custom btn-green"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
-        </div>
+    </div>
+    <div class="list-group-item">
+      <div class="panel-body transparent no-boder">
+        {{> upload_bootstrap callbacks=postPicUpload}}
       </div>
-      <div class="list-group-item">
-        <div class="panel-body transparent no-boder">
-          {{> upload_bootstrap callbacks=postPicUpload}}
-        </div>
-      </div>
+    </div>
 
-      <div class="list-group-item">
-        <img src="" class="img img-square profile-pic" id="postImagePreview">
-      </div>
+    <div class="list-group-item">
+      <img src="" class="img img-square profile-pic" id="postImagePreview">
     </div>
   </div>
 
@@ -430,8 +429,11 @@
   <div class="list-group">
     <div class="list-group-item">
       <div class="input-group container-fluid">
-        <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="postText"></textarea>
+        <div class="well">
+          <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="postText"></textarea>
+        </div>
       </div>
+
       {{> upload_bootstrap callbacks=postPicUpload}}
       <img src="" class="img img-square profile-pic" id="postImagePreview">
     </div>

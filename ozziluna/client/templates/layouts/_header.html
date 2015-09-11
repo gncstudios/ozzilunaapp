@@ -6,7 +6,7 @@
     <div class="container">
       <div class="navbar-header">
 
-        <button class="btn btn-default btn-lg btn-custom btn-add-on btn-brand navbar-toggle collapsed"   data-toggle="collapse" data-target="#main-nav" type="button"><i class="fa fa-gear"> </i></button>
+        <button class="btn btn-default white-text no-border main-hamburger shadow rounded navbar-toggle collapsed"   data-toggle="collapse" data-target="#main-nav" type="button"><i class="fa fa-bars"> </i></button>
 
         <a class="navbar-brand" href="{{ pathFor 'dashboard' username=currentUser.username}}"><span><img class="brand-img" src="../images/ozzi-luna-dogs.png"></span><span class="white-text spaced-text">PET</span><span class="white-text thin spaced-text">PAL</span><span class="trademark white-text thin">TM</span></a>
 
@@ -38,62 +38,7 @@
           <li class="{{ isActiveRoute regex='home' }} white-text"><a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home</a></li>
           <li class="{{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' username=currentUser.username}}"><i class="fa fa-paw"></i> Profile</a></li>
         </ul>
-        <ul>
-          <li>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-
-
-              <div class="input-group text-center">
-                <span class="input-group-btn">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-add-on dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <i class="fa fa-user-plus">
-                        {{#if hasFriendRequests}}
-                        <span class="badge bdg-red">{{numberOfFriendRequests}}</span>
-                        {{/if}}
-                      </i>
-                    </button>
-
-                    <div class="dropdown-menu list-group">
-                      <div class="panel panel-heading">
-                        <div class="text-center">
-                          Friend Requests
-                        </div>
-                      </div>
-                      {{#each myDog.friendRequests}}
-                      <div class="panel panel-default transparent   no-border">
-                        <div class="panel-body no-border shadow-box">
-                          <div class="list-group">
-                            <div class="list-group-item text-center">
-                              <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
-                            </div>
-                            <div class="list-group-item text-center">
-                              <h3><a href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a></h3>
-                            </div>
-                            <div class="list-group-item text-center">
-                              <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
-                              <button class="btn btn-default btn-add-on btn-custom btn-green" data-id="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      {{/each}}
-                    </div>
-                  </div>
-                </span>
-                <input class="form-control typeahead friend-search" name="team" type="text"
-                placeholder="Pets need friends too..."
-                autocomplete="off" spellcheck="off"
-                data-source="Dogfriends" id="dogToSearchFor"/>
-                <span class="input-group-btn">
-                  <button class="btn btn-default btn-add-on"  data-action="searchForDog" type="button">   <i class="fa fa-arrow-circle-right"></i></button>
-                </span>
-              </div>
-
-            </div>
-          </li>
-        </ul>
       </div>
 
     </div>

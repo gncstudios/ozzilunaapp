@@ -1,0 +1,76 @@
+<template name="stickyFooter">
+  <footer class="footer dark-background">
+    <div class="container dark-background">
+      <div class="btn-group btn-group-justified " role="group" aria-label="">
+        <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-search"></i>
+        </a>
+        <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-paw"></i>
+        </a>
+        <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-photo"></i>
+        </a>
+        <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-info-circle"></i>
+        </a>
+        <a href="{{ pathFor 'bioEdit'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-gear"></i>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+</template>
+
+<template name="friendRequests">
+  <div class="btn-group">
+    <button type="button" class="btn btn-default btn-add-on dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <i class="fa fa-user-plus">
+        {{#if hasFriendRequests}}
+        <span class="badge bdg-red">{{numberOfFriendRequests}}</span>
+        {{/if}}
+      </i>
+    </button>
+
+    <div class="dropdown-menu list-group">
+      <div class="panel panel-heading">
+        <div class="text-center">
+          Friend Requests
+        </div>
+      </div>
+      {{#each myDog.friendRequests}}
+      <div class="panel panel-default transparent   no-border">
+        <div class="panel-body no-border shadow-box">
+          <div class="list-group">
+            <div class="list-group-item text-center">
+              <img class="img img-square profile-pic shadow" src="{{friendProfilePic usernameOfRequestedFriend}}">
+            </div>
+            <div class="list-group-item text-center">
+              <h3><a href="{{ pathFor 'dashboard'}} {{usernameOfRequestedFriend}}">{{usernameOfRequestedFriend}}</a></h3>
+            </div>
+            <div class="list-group-item text-center">
+              <button class="btn btn-default btn-add-on btn-custom btn-red"  data-action="denyFriendRequest" type="button">   <i class="fa fa-close"></i> Deny</button>
+              <button class="btn btn-default btn-add-on btn-custom btn-green" data-id="{{usernameOfRequestedFriend}}"  data-action="acceptFriendRequest" type="button">   <i class="fa fa-check"></i> Accept</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="dogSearch">
+  <div class="input-group text-center">
+    <span class="input-group-btn">
+    </span>
+    <input class="form-control typeahead friend-search" name="team" type="text"
+    placeholder="Pets need friends too..."
+    autocomplete="off" spellcheck="off"
+    data-source="Dogfriends" id="dogToSearchFor"/>
+    <span class="input-group-btn">
+      <button class="btn btn-default btn-add-on"  data-action="searchForDog" type="button">   <i class="fa fa-arrow-circle-right"></i></button>
+    </span>
+  </div>
+  </template>
