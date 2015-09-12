@@ -14,5 +14,11 @@ Template.photos.helpers({
     else {
       return false;
     }
+  },
+  'thisDogsPhotos': function() {
+    var thisDogsUsername = Router.current().params.username;
+    if (thisDogsUsername) {
+      return Pics.find({usernameOfDogWhoOwnsThisPicture: thisDogsUsername});
+    }
   }
 });

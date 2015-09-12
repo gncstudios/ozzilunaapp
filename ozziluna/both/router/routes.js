@@ -4,7 +4,6 @@ Router.route('/', {
 
 Router.route('/dashboard/:username', {
   name: 'dashboard',
-
   controller: 'DashboardController'
 });
 
@@ -16,12 +15,12 @@ Router.route('/bioEdit', {
 Router.route('/friends', {
   name: 'friends',
 });
-Router.route('/photos', {
+Router.route('/photos/:username', {
   name: 'photos',
 });
 Router.route('/about', {
   name: 'about',
 });
 Router.plugin('ensureSignedIn', {
-  only: ['dashboard']
+  only: ['dashboard', "about", "bioEdit", "friends"]
 });
