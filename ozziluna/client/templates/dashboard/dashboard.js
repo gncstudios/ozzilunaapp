@@ -4,6 +4,8 @@ Template.dashboard.rendered = function() {
   Meteor.typeahead();
   Meteor.typeahead.inject();
   $('body').css('background-image', 'none');
+  Session.set('postingMode', false);
+  Session.set('commentingMode', false);
 
 
 
@@ -42,7 +44,9 @@ Template.dogInfo.helpers({
   }
 });
 Template.dashboard.helpers({
-
+  'commentingMode': function() {
+    return Session.get('commentingMode');
+  },
   'profilePicUpload': function() {
     return {
       finished: function(index, fileInfo, context) {

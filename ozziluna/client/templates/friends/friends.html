@@ -6,14 +6,10 @@
       </div>
     </div>
   </div>
-    <!-- display the friends here -->
-  {{#each thisDog.friends}}
-  <!-- width of .grid-sizer used for columnWidth -->
-  <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">
-    <img class="img img-square friend-pic-grid" src="{{friendProfilePic friendUsername}}" alt="{{friendProfilePic friendUsername}}">
-  </a>
+<div class="row">
+  {{> friendGridDisplay}}
+</div>
 
 
-  {{/each}}
 
 </template>

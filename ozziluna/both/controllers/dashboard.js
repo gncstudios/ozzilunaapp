@@ -20,7 +20,8 @@ DashboardController.events({
   'click [data-action=upVotePost]': function (event, template) {
     event.preventDefault();
     var myDog = Dogs.findOne({username: Meteor.user().username});
-    var postId = $(event.target).attr('data-id');
+    var postId = $(event.target).attr('data-post-id');
+    console.log("Up Voting Post with id: " + postId);
     var postToLike = Posts.findOne({_id: postId});
     console.log(postToLike);
     if (postToLike && postToLike.dogsWhoLikeThisPost && postToLike.dogsWhoLikeThisPost.length){
@@ -60,15 +61,16 @@ DashboardController.events({
     var dogUsernameOfProfilePostedTo = Router.current().params.username;
     var postImgUrl = $('#postImagePreview').attr("src");
     var postText = $('#postText').val();
+    var postId = $(event.target).attr('data-post-id');
 
 
 
     $('#postText').val('');
     if (postImgUrl) {
-      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText, postImgUrl: postImgUrl});
+      Posts.insert({parentPostId: postId, dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText, postImgUrl: postImgUrl});
     }
     else {
-      Posts.insert({dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText});
+      Posts.insert({parentPostId: postId, dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText});
     }
     Session.set('commentingMode', false);
   },
