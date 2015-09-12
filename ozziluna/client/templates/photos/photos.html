@@ -1,12 +1,15 @@
 <template name="photos">
   <div class="container-fluid">
+
+
   <div class="row">
     <div class="panel panel-default">
       <div class="panel-body">
-        <a href="/dashboard/{{currentUser.username}}" class="" ><i class="fa fa-arrow-circle-left fa-2x"> Back to Profile</i></a>
+        <a href="/dashboard/{{thisDog.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to {{thisDog.username}}'s Profile</i></a>
       </div>
     </div>
   </div>
+
 <div class="row">
   <h3 class="dark-text">{{thisDog.name}}'s Pics'</h3>
 </div>
@@ -16,7 +19,7 @@
 
     <div class="col-xs-6 col-md-3">
       <a href="#" class="thumbnail">
-        <img src="{{source}}" alt="{{source}}">
+        <a href="{{source}}"> <img src="{{source}}" alt="{{source}}"></a>
       </a>
     </div>
     {{/each}}

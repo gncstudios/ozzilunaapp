@@ -30,7 +30,17 @@ Template.newPostTemplate.helpers({
 
 
 
-
+Template.dogInfo.helpers({
+  'thisDog': function() {
+    var thisDog = Dogs.findOne({username: Router.current().params.username});
+    if (thisDog) {
+      return thisDog;
+    }
+    else {
+      return false;
+    }
+  }
+});
 Template.dashboard.helpers({
 
   'profilePicUpload': function() {

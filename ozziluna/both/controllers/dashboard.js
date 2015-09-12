@@ -1,7 +1,11 @@
 DashboardController = AppController.extend({
   waitOn: function() {
 
-    return this.subscribe('dogs') && this.subscribe('images') && this.subscribe('activities') && this.subscribe('posts')  && this.subscribe('pics');
+    return  this.subscribe('dogs') &&
+            this.subscribe('images') &&
+            this.subscribe('activities') &&
+            this.subscribe('posts')  &&
+            this.subscribe('pics');
   },
   data: {
     dogs: Dogs.find({})

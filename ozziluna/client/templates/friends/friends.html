@@ -1,6 +1,12 @@
 <template name="friends">
-  <a href="dashboard/{{currentUser.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to Profile</i></a>
-  <!-- display the friends here -->
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <a href="/dashboard/{{thisDog.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to {{thisDog.username}}'s Profile</i></a>
+      </div>
+    </div>
+  </div>
+    <!-- display the friends here -->
   {{#each thisDog.friends}}
   <!-- width of .grid-sizer used for columnWidth -->
   <a href="{{ pathFor 'dashboard'}}{{friendUsername}}">

@@ -9,11 +9,11 @@
     <!-- Bio -->
     <div class="row">
       <div class="panel panel-default">
-        <div class="panel-body side-padding">
+        <div class="panel-body side-padding  no-top-padding light-grey-color-background">
           <div class="row">
             {{> dogInfo}}
           </div>
-          <h3>{{thisDog.name}}  <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border brand-color-background white-text pull-right rounded shadow" type="button"><i class="fa fa-user-plus fa-2x"></i></button></h3>
+          <h3>{{thisDog.name}}  <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border compliment-color-background white-text rounded pull-right friend-add shadow" type="button"><i class="fa fa-user-plus"></i></button></h3>
           <p>{{thisDog.breed}}</p>
           <p>{{thisDog.birthDate}} {{thisDog.gender}}</p>
         </div>
@@ -25,10 +25,10 @@
 
     <div class="row">
       <div class="panel panel-default">
-        <div class="panel-heading">
+        <div class="panel-heading lightest-grey-color-background">
 
           <div class="btn-group btn-group-justified" role="group" aria-label="">
-            <a class="btn btn-lg btn-default brand-color-background white-text shadow" data-toggle="collapse" data-target="#newPostCollapse" type="button">POST</a>
+            <a class="btn btn-lg btn-default brand-color-background square-edges white-text shadow" data-toggle="collapse" data-target="#newPostCollapse" type="button">POST</a>
           </div>
         </div>
         <div class="panel-body">
@@ -42,10 +42,10 @@
     <!-- Posts -->
     <div class="row">
 
-      <div class="panel panel-default">
-        <div class="panel-heading shadow">
+      <div class="compliment-color-background panel panel-default shadow no-border">
+        <div class="compliment-color-background panel-heading shadow no-border">
           <div class="text-center">
-            <h3>{{thisDog.name}}'s Tail</h3>
+            <h3  class="white-text">{{thisDog.name}}'s Tail</h3>
           </div>
         </div>
 
@@ -53,23 +53,23 @@
 
         {{#each thisDogsPosts}}
         <div class="list-group-item list-group-item-post">
-          <div class="row">
+          <div class="row lightest-grey-color-background">
             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
               <img class="img img-circle profile-pic" src="{{friendProfilePic dogWhoPosted}}">
             </div>
             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-              <h4 class="text-brand-color">{{dogWhoPosted}}</h4>
-              <div class="post-date"> {{postDate}}</div>
+              <h4 class="dark-text"><strong>{{dogWhoPosted}}</strong></h4>
+              <div class="dark-text"> {{postDate}}</div>
             </div>
           </div>
-          <div class="row">
+          <div class="row lighter-grey-color-background">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <img class="img img-square profile-pic" src="{{postImgUrl}}">
 
-              <div class="post-text">{{text}}</div>
+              <div class="dark-text"><strong>{{text}}</strong></div>
               <div class="list-group-item">
-                <button class="btn btn-default btn-add-on  btn-custom btn-white"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
-                <button class="btn btn-default btn-add-on  btn-custom btn-brand" data-action="upVotePost({{_id}})" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+                <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-action="newComment" type="button">COMMENT <i class="fa fa-comment"></i></button>
+                <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges compliment-color-background" data-action="upVotePost({{_id}})" type="button" data-id="{{_id}}">LIKE <i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
               </div>
               <div class="list-group-item">
                 {{#if commentingMode}}
@@ -88,14 +88,14 @@
 
 
 <template name="dogInfo">
-  <div class="btn-group btn-group-justified secondary-color-background" role="group" aria-label="">
-    <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default no-border transparent dark-text square-edges" type="button">
+  <div class="btn-group btn-group-justified dark-background" role="group" aria-label="">
+    <a href="{{ pathFor 'photos'}}" class="btn btn-sm btn-default  no-border transparent white-text square-edges" type="button">
       <i class="fa fa-paw"> Friends</i>
     </a>
-    <a href="/photos/{{currentUser.username}}" class="btn btn-lg btn-default  no-border transparent dark-text square-edges" type="button">
+    <a href="/photos/{{thisDog.username}}" class="btn btn-sm btn-default  no-border transparent white-text square-edges" type="button">
       <i class="fa fa-photo"> Pics</i>
     </a>
-    <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent dark-text square-edges" type="button">
+    <a href="{{ pathFor 'about'}}" class="btn btn-sm btn-default  no-border transparent white-text square-edges" type="button">
       <i class="fa fa-info-circle"> Story</i>
     </a>
   </div>
@@ -144,7 +144,7 @@
               <h1><i class="fa fa-user"></i></h1>
               sent request
               {{else}}
-              <h1><a href="#" class="btn btn-custom btn-lg btn-brand" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a></h1>
+              <h1><a href="#" class="btn btn-custom compliment-color-background btn-lg" data-action="sendFriendRequest"><i class="fa fa-user-plus"></i></a></h1>
               <small>add friend</small>
               {{/if}}
               {{/if}}
@@ -411,8 +411,8 @@
     </div>
     <div class="list-group-item">
       <div class="text-center">
-        <button class="btn btn-default btn-add-on  btn-custom btn-red"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
-        <button class="btn btn-default btn-add-on  btn-custom btn-green"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
+        <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelPost" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+        <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-action="savePost" type="button">   <i class="fa fa-check"></i> POST</button>
       </div>
     </div>
     <div class="list-group-item">

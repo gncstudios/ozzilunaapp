@@ -2,17 +2,20 @@
   <footer class="footer dark-background">
     <div class="container dark-background">
       <div class="btn-group btn-group-justified " role="group" aria-label="">
-        <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+        <a href="{{ pathFor 'search'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
           <i class="fa fa-search"></i>
         </a>
-        <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
+        <a href="{{ pathFor home}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-user-plus"></i>
+        </a>
+        <a href="{{ pathFor home}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
+          <i class="fa fa-info"></i>
+        </a>
+        <a href="{{ pathFor 'friends'}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
           <i class="fa fa-paw"></i>
         </a>
-        <a href="{{ pathFor 'photos'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
+        <a href="/photos/{{currentUser.username}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
           <i class="fa fa-photo"></i>
-        </a>
-        <a href="{{ pathFor 'about'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-info-circle"></i>
         </a>
         <a href="{{ pathFor 'bioEdit'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
           <i class="fa fa-gear"></i>
