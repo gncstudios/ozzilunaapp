@@ -59,13 +59,13 @@ DashboardController.events({
     */
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var dogUsernameOfProfilePostedTo = Router.current().params.username;
-    var postImgUrl = $('#postImagePreview').attr("src");
-    var postText = $('#postText').val();
+    var postImgUrl = $('#commentImagePreview').attr("src");
+    var postText = $('#commentText').val();
     var postId = $(event.target).attr('data-post-id');
 
+    console.log("Parent Post Id: " + postId);
 
-
-    $('#postText').val('');
+    $('#commentText').val('');
     if (postImgUrl) {
       Posts.insert({parentPostId: postId, dogWhoPosted: myDog.username, dogUsernameOfProfilePostedTo: dogUsernameOfProfilePostedTo, typeOfPost: "Post", postDate: moment().format('LLLL'), text: postText, postImgUrl: postImgUrl});
     }
@@ -329,5 +329,20 @@ DashboardController.events({
         }
       });
     });
-  }
+  },
+  'change #commentPicInput': function(event, template) {
+    FS.Utility.eachFile(event, function(file) {
+      Images.insert(file, function (err, fileObj) {
+        if (err){
+          // handle error
+        } else {
+          // handle success depending what you need to do
+          var userId = Meteor.userId();
+          var dogToEdit = Dogs.findOne({username: Meteor.user().username});
+          var imageUrl = "/cfs/files/images/" + fileObj._id;
+          $('#postImagePreview').attr("src", imageUrl);
+        }
+      });
+    });
+  },
 });

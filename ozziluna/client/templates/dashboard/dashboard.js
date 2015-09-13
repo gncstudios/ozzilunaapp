@@ -109,7 +109,9 @@ Template.dashboard.helpers({
     var thisDogsUsername = thisDog.username;
     return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
   },
-
+  'thisPostsCommentsById': function(postId){
+    return Posts.find({parentPostId: postId});
+  },
   // this is for posting
   'postingMode': function() {
     return Session.get('postingMode');

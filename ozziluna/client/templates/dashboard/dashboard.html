@@ -77,10 +77,32 @@
               <div class="list-group-item lightest-grey-color-background">
                 {{#if commentingMode}}
                 <p>Comment away...</p>
-                {{> commentTemplate}}
+                <div class="list-group">
+                  <div class="list-group-item">
+                    <div class="input-group container-fluid">
+                      <div class="well">
+                        <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="commentText"></textarea>
+                      </div>
+                    </div>
+
+                    {{> upload_bootstrap callbacks=postPicUpload}}
+                    <img src="" class="img img-square profile-pic" id="commentImagePreview">
+                  </div>
+                  <div class="list-group-item">
+                    <div class="text-center">
+                      <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelComment" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+                      <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-post-id="{{_id}}" data-action="saveComment" type="button">   <i class="fa fa-check"></i> POST</button>
+                    </div>
+                  </div>
+                </div>
                 {{/if}}
               </div>
             </div>
+          </div>
+          <div class="row lightest-grey-color-background shadow">
+            {{#each thisPostsCommentsById _id}}
+            <div class="dark-text lightest-grey-color-background well"><strong>{{text}}</strong></div>
+            {{/each}}
           </div>
         </div>
         {{/each}}
@@ -238,6 +260,8 @@
             {{> newPostTemplate}}
 
             {{#each thisDogsPosts}}
+            {{#if parentPostId}}
+            {{else}}
             <div class="list-group-item list-group-item-post">
               <div class="row">
                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -260,12 +284,30 @@
                   <div class="list-group-item">
                     {{#if commentingMode}}
                     <p>Better be good...</p>
-                    {{> commentTemplate}}
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="input-group container-fluid">
+                          <div class="well">
+                            <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="postText"></textarea>
+                          </div>
+                        </div>
+
+                        {{> upload_bootstrap callbacks=postPicUpload}}
+                        <img src="" class="img img-square profile-pic" id="postImagePreview">
+                      </div>
+                      <div class="list-group-item">
+                        <div class="text-center">
+                          <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelComment" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+                          <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-post-id="{{_id}}" data-action="saveComment" type="button">   <i class="fa fa-check"></i> POST</button>
+                        </div>
+                      </div>
+                    </div>
                     {{/if}}
                   </div>
                 </div>
               </div>
             </div>
+            {{/if}}
             {{/each}}
           </div>
         </div>
@@ -429,34 +471,6 @@
     </div>
   </div>
 
-</template>
-
-<template name="commentTemplate">
-  <div class="list-group">
-    <div class="list-group-item">
-      <div class="input-group container-fluid">
-        <div class="well">
-          <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="postText"></textarea>
-        </div>
-      </div>
-
-      {{> upload_bootstrap callbacks=postPicUpload}}
-      <img src="" class="img img-square profile-pic" id="postImagePreview">
-    </div>
-    <div class="list-group-item">
-      <div class="text-center">
-        <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelComment" type="button">   <i class="fa fa-close"></i> CANCEL</button>
-        <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-action="saveComment" type="button">   <i class="fa fa-check"></i> POST</button>
-      </div>
-    </div>
-  </div>
-</template>
-<template name="activitiesDisplay">
-  <div class="list-group">
-    <div class="list-group-item">
-      <strong>Name: </strong>{{thisDog.name}}
-    </div>
-  </div>
 </template>
 
 
