@@ -52,6 +52,8 @@
 
 
         {{#each thisDogsPosts}}
+        {{#if parentPostId}}
+        {{else}}
         <div class="list-group-item list-group-item-post shadow lightest-grey-color-background">
           <div class="row lightest-grey-color-background shadow">
             <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
@@ -69,42 +71,69 @@
               <div class="dark-text lightest-grey-color-background well"><strong>{{text}}</strong></div>
 
               <div class="list-group-item lightest-grey-color-background">
-                <div class="container-fluid text-center">
-                  <button class="btn btn-default white-text shadow no-border square-edges brand-color-background"  data-action="newComment"  data-post-id={{_id}} type="button">COMMENT <i class="fa fa-comment"></i></button>
-                  <button class="btn btn-default   white-text shadow no-border square-edges dark-background" data-action="upVotePost" data-post-id={{_id}} type="button" data-id="{{_id}}">PAW IT UP <i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+                <div class="container-fluid">
+                  <button class="btn btn-default white-text shadow no-border square-edges brand-color-background" data-toggle="collapse" data-target="#postCollapse{{_id}}" data-action="newComment"  data-post-id={{_id}} type="button"><i class="fa fa-comment"></i></button>
+                  <button class="btn btn-default   white-text shadow no-border square-edges dark-background" data-action="upVotePost" data-post-id={{_id}} type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
                 </div>
               </div>
               <div class="list-group-item lightest-grey-color-background">
-                {{#if commentingMode}}
-                <p>Comment away...</p>
-                <div class="list-group">
-                  <div class="list-group-item">
-                    <div class="input-group container-fluid">
-                      <div class="well">
-                        <textarea class="form-control " placeholder="Whats your comment?" cols="100"  rows="5" id="commentText"></textarea>
-                      </div>
-                    </div>
 
-                    {{> upload_bootstrap callbacks=postPicUpload}}
-                    <img src="" class="img img-square profile-pic" id="commentImagePreview">
-                  </div>
-                  <div class="list-group-item">
-                    <div class="text-center">
-                      <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelComment" type="button">   <i class="fa fa-close"></i> CANCEL</button>
-                      <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-post-id="{{_id}}" data-action="saveComment" type="button">   <i class="fa fa-check"></i> POST</button>
+                <div class="collapse" id="postCollapse{{_id}}">
+                  <div class="well">
+
+                    <div class="list-group">
+                      <div class="list-group-item">
+                        <div class="row">
+                          <textarea class="form-control" placeholder="Whats your comment?" cols="100" data-id="{{_id}}" rows="5" id="commentText{{_id}}"></textarea>
+                        </div>
+
+                        {{> upload_bootstrap callbacks=postPicUpload}}
+                        <img src="" class="img img-square profile-pic" id="commentImagePreview">
+                      </div>
+                      <div class="list-group-item">
+                        <div class="text-center">
+                          <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges dark-background"  data-action="cancelComment" type="button">   <i class="fa fa-close"></i> CANCEL</button>
+                          <button class="btn btn-default btn-add-on  white-text shadow no-border square-edges brand-color-background"  data-post-id="{{_id}}" data-action="saveComment" type="button">   <i class="fa fa-check"></i> POST</button>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                {{/if}}
               </div>
             </div>
           </div>
           <div class="row lightest-grey-color-background shadow">
-            {{#each thisPostsCommentsById _id}}
-            <div class="dark-text lightest-grey-color-background well"><strong>{{text}}</strong></div>
+            <div class="well">
+              {{#each thisPostsCommentsById _id}}
+              <div class="list-group-item list-group-item-post shadow lightest-grey-color-background">
+                <div class="row lightest-grey-color-background shadow">
+                  <div class="col-lg-2 col-md-2 col-sm-3 col-xs-3">
+                    <img class="img img-circle profile-pic" src="{{friendProfilePic dogWhoPosted}}">
+                  </div>
+                  <div class="col-lg-10 col-md-10 col-sm-9 col-xs-9">
+                    <h4 class="dark-text"><strong>{{dogWhoPosted}}</strong></h4>
+                    <div class="dark-text"> {{postDate}}</div>
+                  </div>
+                </div>
+                <div class="row lightest-grey-color-background">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img class="img img-square profile-pic" src="{{postImgUrl}}">
+
+                    <div class="dark-text lightest-grey-color-background well"><strong>{{text}}</strong></div>
+
+                    <div class="list-group-item lightest-grey-color-background">
+                      <div class="container-fluid">
+                        <button class="btn btn-default   white-text shadow no-border square-edges dark-background" data-action="upVotePost" data-post-id={{_id}} type="button"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             {{/each}}
           </div>
+          </div>
         </div>
+        {{/if}}
         {{/each}}
       </div>
     </div>
@@ -269,14 +298,14 @@
                 </div>
                 <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                   <h4 class="text-brand-color">{{dogWhoPosted}}</h4>
-                  <div class="post-date"> {{postDate}}</div>
+                  <div class="post-date"> {{parentPostId}}</div>
                 </div>
               </div>
               <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                   <img class="img img-square profile-pic" src="{{postImgUrl}}">
 
-                  <div class="well">{{text}}</div>
+                  <div class="well">{{parentPostId}}{{text}}</div>
                   <div class="list-group-item">
                     <button class="btn btn-default btn-add-on  btn-custom btn-white"  data-action="newComment" type="button"><i class="fa fa-comment"></i></button>
                     <button class="btn btn-default btn-add-on  btn-custom btn-brand" data-action="upVotePost({{_id}})" type="button" data-id="{{_id}}"><i class="fa fa-paw">{{numberOfLikesForPostByPostId _id}}</i></button>

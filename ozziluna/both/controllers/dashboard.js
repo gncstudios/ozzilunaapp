@@ -59,10 +59,10 @@ DashboardController.events({
     */
     var myDog = Dogs.findOne({username: Meteor.user().username});
     var dogUsernameOfProfilePostedTo = Router.current().params.username;
-    var postImgUrl = $('#commentImagePreview').attr("src");
-    var postText = $('#commentText').val();
     var postId = $(event.target).attr('data-post-id');
-
+    var postImgUrl = $('#commentImagePreview' + postId).attr("src");
+    var postText = $('#commentText' + postId).val();
+    $('#postCollapse' + postId).collapse('hide');
     console.log("Parent Post Id: " + postId);
 
     $('#commentText').val('');
