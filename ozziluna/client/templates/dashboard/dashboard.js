@@ -112,6 +112,9 @@ Template.dashboard.helpers({
   'thisPostsCommentsById': function(postId){
     return Posts.find({parentPostId: postId});
   },
+  'numberOfCommentsByPostId': function(postId){
+    return Posts.find({parentPostId: postId}).fetch().length;
+  },
   // this is for posting
   'postingMode': function() {
     return Session.get('postingMode');
@@ -163,7 +166,7 @@ Template.dashboard.helpers({
   'numberOfLikesForPostByPostId': function(postId) {
     var thisPost = Posts.findOne({_id: postId});
     if (thisPost && thisPost.dogsWhoLikeThisPost) {
-      return " + " + thisPost.dogsWhoLikeThisPost.length;
+      return thisPost.dogsWhoLikeThisPost.length;
     }
     else {
       return "";

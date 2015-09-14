@@ -7,7 +7,7 @@ Router.route('/dashboard/:username', {
   controller: 'DashboardController'
 });
 
-Router.route('/bioEdit/:username', {
+Router.route('/bioEdit', {
   name: 'bioEdit',
 
   controller: 'BioEditController'
