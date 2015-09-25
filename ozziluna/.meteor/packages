@@ -24,12 +24,9 @@ cunneen:mailgun
 aldeed:collection2
 aldeed:autoform
 alanning:roles
-accounts-weibo
 accounts-password
 accounts-twitter
-accounts-meetup
 accounts-google
-accounts-github
 accounts-facebook
 cfs:standard-packages
 cfs:gridfs

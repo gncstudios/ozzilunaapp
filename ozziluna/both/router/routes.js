@@ -1,5 +1,16 @@
 Router.route('/', {
-  name: 'home'
+  name: 'home',
+  onBeforeAction: function() {
+    var currentUser = Meteor.userId();
+    if (currentUser){
+      console.log("Logged in!");
+      this.render("dashboard");
+    }
+    else {
+      console.log("Not logged in.");
+        this.next();
+    }
+  }
 });
 
 Router.route('/dashboard/:username', {

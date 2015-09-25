@@ -7,7 +7,7 @@
     <div class="row">
       <div class="panel panel-default">
         <div class="panel-body">
-          <a href="/dashboard/{{thisDog.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to {{thisDog.username}}'s Profile</i></a>
+          <a href="/dashboard/{{myDog.username}}" class="" ><i class="fa fa-arrow-circle-left"> Back to {{myDog.name}}'s Profile</i></a>
         </div>
       </div>
     </div>
@@ -16,8 +16,11 @@
     <div class="form-group">
       <label for="statsName" class="col-sm-2 control-label">Profile Picture</label>
       <div class="col-sm-10">
-        <img class="img img-rounded profile-pic box-shadow" src="{{thisDog.profilePic}}">
+        <img class="img img-rounded profile-pic box-shadow" src="{{myDog.profilePic}}">
         <img src="" class="img img-square profile-pic" id="profilePicPreview">
+        <div class="label label-default">
+          Click Browse to select a photo then click upload.
+        </div>
         {{> upload_bootstrap callbacks=profilePicUpload}}
       </div>
     </div>
@@ -26,7 +29,7 @@
     <div class="form-group">
       <label for="statsName" class="col-sm-2 control-label">Name</label>
       <div class="col-sm-10">
-        <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
+        <input type="text" value="{{myDog.name}}" placeholder="{{myDog.name}}" class="form-control input-object-brand-inverse" id="statsName">
       </div>
     </div>
 
@@ -34,7 +37,7 @@
     <div class="form-group">
       <label for="statsBreed" class="col-sm-2 control-label">Breed</label>
       <div class="col-sm-10">
-        <input type="text" value="{{thisDog.name}}" placeholder="{{thisDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
+        <input type="text" value="{{myDog.name}}" placeholder="{{myDog.breed}}" class="form-control input-object-brand-inverse" id="statsBreed">
       </div>
     </div>
 
@@ -52,7 +55,7 @@
     <div class="form-group">
       <label for="statsBirthDate" class="col-sm-2 control-label">Birthday</label>
       <div class="col-sm-10">
-        Born: {{thisDog.birthDate}}
+        Born: {{myDog.birthDate}}
         <input type="text" class="form-control" id="statsBirthDate">
       </div>
     </div>

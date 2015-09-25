@@ -21,10 +21,10 @@ Template.bioEdit.rendered = function() {
 };
 
 Template.bioEdit.helpers({
-  'thisDog': function() {
-    var thisDog = Dogs.findOne({username: Router.current().params.username});
-    if (thisDog) {
-      return thisDog;
+  'myDog': function() {
+    var myDog = Dogs.findOne({username: Meteor.user().username});
+    if (myDog) {
+      return myDog;
     }
     else {
       return false;
