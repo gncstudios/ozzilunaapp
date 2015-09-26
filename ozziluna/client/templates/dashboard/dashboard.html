@@ -18,9 +18,7 @@
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 
               <strong>{{thisDog.name}}
-                <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border compliment-color-background white-text rounded pull-right friend-add shadow" type="button"><i class="fa fa-user-plus">
-                </i>
-              </button>
+
             </strong>
             <p>{{thisDog.breed}}</p>
             <p>{{thisDog.birthDate}} {{thisDog.gender}}</p>
@@ -34,7 +32,15 @@
   <div class="row">
     <div class="panel panel-default">
       <div class="panel-body side-padding  no-top-padding light-grey-color-background">
-        <img class="img img-square" src="/images/cute_puppy_{{cuteDogPicNumber}}.jpg">
+        <img class="img img-square profile-pic" src="/images/cute_puppy_{{cuteDogPicNumber}}.jpg">
+      </div>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+          {{randomNumber}} Treats
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-center">
+          {{randomNumber}} Barks
+        </div>
       </div>
       <div class="btn-group btn-group-justified">
 
@@ -45,7 +51,7 @@
           <i class="fa fa-commenting-o">
           </i> Bark</a>
           <a class="btn btn-sm btn-brand" data-toggle="collapse" data-target="#newPostCollapse" type="button">
-            <i class="fa fa-plus">
+            <i class="fa fa-reply">
             </i> Rollover</a>
           </div>
         </div>
@@ -55,7 +61,11 @@
 
       <div class="row">
         <div class="panel panel-default">
-          
+        <div class="text-center">
+          <button data-action="sendFriendRequest" class="btn btn-lg btn-default no-border compliment-color-background white-text rounded friend-add shadow" type="button">
+            <i class="fa fa-user-plus"></i>
+          </button>
+        </div>
           <div class="panel-body">
             <div class="collapse light-grey-color-background" id="newPostCollapse">
               {{> newPostTemplate}}
@@ -71,6 +81,7 @@
           <div class="panel-heading shadow no-border">
             <div class="text-center">
               <h3  class="dark-text thin">{{thisDog.name}}'s Tail</h3>
+
             </div>
           </div>
 

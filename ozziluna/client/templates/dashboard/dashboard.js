@@ -47,6 +47,9 @@ Template.dashboard.helpers({
   'commentingMode': function() {
     return Session.get('commentingMode');
   },
+  'randomNumber' : function () {
+    return Math.floor((Math.random() * 1000) + 1);
+  },
   'cuteDogPicNumber': function () {
     var cuteDogPicNum = Session.get('cuteDogPicCounter') % 6 + 1;
     return cuteDogPicNum;
