@@ -6,7 +6,7 @@ Template.dashboard.rendered = function() {
   $('body').css('background-image', 'none');
   Session.set('postingMode', false);
   Session.set('commentingMode', false);
-
+  Session.set('cuteDogPicCounter', 0);
 
 
 };
@@ -46,6 +46,10 @@ Template.dogInfo.helpers({
 Template.dashboard.helpers({
   'commentingMode': function() {
     return Session.get('commentingMode');
+  },
+  'cuteDogPicNumber': function () {
+    var cuteDogPicNum = Session.get('cuteDogPicCounter') % 6 + 1;
+    return cuteDogPicNum;
   },
   'profilePicUpload': function() {
     return {

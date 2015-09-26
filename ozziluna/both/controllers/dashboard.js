@@ -37,6 +37,11 @@ DashboardController.events({
   }
 
   },
+  'click [data-action=nextDog]': function (event, template) {
+    var cuteDogPicNum = Session.get('cuteDogPicCounter');
+    console.log("Cute Dog Pic Num:" + cuteDogPicNum);
+    Session.set('cuteDogPicCounter', cuteDogPicNum + 1);
+  },
   'click [data-action=newComment]': function (event, template) {
     event.preventDefault();
     console.log("posting new comment");

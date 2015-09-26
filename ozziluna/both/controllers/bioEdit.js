@@ -16,25 +16,17 @@ BioEditController.events({
     if (dogToEdit) {
       // save off the new stats
       var name = $('#statsName').val();
-      $('#statsName').val('');
+
 
       var breed = $('#statsBreed').val();
-      $('#statsBreed').val('');
+
 
       var gender = $('#statsGender').val();
-      $('#statsGender').val('');
-      if (gender === "on") {
-        gender = "Male";
-      }
-      else {
-        gender = "Female";
-      }
-      var fixed = $('#statsFixed').val();
-      $('#statsFixed').val('');
+
 
       var birthDate = $('#statsBirthDate').val();
-      $('#statsBirthDate').val('');
-      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender, fixed: fixed,birthDate: birthDate}});
+    
+      Dogs.update(dogToEdit._id, {$set: {name: name, breed: breed, gender: gender,birthDate: birthDate}});
     }
   },
   'change #profilePicInput': function(event, template) {

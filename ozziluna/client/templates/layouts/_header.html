@@ -5,39 +5,46 @@
   <nav class="navbar navbar-default navbar-static-top" role="navigation" id="navbar">
     <div class="container">
       <div class="navbar-header">
-
-        <button class="btn btn-default dark-text no-border main-hamburger lightest-grey-color-background shadow rounded navbar-toggle collapsed"   data-toggle="collapse" data-target="#main-nav" type="button"><i class="fa fa-bars"> </i></button>
-
+        <button class="btn btn-default dark-text no-border pull-right main-hamburger lightest-grey-color-background shadow rounded navbar-toggle collapsed"   data-toggle="collapse" data-target="#main-nav" type="button"><i class="fa fa-paw"> </i></button>
         <a class="navbar-brand" href="{{ pathFor 'dashboard' username=currentUser.username}}"><span><img class="brand-img" src="../images/ozzi-luna-dogs.png"></span><span class="white-text spaced-text">PET</span><span class="white-text thin spaced-text">PAL</span><span class="trademark white-text thin">TM</span></a>
 
       </div>
 
       <div class="collapse navbar-collapse" id="main-nav">
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-gear"></i> {{ currentUser.username }} <i class="fa fa-caret-down"></i>
+        <ul class="nav navbar-nav navbar-right white-text">
+          <li>
+            <a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home
             </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="#" data-action="logout"><i class="fa fa-lock"></i> Sign Out</a></li>
-            </ul>
+          </li>
+          <li>
+              <a href="/dashboard/{{currentUser.username}}"><i class="fa fa-paw"></i> Profile
+            </a>
+          </li>
+          <li>
+            <a href="/friends/{{currentUser.username}}"><i class="fa fa-user-plus"></i> Friend Requests
+            </a>
+          </li>
+          <li>
+            <a href="/bioEdit/{{currentUser.username}}"><i class="fa fa-gear"></i> Profile Settings
+              </a>
+          </li>
+          <li>
+            <a href="/photos/{{currentUser.username}}"><i class="fa fa-photo"></i> {{myDog.name}}'s Photos
+              </a>
+          </li>
+          <li>
+              <a href="/search/{{currentUser.username}}"><i class="fa fa-gear"></i> {{myDog.name}}'s Friends
+              </a>
+          </li>
+
+          <li>
+            <a href="#" data-action="logout"><i class="fa fa-lock"></i> Sign Out
+            </a>
           </li>
 
         </ul>
-        <div class="navbar-right">
-
-          <ul class="nav navbar-nav navbar-right">
-
-          </ul>
 
 
-        </div>
-
-        <ul class="nav navbar-nav navbar-right white-text">
-          <li class="{{ isActiveRoute regex='home' }} white-text"><a href="{{ pathFor 'home' }}"><i class="fa fa-home"></i> Home</a></li>
-          <li class="{{ isActiveRoute regex='dashboard' }}"><a href="{{ pathFor 'dashboard' username=currentUser.username}}"><i class="fa fa-paw"></i> Profile</a></li>
-        </ul>
 
       </div>
 

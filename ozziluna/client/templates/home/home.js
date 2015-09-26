@@ -8,7 +8,7 @@ Template.home.rendered = function() {
     var imagePath = "/images/bg-image-" + slideNumber + ".png";
     console.log("Background Image Path: " + imagePath);
     $('body').css('background-image', 'url("' + imagePath + '")');
-  }, 5000);
+  }, 6000);
 };
 Template.home.helpers({
   'thisDog': function() {

@@ -4,7 +4,9 @@ Router.route('/', {
     var currentUser = Meteor.userId();
     if (currentUser){
       console.log("Logged in!");
-      this.render("dashboard");
+      $('body').css('background-image', 'none');
+      Router.go('/dashboard/' + Meteor.user().username);
+
     }
     else {
       console.log("Not logged in.");
@@ -18,7 +20,7 @@ Router.route('/dashboard/:username', {
   controller: 'DashboardController'
 });
 
-Router.route('/bioEdit', {
+Router.route('/bioEdit/:username', {
   name: 'bioEdit',
 
   controller: 'BioEditController'

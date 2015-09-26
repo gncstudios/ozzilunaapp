@@ -11,7 +11,7 @@ Template.bioEdit.rendered = function() {
     $('#statsGender').val(thisDog.gender);
     var thisDog = Dogs.findOne({username: Router.current().params.username});
     var profilePicUrl = thisDog.profilePic;
-    $('body').css('background-image', 'url("' + profilePicUrl + '")');
+    $('body').css('background-image', 'none');
     // turn on the gender
 
     // turn on the fixed checkbox

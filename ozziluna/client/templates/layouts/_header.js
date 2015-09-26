@@ -66,5 +66,5 @@ Template._header.events({
     dogToSearchFor = dogToSearchFor.split("( ")[1];
     dogToSearchFor = dogToSearchFor.replace(" )", "");
     Router.go('/dashboard/' + dogToSearchFor);
-  },
+  }
 });

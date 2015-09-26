@@ -47,7 +47,8 @@ var mySubmitFunc = function(error, state){
     }
     if (state === "signUp") {
       console.log("Siged up, inserting into dogs database");
-      Dogs.insert({username: Meteor.user().username})
+      Dogs.insert({username: Meteor.user().username});
+      Router.go('/dashboard/' + Meteor.user().username);
     }
   }
 };
@@ -93,15 +94,9 @@ AccountsTemplates.configure({
 });
 
 function myPreSubmitFunc() {
-  console.log ("myPreSubmitFun")
-
-  Router.go('/bioEdit');
-
-
+  console.log ("Welcome! :)")
 }
 
 function mySubmitFunc() {
-  console.log ("mySubMitFunc")
-  Router.go('/bioEdit');
-
+  console.log ("Welcome! :)")
 }

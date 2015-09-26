@@ -1,25 +1,17 @@
 <template name="stickyFooter">
-  <footer class="footer dark-background">
-    <div class="container dark-background">
+  <footer class="footer">
+    <div class="container">
       <div class="btn-group btn-group-justified " role="group" aria-label="">
-        <a href="/search/{{currentUser.username}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-search"></i>
+        <a href="/search/{{thisDog.username}}" class=" btn no-border transparent dark-text square-edges" type="button">
+          <i class="fa fa-search fa-2x"></i>
         </a>
-        <a href="/friendRequests/{{currentUser.username}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-user-plus"></i>
+        <a href="/friends/{{thisDog.username}}" class="btn no-border transparent dark-text square-edges" type="button">
+          <i class="fa fa-paw fa-2x"></i>
         </a>
-        <a href="/notifications/{{currentUser.username}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-info"></i>
+        <a href="/photos/{{thisDog.username}}" class="btn no-border transparent dark-text square-edges" type="button">
+          <i class="fa fa-photo fa-2x"></i>
         </a>
-        <a href="/friends/{{currentUser.username}}" class="btn btn-lg btn-default no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-paw"></i>
-        </a>
-        <a href="/photos/{{currentUser.username}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-photo"></i>
-        </a>
-        <a href="{{pathFor 'bioEdit'}}" class="btn btn-lg btn-default  no-border transparent white-text square-edges" type="button">
-          <i class="fa fa-gear"></i>
-        </a>
+
       </div>
     </div>
   </footer>

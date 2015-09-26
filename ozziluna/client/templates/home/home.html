@@ -7,12 +7,9 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<h1 class="white-text">JOIN THE PACK...</h1>
-<br>
-<br>
-<br>
+<div class="text-center">
+  <h1 class="white-text thin large-text">Connecting People Through Their Pets</h1>
+</div>
 <br>
 <br>
 <br>
@@ -20,24 +17,25 @@
 <br>
 <br>
 <br>
+<div class="row text-center no-top-padding">
+  <a href="{{ pathFor 'atSignIn' }}" class="btn btn-xl-lg btn-inverted-white">Sign In</a>
+  <a href="{{ pathFor 'atSignUp' }}" class="btn btn-xl-lg btn-white">Join</a>
+</div>
 <br>
-    <div class="row text-center no-top-padding">
-      {{#if currentUser}}
-      <a href="dashboard/{{currentUser.username}}" class="btn btn-lg btn-default brand-color-background rounded white-text shadow">Profile</a>
-      {{else}}
-      <a href="{{ pathFor 'atSignIn' }}" class="btn btn-lg btn-default compliment-color-background rounded white-text shadow">Sign in</a>
-      <a href="{{ pathFor 'atSignUp' }}" class="btn btn-lg btn-default brand-color-background rounded white-text shadow">Register</a>
-      {{/if}}
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
   </div>
 
 </template>
