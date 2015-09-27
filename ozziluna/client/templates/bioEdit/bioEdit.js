@@ -13,6 +13,7 @@ Template.bioEdit.rendered = function() {
     var profilePicUrl = thisDog.profilePic;
     $('body').css('background-image', 'none');
     // turn on the gender
+    clearInterval(dogScroller);
 
     // turn on the fixed checkbox
   }

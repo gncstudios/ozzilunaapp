@@ -7,7 +7,13 @@ Template.dashboard.rendered = function() {
   Session.set('postingMode', false);
   Session.set('commentingMode', false);
   Session.set('cuteDogPicCounter', 0);
-
+  try {
+    clearInterval(dogScroller);
+  }
+  catch(error) {
+    console.log("Try-Catch is shitty, but we did it.");
+    console.log(error);
+  }
 
 };
 
@@ -51,7 +57,7 @@ Template.dashboard.helpers({
     return Math.floor((Math.random() * 1000) + 1);
   },
   'cuteDogPicNumber': function () {
-    var cuteDogPicNum = Session.get('cuteDogPicCounter') % 6 + 1;
+    var cuteDogPicNum = Session.get('cuteDogPicCounter') % 9 + 1;
     return cuteDogPicNum;
   },
   'profilePicUpload': function() {

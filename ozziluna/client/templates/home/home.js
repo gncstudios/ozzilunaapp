@@ -2,7 +2,7 @@ Template.home.rendered = function() {
 
   var imageNumber = 1;
   $('body').css('background-image', 'url("/images/bg-image-1.png")');
-  window.setInterval(function(){
+  dogScroller =  window.setInterval(function(){
     imageNumber++;
     var slideNumber = (imageNumber % 5 + 1);
     var imagePath = "/images/bg-image-" + slideNumber + ".png";

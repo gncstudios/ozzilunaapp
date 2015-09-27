@@ -1,6 +1,7 @@
 Template.friends.rendered = function() {
 
     $('body').css('background-image', 'none');
+    clearInterval(dogScroller);
 
 
 };
