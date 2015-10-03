@@ -119,8 +119,13 @@ Template.dashboard.helpers({
   },
   'thisDogsPosts' : function(){
     var thisDog = Dogs.findOne({username: Router.current().params.username});
-    var thisDogsUsername = thisDog.username;
-    return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
+    if (thisDog) {
+      var thisDogsUsername = thisDog.username;
+      return Posts.find({dogUsernameOfProfilePostedTo: thisDogsUsername});
+    }
+    else {
+      return [];
+    }
   },
   'thisPostsCommentsById': function(postId){
     return Posts.find({parentPostId: postId});

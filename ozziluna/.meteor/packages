@@ -15,7 +15,6 @@ reywood:publish-composite
 mrt:underscore-string-latest
 momentjs:moment
 matb33:collection-hooks
-less
 iron:router
 ian:accounts-ui-bootstrap-3
 dburles:factory
@@ -35,10 +34,12 @@ fortawesome:fontawesome
 mrt:moment
 tomi:upload-server
 tomi:upload-jquery
-bootstrap3:glyphicons
 imagemagick
 jonblum:jquery-cropper
 jquery
 altapp:recaptcha
 rajit:bootstrap3-datepicker
 service-configuration
+less
+useraccounts:core
+useraccounts:iron-routing

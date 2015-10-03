@@ -42,13 +42,25 @@ AccountsTemplates.addField({
 var mySubmitFunc = function(error, state){
   if (!error) {
     if (state === "signIn") {
-      // Successfully logged in
-      // ...
+
+        console.log("signing in");
+
     }
     if (state === "signUp") {
       console.log("Siged up, inserting into dogs database");
+      if(Meteor.user().services.google) {
+        console.log(Meteor.user().services.google);
+        console.log(Meteor.user().services.google.name);
+        var googleUsername = Meteor.user().services.google.id;;
+        console.log("Google Username: " + googleUsername);
+
+        Meteor.users.update({_id:Meteor.user()._id}, {$set:{"username" : googleUsername}})
+        console.log("Updated Human Id: " + Meteor.user().username);
+      }
+      console.log(Meteor.user().username);
       Dogs.insert({username: Meteor.user().username});
-      Router.go('/dashboard/' + Meteor.user().username);
+
+      Router.go('/bioEdit/' + Meteor.user().username);
     }
   }
 };
@@ -94,9 +106,5 @@ AccountsTemplates.configure({
 });
 
 function myPreSubmitFunc() {
-  console.log ("Welcome! :)")
-}
-
-function mySubmitFunc() {
-  console.log ("Welcome! :)")
+  console.log ("Welcome! :)");
 }

@@ -5,8 +5,14 @@ Router.route('/', {
     if (currentUser){
       console.log("Logged in!");
       $('body').css('background-image', 'none');
-      Router.go('/dashboard/' + Meteor.user().username);
+      if (Meteor.user().profile.name) {
+        Router.go('/dashboard/' + Meteor.user().username);
+      }
+      else {
+        console.log("Name not set, go to bio edit");
+        Router.go('/bioEdit/' + Meteor.user().username);
 
+      }
     }
     else {
       console.log("Not logged in.");
