@@ -43,3 +43,5 @@ service-configuration
 less
 useraccounts:core
 useraccounts:iron-routing
+mquandalle:jade
+natestrauser:videojs

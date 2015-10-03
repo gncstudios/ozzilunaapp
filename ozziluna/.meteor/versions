@@ -94,8 +94,11 @@ momentjs:moment@2.10.6
 mongo@1.1.2
 mongo-id@1.0.1
 mongo-livedata@1.0.9
+mquandalle:jade@0.4.3_1
+mquandalle:jade-compiler@0.4.3
 mrt:moment@2.8.1
 mrt:underscore-string-latest@2.3.3
+natestrauser:videojs@4.10.0
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 oauth@1.1.6

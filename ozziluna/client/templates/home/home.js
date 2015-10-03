@@ -5,7 +5,7 @@ Template.home.rendered = function() {
   dogScroller =  window.setInterval(function(){
     imageNumber++;
     var slideNumber = (imageNumber % 5 + 1);
-    var imagePath = "/images/cute_puppy_" + slideNumber + ".png";
+    var imagePath = "/images/cute_puppy_" + slideNumber + ".jpg";
     console.log("Background Image Path: " + imagePath);
     $('body').css('background-image', 'url("' + imagePath + '")');
   }, 6000);
