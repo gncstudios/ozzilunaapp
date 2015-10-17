@@ -1,5 +1,5 @@
 Meteor.methods({
-  'Pics.insert': function (params) {
+  'Items.insert': function (params) {
     Items.insert(params);
   }
 });

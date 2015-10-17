@@ -2,8 +2,8 @@ if(Meteor.isClient) {
   Meta.config({
       options: {
         // Meteor.settings[Meteor.settings.environment].public.meta.title
-        title: 'Ozzi',
-        suffix: 'Ozzi'
+        title: 'Default Project Title',
+        suffix: 'Project Title'
       }
   });
 }

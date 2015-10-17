@@ -1,7 +1,7 @@
-Meteor.publishComposite("dogs", function() {
+Meteor.publishComposite("items", function() {
   return {
     find: function() {
-      return Dogs.find({});
+      return Items.find({});
     }
     // ,
     // children: [
@@ -13,5 +13,3 @@ Meteor.publishComposite("dogs", function() {
     // ]
   }
 });
-
-Meteor.publish("images", function(){ return Images.find(); });
