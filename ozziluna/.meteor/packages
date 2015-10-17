@@ -45,3 +45,6 @@ useraccounts:core
 useraccounts:iron-routing
 mquandalle:jade
 natestrauser:videojs
+useraccounts:materialize
+gildaspk:autoform-materialize
+anti:fake

@@ -9,6 +9,7 @@ aldeed:autoform@5.4.0
 aldeed:collection2@2.3.3
 aldeed:simple-schema@1.3.3
 altapp:recaptcha@2.0.0
+anti:fake@0.4.1
 anti:i18n@0.4.3
 autopublish@1.0.4
 autoupdate@1.2.3
@@ -59,6 +60,7 @@ facebook@1.2.2
 fastclick@1.0.7
 fortawesome:fontawesome@4.3.0
 geojson-utils@1.0.4
+gildaspk:autoform-materialize@0.0.25
 google@1.1.6
 handlebars@1.0.4
 html-tools@1.0.5
@@ -138,6 +140,7 @@ url@1.0.5
 useraccounts:bootstrap@1.12.0
 useraccounts:core@1.12.0
 useraccounts:iron-routing@1.12.0
+useraccounts:materialize@1.12.0
 webapp@1.2.2
 webapp-hashing@1.0.5
 yasinuslu:blaze-meta@0.3.1
