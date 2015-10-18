@@ -34,7 +34,6 @@ fortawesome:fontawesome
 mrt:moment
 tomi:upload-server
 tomi:upload-jquery
-imagemagick
 jonblum:jquery-cropper
 jquery
 altapp:recaptcha
