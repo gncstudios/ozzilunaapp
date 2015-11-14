@@ -1,5 +1,5 @@
 Router.route('/', {
-  name: 'home'
+  name: 'landing'
 });
 
 Router.route('/dashboard', {

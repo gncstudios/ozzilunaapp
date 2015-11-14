@@ -8,10 +8,14 @@
   margin-bottom: @jumbotron-padding;
   color: @jumbotron-color;
   background-color: @jumbotron-bg;
+  height: 80vh;
+  position:relative;
+  transform: translateY(-15%);
 
   h1,
   .h1 {
     color: @jumbotron-heading-color;
+    text-transform: none;
   }
 
   p {
@@ -26,7 +30,7 @@
 
   .container &,
   .container-fluid & {
-    border-radius: @border-radius-large; // Only round corners at higher resolutions if contained in a container
+    border-radius: 0;
   }
 
   .container {
